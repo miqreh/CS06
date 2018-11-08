@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>STM32F4xx-Nucleo-WiFi_VCOM</name>
+	<name>STM32F4xx-Nucleo-Client_Socket</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -161,14 +161,9 @@
 			<locationURI>$%7BPARENT-7-PROJECT_LOC%7D/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_usart.c</locationURI>
 		</link>
 		<link>
-			<name>Drivers/STM32F4xx_HAL_Driver/stm32f4xx_ll_dma.c</name>
-			<type>1</type>
-			<locationURI>$%7BPARENT-7-PROJECT_LOC%7D/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_dma.c</locationURI>
-		</link>
-		<link>
 			<name>Example/SW4STM32/startup_stm32f401xe.s</name>
 			<type>1</type>
-			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/startup_stm32f401xe.s</locationURI>
+			<locationURI>$%7BPARENT-7-PROJECT_LOC%7D/Projects/Multi/Applications/Client_Socket/SW4STM32/STM32F401RE-Nucleo/startup_stm32f401xe.s</locationURI>
 		</link>
 		<link>
 			<name>Example/User/console.c</name>
@@ -188,7 +183,7 @@
 		<link>
 			<name>Example/User/stm32_xx_it.c</name>
 			<type>1</type>
-			<locationURI>$%7BPARENT-3-PROJECT_LOC%7D/Src/stm32_xx_it.c</locationURI>
+			<locationURI>$%7BPARENT-7-PROJECT_LOC%7D/Projects/Multi/Applications/Client_Socket/Src/stm32_xx_it.c</locationURI>
 		</link>
 		<link>
 			<name>Example/User/syscalls.c</name>
@@ -239,6 +234,11 @@
 			<name>Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.c</name>
 			<type>1</type>
 			<locationURI>$%7BPARENT-7-PROJECT_LOC%7D/Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.c</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.c</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-7-PROJECT_LOC%7D/Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.c</locationURI>
 		</link>
 		<link>
 			<name>Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.c</name>
