@@ -2276,11 +2276,19 @@ void WiFi_HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandleArg)
 
 WiFi_Status_t USART_Receive_AT_Resp( )
 {
-  while(IO_status_flag.AT_Response_Received != WIFI_TRUE) {
-		__NOP(); //nothing to do
-	}
+
+  /*while(IO_status_flag.AT_Response_Received != WIFI_TRUE) {
+
+	  __NOP(); //nothing to do
+
+	}*/
+
+
+
+
   IO_status_flag.AT_Response_Received = WIFI_FALSE;
   return WiFi_Counter_Variables.AT_RESPONSE;
+
 }
 
 /**
@@ -3584,10 +3592,18 @@ WiFi_Status_t SET_WiFi_SecKey(char* seckey)
   sprintf((char*)WiFi_AT_Cmd_Buff,AT_SET_SEC_KEY,seckey);  
 
   status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+
+
+
   if(status == WiFi_MODULE_SUCCESS)
     {
-      status = USART_Receive_AT_Resp( );
+      status = USART_Receive_AT_Resp();
+
     }
+
+
+
+
 #else  
   /* Set WIFI_WPA_SECURITY*/  
   status = SET_Configuration_Addr(WIFI_WPA_SECURITY, seckey);

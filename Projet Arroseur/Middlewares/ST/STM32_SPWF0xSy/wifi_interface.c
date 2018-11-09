@@ -1668,8 +1668,8 @@ WiFi_Status_t wifi_tftp_put(uint8_t * hostname, uint32_t port_number, uint8_t * 
 *         NOTE:       {data} used to fill the buffer must be properly set. The first byte is used as a token 
 *                     splitter; so use this special character to fill the buffer with multiple tokens. Every token can 
 *                     be directly referred remotely by SSI indexes contained inside the HTML page. For 
-*                     example: “|hello|world|” will create 2 tokens: "hello” accessed by <!--|06|Input|0|-->, and 
-*                     “world” accessed by <!--|06|Input|1|-->. 
+*                     example: ï¿½|hello|world|ï¿½ will create 2 tokens: "helloï¿½ accessed by <!--|06|Input|0|-->, and 
+*                     ï¿½worldï¿½ accessed by <!--|06|Input|1|-->. 
 * @retval WiFi_Status_t : return status of AT cmd response
 */
 
@@ -1951,12 +1951,38 @@ WiFi_Status_t wifi_ap_start(uint8_t * ssid, char * sec_key, uint8_t channel_num,
 {
   WiFi_Status_t status = WiFi_MODULE_SUCCESS;  
   
+
+
+
+
+#ifdef SPWF04
+    /*AT+S.WIFI=0<cr>*/
+  sprintf((char*)WiFi_AT_Cmd_Buff,AT_WIFI_ENABLE, 0);
+  status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+  if(status == WiFi_MODULE_SUCCESS)
+  {
+    status = USART_Receive_AT_Resp( );
+    if(status != WiFi_MODULE_SUCCESS) return status;
+    else IO_status_flag.radio_off = WIFI_TRUE;
+  }
+
+  //while(IO_status_flag.WiFi_WIND_State!= WiFiPowerDown);//Till +WIND:38:WiFi Powered Down arrives
+
+#endif
+
+
+
+
   if(sec_key) {
     status = SET_WiFi_SecKey((char*)sec_key);
     if(status != WiFi_MODULE_SUCCESS)
-        return WiFi_SecKey_ERROR;
+
+    	return WiFi_SecKey_ERROR;
   }
   
+
+
+
   /* Set the SSID : AT+S.SSIDTXT=<SSID>*/    
   if(ssid)
       status = SET_SSID((char*)ssid);
@@ -1969,20 +1995,14 @@ WiFi_Status_t wifi_ap_start(uint8_t * ssid, char * sec_key, uint8_t channel_num,
     
 #if defined(CONSOLE_UART_ENABLED)
   
-#ifdef SPWF04
-    /*AT+S.WIFI=0<cr>*/  
-  sprintf((char*)WiFi_AT_Cmd_Buff,AT_WIFI_ENABLE, 0);  
-  status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
-  if(status == WiFi_MODULE_SUCCESS)
-  {
-    status = USART_Receive_AT_Resp( );
-    if(status != WiFi_MODULE_SUCCESS) return status;
-    else IO_status_flag.radio_off = WIFI_TRUE;
-  }
+
+
+
+
   
-  while(IO_status_flag.WiFi_WIND_State!= WiFiPowerDown);//Till +WIND:38:WiFi Powered Down arrives
-#endif    
-  
+  printf("\r\Apres eteignage wifi\r\n");
+
+
   /* Set the network privacy mode : AT+S.SCFG=wifi_priv_mode,mode*/ 
    status = SET_Configuration_Value(WIFI_PRIV_MODE, priv_mode); 
   if(status != WiFi_MODULE_SUCCESS)
