@@ -4,14 +4,14 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 S_SRCS += \
-/Users/JeremyLanfranchi/Downloads/STM32CubeExpansion_WIFI1_V3.1.1/Projects/Multi/Applications/WiFi_VCOM/SW4STM32/STM32F401RE-Nucleo/startup_stm32f401xe.s 
+/Users/JeremyLanfranchi/git/CS06/Projet\ Arroseur/Projects/Multi/Applications/WiFi_VCOM/SW4STM32/STM32F401RE-Nucleo/startup_stm32f401xe.s 
 
 OBJS += \
 ./Example/SW4STM32/startup_stm32f401xe.o 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Example/SW4STM32/startup_stm32f401xe.o: /Users/JeremyLanfranchi/Downloads/STM32CubeExpansion_WIFI1_V3.1.1/Projects/Multi/Applications/WiFi_VCOM/SW4STM32/STM32F401RE-Nucleo/startup_stm32f401xe.s
+Example/SW4STM32/startup_stm32f401xe.o: /Users/JeremyLanfranchi/git/CS06/Projet\ Arroseur/Projects/Multi/Applications/WiFi_VCOM/SW4STM32/STM32F401RE-Nucleo/startup_stm32f401xe.s
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Assembler'
 	@echo $(PWD)
