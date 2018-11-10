@@ -58,6 +58,10 @@
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 
+
+void se_connecter_au_reseau_wifi(char* ssid, char* key);
+
+
 typedef enum {
   wifi_state_reset = 0,
   wifi_state_ready,

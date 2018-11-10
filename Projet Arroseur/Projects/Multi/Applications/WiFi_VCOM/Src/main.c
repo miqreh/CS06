@@ -117,7 +117,7 @@ int main(void)
 
   //Declenchement du mode MiniAP ici
 
-    uint8_t ssid[] = "Mamene";
+    uint8_t ssid[] = "Arroseur connecte";
     char key[] = "1234";
 
     wifi_ap_start(ssid,key, 1, 0);
@@ -134,6 +134,35 @@ int main(void)
 
 
 }
+
+
+void se_connecter_au_reseau_wifi(char* ssid, char* key){
+
+
+	printf("\rOn est dans la fonction se connecter au wifi...\r\n");
+
+	if (strcmp(ssid,"nicopucewifi") ==0){
+
+		printf("\rAvec les bons param...\r\n");
+
+	}
+	else{
+
+		printf("\rSans bon param...\r\n");
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
 
 /**
   * @brief  System Clock Configuration

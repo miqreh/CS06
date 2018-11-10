@@ -37,7 +37,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "wifi_module.h"
 #include "wifi_globals.h"
-
+#include "main.h"
 
 /** @addtogroup MIDDLEWARES
 * @{
@@ -65,6 +65,15 @@
 extern wifi_instances_t wifi_instances;
 
 int parsing_networks;
+
+
+
+
+int ssid_ou_key = 0; //0 = ssid et 1 = key
+char ssid_received[100];
+char key_received[100];
+
+
 
 char str[BUFFER_SIZE];
 uint8_t topic[100];
@@ -1735,10 +1744,34 @@ void Process_Wind_Indication(int wind_no,uint8_t *ptr)
         break;
         
     case Output_From_Remote: ;
+
+
+
+    printf("\rEnregistrement des param\r\n");
+
+            if (ssid_ou_key==0){
+
+            	strcpy(ssid_received,ptr);
+
+            	ssid_ou_key=1;
+            }
+            else{
+
+            	strcpy(key_received,ptr);
+            	ssid_ou_key=0;
+            	se_connecter_au_reseau_wifi(&ssid_received, &key_received);
+            }
+
         /* length of text to be received is 40 or lesss*/
         int bytes_read;
-        sscanf((const char*)ptr,"Output from remote:%*d:%n",&bytes_read);
-        ind_wifi_output_from_remote_callback((uint8_t *)ptr+bytes_read);
+        sscanf((const char*)ptr,"Output from--remote:%*d:%n",&bytes_read);
+        //ind_wifi_output_from_remote_callback((uint8_t *)ptr+bytes_read);
+
+
+
+
+
+
         break;
 
     // Queueing of these events not required.
