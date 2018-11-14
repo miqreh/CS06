@@ -20,10 +20,12 @@ QoS=2
 #ouvrir le client MQTT
 client = MQTT.Client(ClientID) #create new instance
 client.connect(broker_address) #connect to broker
+
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
-    if(msg.payload=="Manuel"):
-        declencherArrosage()
+    if(msg.topic==topicDeclenchement):
+        if(msg.payload=="Manuel"):
+            declencherArrosage()
 
 
 def log(message,topic=""):
@@ -49,7 +51,13 @@ def programmerArrosage():
 
 client.subscribe(topicDeclenchement,2)
 client.on_message=on_message
-client.loop_forever()
+
+
+client.loop_start()
+
+while(1):
+    print("\r\n4")
+    time.sleep(5)
 
 # fonction Refresh_database : Regarder sur le topic si la base de de donnée a été mise à jour , si oui copier les données,, sinon rien
 # Job pour appeler refresh_database toutes les heures

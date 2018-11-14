@@ -20,6 +20,7 @@ QoS=2
 #ouvrir le client MQTT
 client = MQTT.Client(ClientID) #create new instance
 client.connect(broker_address) #connect to broker
+client.loop_start()
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     if(msg.payload=="Manuel"):
@@ -39,7 +40,7 @@ def log(message,topic=""):
 def declencherArrosage():
     message="Manuel"
     info = client.publish(topicDeclenchement,message,QoS)
-    client.loop()
+   # client.loop()
     log(message,topicDeclenchement)
     print(info)
 
@@ -53,3 +54,4 @@ def programmerArrosage():
 while (1):
     declencherArrosage()
     time.sleep(5)
+
