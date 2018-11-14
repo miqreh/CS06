@@ -1,13 +1,13 @@
 import paho.mqtt.client as MQTT
 import schedule
-import database
-import datetime
 
+import datetime
+import time
 
 ##Configuration
 #broker MQTT
 broker_address="89.156.159.82"
-
+ClientID="RaspberryArroseur"
 #Topics
 topicDeclenchement="arroseur/declenchement"
 topicMonitoring="arroseur/monitoring"
@@ -18,26 +18,35 @@ QoS=2
    #1 - at least once
    #2 - exactly once
 #ouvrir le client MQTT
-client = MQTT.Client("P1") #create new instance
+client = MQTT.Client(ClientID) #create new instance
 client.connect(broker_address) #connect to broker
 
 
 
-def log(topic,message):
+def log(message,topic=""):
     now = datetime.datetime.now()
-    msg="\r\nTopic: "+topic+"\r\nMessage:"+message+"\r\n le "+str(now)
+    msg=""
+    if(topic != ""):
+        msg +="\r\nTopic: "+topic
+    msg+="\r\nMessage: "+message+"\r\n le "+str(now)
     print(msg)
-    client.publish(topicMonitoring,msg)
-def log(message):
-    now = datetime.datetime.now()
-    msg = "\r\nMessage:" + message + "\r\n le " + str(now)
-    print(msg)
-    client.publish(topicMonitoring, msg)
+    client.publish(topicMonitoring,msg,QoS)
 
-def declencherArrosage:
-
+def declencherArrosage():
     message="Manuel"
-    client.publish(topicDeclenchement,message,QoS)
+    info = client.publish(topicDeclenchement,message,QoS)
+    log(message,topicDeclenchement)
+    print(info)
+
+def programmerArrosage():
+    #récupérer infos de la bdd
+    programme=0
+    #les traiter
+
+
+while(1):
+    declencherArrosage()
+    time.sleep(5)
 
 # fonction Refresh_database : Regarder sur le topic si la base de de donnée a été mise à jour , si oui copier les données,, sinon rien
 # Job pour appeler refresh_database toutes les heures
