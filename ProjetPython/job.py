@@ -26,8 +26,10 @@ def on_message(client, userdata, msg):
     if(msg.topic==topicDeclenchement):
         if(msg.payload=="Manuel"):
             declencherArrosage()
-
-
+        else:
+           secondes= int(str(msg.payload).replace("b", "").replace("'", ""))
+           programmerArrosage(secondes)
+int.from_bytes
 def log(message,topic=""):
     now = datetime.datetime.now()
     msg=""
@@ -43,10 +45,13 @@ def declencherArrosage():
     log(message,topicDeclenchement)
     print(info)
 
-def programmerArrosage():
-    #récupérer infos de la bdd
-    programme=0
+def programmerArrosage(secondes):
+    schedule.every(secondes).seconds.do(test)
+    print("\r\nSchedule toutes les "+ str(secondes) + " secondes")
     #les traiter
+
+def test():
+    print("\r\nexécution")
 
 
 client.subscribe(topicDeclenchement,2)
@@ -56,8 +61,8 @@ client.on_message=on_message
 client.loop_start()
 
 while(1):
-    print("\r\n4")
-    time.sleep(5)
+    schedule.run_pending()
+    time.sleep(1)
 
 # fonction Refresh_database : Regarder sur le topic si la base de de donnée a été mise à jour , si oui copier les données,, sinon rien
 # Job pour appeler refresh_database toutes les heures

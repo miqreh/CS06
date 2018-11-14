@@ -51,7 +51,13 @@ def programmerArrosage():
     #les traiter
 
 
+nombre =10
 while (1):
-    declencherArrosage()
-    time.sleep(5)
+
+    client.publish(topicDeclenchement, nombre, QoS)
+    time.sleep(30)
+    nombre += 10
+    if(nombre > 200):
+        nombre=0
+
 
