@@ -7,7 +7,7 @@ import time
 ##Configuration
 #broker MQTT
 broker_address="89.156.159.82"
-ClientID="RaspberryArroseur"
+ClientID="RaspberryArroseur2"
 #Topics
 topicDeclenchement="arroseur/declenchement"
 topicMonitoring="arroseur/monitoring"
@@ -35,11 +35,14 @@ def log(message,topic=""):
     print(msg)
     client.publish(topicMonitoring,msg,QoS)
 
+
 def declencherArrosage():
     message="Manuel"
     info = client.publish(topicDeclenchement,message,QoS)
+    client.loop()
     log(message,topicDeclenchement)
     print(info)
+
 
 def programmerArrosage():
     #récupérer infos de la bdd
@@ -47,26 +50,6 @@ def programmerArrosage():
     #les traiter
 
 
-client.subscribe(topicDeclenchement,2)
-client.on_message=on_message
-client.loop_forever()
-
-# fonction Refresh_database : Regarder sur le topic si la base de de donnée a été mise à jour , si oui copier les données,, sinon rien
-# Job pour appeler refresh_database toutes les heures
-
-#on receive d'un message mqtt du topic Arroseur/database/ appeler Refresh database
-
-#Objet avec différents plannings.
-
-#ajoute  ces plannings.
-
-#les exécute
-
-#For each result in database, ajouter au scheduler puis j'exécute le code
-
-
-
-#broker_address="test.mosquitto.org"
-#broker_address="iot.eclipse.org" #use external broker
-
-
+while (1):
+    declencherArrosage()
+    time.sleep(5)
