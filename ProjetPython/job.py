@@ -12,6 +12,9 @@ ClientID="RaspberryArroseur"
 topicDeclenchement="arroseur/declenchement"
 topicMonitoring="arroseur/monitoring"
 
+#tag pour les jobs
+tag="plannings"
+
 
 QoS=2
    #0 - at most once
@@ -29,7 +32,7 @@ def on_message(client, userdata, msg):
         else:
            secondes= int(str(msg.payload).replace("b", "").replace("'", ""))
            programmerArrosage(secondes)
-int.from_bytes
+
 def log(message,topic=""):
     now = datetime.datetime.now()
     msg=""
@@ -46,22 +49,29 @@ def declencherArrosage():
     print(info)
 
 def programmerArrosage(secondes):
-    schedule.every(secondes).seconds.do(test)
+    schedule.every(secondes).seconds.do(test).tag(tag)
     print("\r\nSchedule toutes les "+ str(secondes) + " secondes")
     #les traiter
+
+def clear_schedule():
+    schedule.clear(tag)
+    print("\r\nMise à jour de la base de données...")
+    #refresh plannings à partir de la base de données
 
 def test():
     print("\r\nexécution")
 
 
+schedule.every(1).hour.do(clear_schedule)
 client.subscribe(topicDeclenchement,2)
-client.on_message=on_message
+client.on_message = on_message
 
 
 client.loop_start()
 
 while(1):
     schedule.run_pending()
+    print(schedule.jobs)
     time.sleep(1)
 
 # fonction Refresh_database : Regarder sur le topic si la base de de donnée a été mise à jour , si oui copier les données,, sinon rien
