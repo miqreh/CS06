@@ -10,6 +10,7 @@ broker_address="89.156.159.82"
 ClientID="RaspberryArroseur"
 #Topics
 topicDeclenchement="arroseur/declenchement"
+topicProgrammation="arroseur/programmation"
 topicMonitoring="arroseur/monitoring"
 
 #tag pour les jobs
@@ -29,9 +30,9 @@ def on_message(client, userdata, msg):
     if(msg.topic==topicDeclenchement):
         if(msg.payload=="Manuel"):
             declencherArrosage()
-        else:
-           secondes= int(str(msg.payload).replace("b", "").replace("'", ""))
-           programmerArrosage(secondes)
+    elif(msg.topic==topicProgrammation):
+       secondes= int(str(msg.payload).replace("b", "").replace("'", ""))
+       programmerArrosage(secondes)
 
 def log(message,topic=""):
     now = datetime.datetime.now()
@@ -50,7 +51,9 @@ def declencherArrosage():
 
 def programmerArrosage(secondes):
     schedule.every(secondes).seconds.do(test).tag(tag)
-    print("\r\nSchedule toutes les "+ str(secondes) + " secondes")
+    message="\r\n Arrosage programmé toutes les " + str(secondes) + " secondes"
+    log(message)
+    print(message)
     #les traiter
 
 def clear_schedule():
@@ -63,7 +66,7 @@ def test():
 
 
 schedule.every(1).hour.do(clear_schedule)
-client.subscribe(topicDeclenchement,2)
+client.subscribe([(topicDeclenchement , QoS) , (topicProgrammation , QoS)])
 client.on_message = on_message
 
 

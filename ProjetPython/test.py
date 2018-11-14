@@ -11,7 +11,7 @@ ClientID="RaspberryArroseur2"
 #Topics
 topicDeclenchement="arroseur/declenchement"
 topicMonitoring="arroseur/monitoring"
-
+topicProgrammation="arroseur/programmation"
 
 QoS=2
    #0 - at most once
@@ -54,7 +54,8 @@ def programmerArrosage():
 nombre =10
 while (1):
 
-    client.publish(topicDeclenchement, nombre, QoS)
+    client.publish(topicProgrammation, nombre, QoS)
+    print(nombre)
     time.sleep(30)
     nombre += 10
     if(nombre > 200):
