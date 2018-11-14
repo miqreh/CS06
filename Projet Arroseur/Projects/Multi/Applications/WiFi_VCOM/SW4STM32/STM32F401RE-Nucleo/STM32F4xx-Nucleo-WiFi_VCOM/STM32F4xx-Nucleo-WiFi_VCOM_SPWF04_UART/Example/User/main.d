@@ -51,7 +51,8 @@ Example/User/main.o: \
  /Users/JeremyLanfranchi/git/CS06/Projet\ Arroseur/Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.h \
  /Users/JeremyLanfranchi/git/CS06/Projet\ Arroseur/Middlewares/ST/STM32_SPWF0xSy/Inc/wifi_const.h \
  /Users/JeremyLanfranchi/git/CS06/Projet\ Arroseur/Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.h \
- /Users/JeremyLanfranchi/git/CS06/Projet\ Arroseur/Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.h
+ /Users/JeremyLanfranchi/git/CS06/Projet\ Arroseur/Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.h \
+ /Users/JeremyLanfranchi/git/CS06/Projet\ Arroseur/Projects/Multi/Applications/WiFi_VCOM/Inc/config_wifi.h
 
 /Users/JeremyLanfranchi/git/CS06/Projet\ Arroseur/Projects/Multi/Applications/WiFi_VCOM/Inc/main.h:
 
@@ -156,3 +157,5 @@ Example/User/main.o: \
 /Users/JeremyLanfranchi/git/CS06/Projet\ Arroseur/Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.h:
 
 /Users/JeremyLanfranchi/git/CS06/Projet\ Arroseur/Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.h:
+
+/Users/JeremyLanfranchi/git/CS06/Projet\ Arroseur/Projects/Multi/Applications/WiFi_VCOM/Inc/config_wifi.h:

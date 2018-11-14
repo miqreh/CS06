@@ -1743,7 +1743,6 @@ void Process_Wind_Indication(int wind_no,uint8_t *ptr)
         
     case Output_From_Remote: ;
         /* length of text to be received is 40 or less*/
-        exit(0);
     	int bytes_read;
         sscanf((const char*)ptr,"Output from remote:%*d:%n",&bytes_read);
         ind_wifi_output_from_remote_callback((uint8_t *)ptr+bytes_read);
