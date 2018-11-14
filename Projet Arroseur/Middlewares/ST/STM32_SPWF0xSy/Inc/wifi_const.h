@@ -162,7 +162,7 @@
 #define AT_SOCKET_CLOSE                         "AT+S.SOCKC=%d\r"
 #define AT_DISPLAY_FILENAME_LIST                "AT+S.FSL\r"
 
-#define AT_CREATE_FILE                          "AT+S.FSC=/%s,%d\r"
+#define AT_CREATE_FILE                          "AT+S.FSC=%s,%d\r"
 #define AT_APPEND_FILE                          "AT+S.FSA=/%s,%d\r"
 #define AT_DELETE_FILE                          "AT+S.FSD=/%s\r"
 #define AT_ERASE_FLASH_MEMORY                   "AT+S.HTTPDFSERASE\r"

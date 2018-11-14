@@ -1547,7 +1547,7 @@ void Process_Wind_Payload(WiFi_Indication_t wind_no)
           //@TBD:What to do with this number now?
           break;
 #endif          
-      /*
+
       SockD_Dropping_Client         = 83,
       NTP_Server_Delivery           = 84,
       MQTT_Published                = 86,
@@ -1556,8 +1556,8 @@ void Process_Wind_Payload(WiFi_Indication_t wind_no)
       Websocket_Closed              = 89,
       UDP_Broadcast_Received        = 90,
       TFTP_File_Received            = 91,
-      */
       
+
       case Websocket_Data:
           /*A websocket pending event has arrived*/
           /*<ClientID>:<last_frame_flag?>:<last_frag_flag?>:<rcv_bytes>:<cumulated_bytes>*/ 
@@ -1583,6 +1583,7 @@ void Process_Wind_Payload(WiFi_Indication_t wind_no)
       case Output_From_Remote: ;
         /* length of text to be received is 40 or lesss*/
         int bytes_read;
+        printf("teeeeest");
         sscanf(process_buffer_ptr,"%*d:%n",&bytes_read);
         ind_wifi_output_from_remote_callback((uint8_t *)process_buffer_ptr+bytes_read);
         break;

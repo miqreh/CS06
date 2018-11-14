@@ -76,6 +76,11 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
+			<name>Includes/config_wifi.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Inc/config_wifi.h</locationURI>
+		</link>
+		<link>
 			<name>Middlewares/ST</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
@@ -169,6 +174,11 @@
 			<name>Example/SW4STM32/startup_stm32f401xe.s</name>
 			<type>1</type>
 			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/startup_stm32f401xe.s</locationURI>
+		</link>
+		<link>
+			<name>Example/User/config_wifi.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Src/config_wifi.c</locationURI>
 		</link>
 		<link>
 			<name>Example/User/console.c</name>

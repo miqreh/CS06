@@ -40,6 +40,7 @@
 #include "string.h"
 #include "wifi_module.h"
 #include "wifi_globals.h"
+#include "config_wifi.h"
 
 /** @defgroup WIFI_Examples
   * @{
@@ -91,9 +92,6 @@ int main(void)
   
   printf("\r\n\n/********************************************************\n");
   printf("\r *                                                      *\n");
-  printf("\r * X-CUBE-WIFI1 Expansion Software v3.1.1               *\n");
-  printf("\r * Console Application                                  *\n");
-  printf("\r * Send AT commands to SPWF module directly             *\n");
   printf("\r *                                                      *\n"); 
   printf("\r *******************************************************/\n\r\n");
   
@@ -115,12 +113,10 @@ int main(void)
 
 
 
-  //Declenchement du mode MiniAP ici
+  //Déclenchement du mode MiniAP ici
+  int connected;
+  connected = launch_config_wifi();
 
-    uint8_t ssid[] = "Arroseur connecte";
-    char key[] = "1234";
-
-    wifi_ap_start(ssid,key, 1, 0);
 
 
 
@@ -136,23 +132,9 @@ int main(void)
 }
 
 
-void se_connecter_au_reseau_wifi(char* ssid, char* key){
 
 
-	printf("\rOn est dans la fonction se connecter au wifi...\r\n");
 
-	if (strcmp(ssid,"nicopucewifi") ==0){
-
-		printf("\rAvec les bons param...\r\n");
-
-	}
-	else{
-
-		printf("\rSans bon param...\r\n");
-
-	}
-
-}
 
 
 

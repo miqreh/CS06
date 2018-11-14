@@ -37,6 +37,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "wifi_module.h"
 #include "wifi_globals.h"
+#include <stdlib.h>
 
 /** @addtogroup MIDDLEWARES
 * @{
@@ -66,6 +67,13 @@ extern wifi_bool wind_55_in_Q;
 #endif
 */
 /***********All Buffers**************/
+
+
+int ssid_ou_key = 0; //0 = ssid et 1 = key
+char ssid_received[100];
+char key_received[100];
+
+
 
 #if defined (__CC_ARM)
 size_t strnlen (const char* s, size_t maxlen);
@@ -2306,8 +2314,9 @@ void WiFi_HAL_UART_ErrorCallback(UART_HandleTypeDef *UartHandle)
 
 void WiFi_HAL_UART_IdleCallback(UART_HandleTypeDef *UartHandle)
 {
+
   #if defined(SPWF04) && defined(CONSOLE_UART_ENABLED)
-    //printf("^");
+
     /* Read DMA buffer */
     Read_DMA_Buffer();
     //fflush(stdout);
@@ -2545,6 +2554,8 @@ void Process_DeQed_Wind_Indication(wifi_event_TypeDef * L_DeQued_wifi_event)
 #else
   case Remote_Configuration:
       break;
+
+
 #endif
     case Incoming_socket_client:
       client_connected_on_server_socket[L_DeQued_wifi_event->server_id][L_DeQued_wifi_event->socket_id] = WIFI_TRUE;
@@ -2591,6 +2602,7 @@ void Process_DeQed_Wind_Indication(wifi_event_TypeDef * L_DeQued_wifi_event)
       UDP_Broadcast_Received        = 90,
       TFTP_File_Received            = 91,
       */
+
     case Websocket_Data:
       if (WiFi_Control_Variables.enable_sock_read == WIFI_TRUE)
         {    
@@ -3898,7 +3910,22 @@ __weak void ind_wifi_inputssi_callback(void)
 
 __weak void ind_wifi_output_from_remote_callback(uint8_t *data_ptr)
 {
+
+	printf("\rEnregistrement des param\r\n");
+
+	if (ssid_ou_key==0){
+
+		strcpy(ssid_received,data_ptr);
+		ssid_ou_key=1;
+	}
+	else{
+
+		strcpy(key_received,data_ptr);
+		ssid_ou_key=0;
+		se_connecter_au_reseau_wifi(&ssid_received, &key_received);
+	}
 }
+
 
 /**
   * @}

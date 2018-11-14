@@ -37,7 +37,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "wifi_module.h"
 #include "wifi_globals.h"
-#include "main.h"
+
 
 /** @addtogroup MIDDLEWARES
 * @{
@@ -65,15 +65,6 @@
 extern wifi_instances_t wifi_instances;
 
 int parsing_networks;
-
-
-
-
-int ssid_ou_key = 0; //0 = ssid et 1 = key
-char ssid_received[100];
-char key_received[100];
-
-
 
 char str[BUFFER_SIZE];
 uint8_t topic[100];
@@ -602,6 +593,8 @@ void Process_DMA_Buffer_Messages(int idn, int wind_no, uint8_t * ptr)
 
   message_type = (message_classification_TypeDef)idn;
 
+
+
   if(!WiFi_Control_Variables.enable_receive_http_response
        && !WiFi_Control_Variables.enable_receive_wifi_scan_response 
        && !WiFi_Control_Variables.enable_sock_read
@@ -615,6 +608,7 @@ void Process_DMA_Buffer_Messages(int idn, int wind_no, uint8_t * ptr)
           #if defined (USE_STM32L0XX_NUCLEO) || (USE_STM32F4XX_NUCLEO) || (USE_STM32L4XX_NUCLEO)
           __disable_irq();
           #endif
+
           Process_Wind_Indication(wind_no,ptr);
           #if defined (USE_STM32L0XX_NUCLEO) || (USE_STM32F4XX_NUCLEO) || (USE_STM32L4XX_NUCLEO)
           __enable_irq();
@@ -1630,6 +1624,10 @@ void Process_Wind_Indication(int wind_no,uint8_t *ptr)
 
   wifi_instances.wifi_event.wind = Wind_No;
   wifi_instances.wifi_event.event = WIFI_WIND_EVENT;
+
+
+  printf("\rOn est dans la fonction Process_Wind...\r\n");
+
   switch (Wind_No)
   {
     case SockON_Data_Pending: /*WIND:55*/
@@ -1744,34 +1742,11 @@ void Process_Wind_Indication(int wind_no,uint8_t *ptr)
         break;
         
     case Output_From_Remote: ;
-
-
-
-    printf("\rEnregistrement des param\r\n");
-
-            if (ssid_ou_key==0){
-
-            	strcpy(ssid_received,ptr);
-
-            	ssid_ou_key=1;
-            }
-            else{
-
-            	strcpy(key_received,ptr);
-            	ssid_ou_key=0;
-            	se_connecter_au_reseau_wifi(&ssid_received, &key_received);
-            }
-
-        /* length of text to be received is 40 or lesss*/
-        int bytes_read;
-        sscanf((const char*)ptr,"Output from--remote:%*d:%n",&bytes_read);
-        //ind_wifi_output_from_remote_callback((uint8_t *)ptr+bytes_read);
-
-
-
-
-
-
+        /* length of text to be received is 40 or less*/
+        exit(0);
+    	int bytes_read;
+        sscanf((const char*)ptr,"Output from remote:%*d:%n",&bytes_read);
+        ind_wifi_output_from_remote_callback((uint8_t *)ptr+bytes_read);
         break;
 
     // Queueing of these events not required.
