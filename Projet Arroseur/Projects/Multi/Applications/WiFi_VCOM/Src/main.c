@@ -40,7 +40,14 @@
 #include "string.h"
 #include "wifi_module.h"
 #include "wifi_globals.h"
-
+#include "connexionMQTT.h"
+#define MQTT_HOST "89.156.159.82"
+//#define MQTT_HOST "test.mosquittto.org"
+#define MQTT_PWD  ""
+//#define MQTT_PORT  8080
+#define MQTT_PORT  9001
+#define ARROSEUR_TOPIC "test/stef"
+#define SPWF04 1
 /** @defgroup WIFI_Examples
   * @{
   */
@@ -89,6 +96,8 @@ int main(void)
   Set_UartMsgHandle(&UART_MsgHandle);//this is required for the console handler initialization
 #endif  
   
+
+
   printf("\r\n\n/********************************************************\n");
   printf("\r *                                                      *\n");
   printf("\r * X-CUBE-WIFI1 Expansion Software v3.1.1               *\n");
@@ -98,29 +107,47 @@ int main(void)
   printf("\r *******************************************************/\n\r\n");
   
   printf("\rPlease wait...\r\n");
+
+  // Initialisation du module wifi
+   	config.power=wifi_active;
+     config.power_level=high;
+     config.dhcp=on;//use DHCP IP address
+     config.mcu_baud_rate = 921600;
+  printf("\r\nInitialisation du module wifi...\r\n");
+  if(wifi_init(&config)!=WiFi_MODULE_SUCCESS)
+  {printf("\r\n Erreur dans l'initialisation..\r\n");}
+
   #if defined (USE_STM32L0XX_NUCLEO)
     autodetect = WiFi_Module_UART_Configuration(115200); //115200 //460800 //921600  
   #else
-    autodetect = WiFi_Module_UART_Configuration(921600); //115200 //460800 //921600  
+    autodetect = WiFi_Module_UART_Configuration(921600); //115200 //460800 //921600
   #endif
   if(autodetect==HAL_OK)    
     UART_DMA_Init();
   else {
     printf("\rError in baud-rate auto-detection...\r\n");
   }
-  HAL_Delay(2000);
+  HAL_Delay(9000);
   printf("\rConsole Ready...\r\n");
-
-
+  printf("something\r\n");
+  /*while (wifi_state!= wifi_state_connected)
+    {
+  	  printf("\rAttente d'une connexion...\r\n");
+  	  HAL_Delay(2000);
+    }*/
+  wifi_state=wifi_state_ready;
 
 
 
   //Declenchement du mode MiniAP ici
 
-    uint8_t ssid[] = "Arroseur connecte";
-    char key[] = "1234";
+   // uint8_t ssid[] = "Arroseur connecte";
+    //char key[] = "1234";
 
-    wifi_ap_start(ssid,key, 1, 0);
+   //wifi_ap_start(ssid,key, 1, 0);
+  //wifi_enable(0);
+ /* wifi_connect("Honor229","stephane",2);
+ // wifi_enable(1);*/
 
 
 
@@ -128,7 +155,41 @@ int main(void)
 
     while (1)
     {
+
 	  __NOP();
+	  switch(wifi_state)
+	  {
+	  	  case(wifi_state_ready):
+				printf("\r\nConnexion MQTT");
+	  	  	  	  wifi_state=wifi_state_connected;
+		  if(WiFi_MODULE_SUCCESS!=wifi_mqtt_connect((uint8_t*)MQTT_HOST,MQTT_PORT))
+			  {
+			  printf("\r\n Connexion Failed");
+			  wifi_state=wifi_state_error;
+			  }
+		  wifi_mqtt_subscribe((uint8_t *)ARROSEUR_TOPIC);
+		  char *msg ="Salut les gars";
+		  wifi_mqtt_publish((uint8_t *)ARROSEUR_TOPIC, strlen(msg), msg);
+		  break;
+	  	  case(wifi_state_error):
+		 printf("\r\n Connexion au wifi  en cours");
+		if(WiFi_MODULE_SUCCESS!=wifi_connect("Honor229","stephane",2))
+		{
+			 printf("\r\n Connexion au wifi réussie");
+			 wifi_state=wifi_state_ready;
+		}
+	  	  break;
+	  	  case(wifi_state_connected):
+	  			  printf("\r\nConnexion MQTT réussie!\r\n");
+	  	  	  	  wifi_mqtt_publish((uint8_t *)ARROSEUR_TOPIC, strlen(msg), msg);
+	  	  break;
+	  	  default:
+	  		  printf("Je sais pas\r\n");
+	  		  wifi_state=wifi_state_error;
+	  }
+
+	 // HAL_Delay(5000);
+	//  printf("\r\nConnexion MQTT passée");
     }
 
 

@@ -8,6 +8,14 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include STM32F4xx-Nucleo-WiFi_VCOM_SPWF01/Middlewares/ST/STM32_SPWF0xSy/Utils/subdir.mk
+-include STM32F4xx-Nucleo-WiFi_VCOM_SPWF01/Middlewares/ST/STM32_SPWF0xSy/subdir.mk
+-include STM32F4xx-Nucleo-WiFi_VCOM_SPWF01/Example/User/subdir.mk
+-include STM32F4xx-Nucleo-WiFi_VCOM_SPWF01/Example/SW4STM32/subdir.mk
+-include STM32F4xx-Nucleo-WiFi_VCOM_SPWF01/Drivers/STM32F4xx_HAL_Driver/subdir.mk
+-include STM32F4xx-Nucleo-WiFi_VCOM_SPWF01/Drivers/CMSIS/subdir.mk
+-include STM32F4xx-Nucleo-WiFi_VCOM_SPWF01/Drivers/BSP/X-NUCLEO-IDW0xx1/subdir.mk
+-include STM32F4xx-Nucleo-WiFi_VCOM_SPWF01/Drivers/BSP/STM32F4xx-Nucleo/subdir.mk
 -include Middlewares/ST/STM32_SPWF0xSy/Utils/subdir.mk
 -include Middlewares/ST/STM32_SPWF0xSy/subdir.mk
 -include Example/User/subdir.mk
