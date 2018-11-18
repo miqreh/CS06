@@ -46,8 +46,8 @@
 #define MQTT_HOST "89.156.159.82"
 #define MQTT_PWD  ""
 //#define MQTT_PORT  8080
-#define MQTT_PORT  "9001"
-#define ARROSEUR_TOPIC "testStef"
+
+
 #define SPWF04 1
 #define WIFI_USE_VCOM 0
 /** @defgroup WIFI_Examples
@@ -67,7 +67,7 @@ void SystemClock_Config(void);
 void UART_Msg_Gpio_Init(void);
 void checkStatus(WiFi_Status_t status);
 void USART_PRINT_MSG_Configuration(UART_HandleTypeDef *UART_MsgHandle, uint32_t baud_rate);
-WiFi_Status_t connexion_MQTT(char *host,char*port);
+//WiFi_Status_t connexion_MQTT(char *host,char*port);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -85,6 +85,8 @@ int main(void)
   HAL_StatusTypeDef autodetect = HAL_OK;
   __GPIOA_CLK_ENABLE();
   HAL_Init();
+  Timer_Config();
+  Start_Timer();
   
   /* Configure the system clock to 64 MHz */
   SystemClock_Config();
@@ -140,10 +142,11 @@ int main(void)
   	  printf("\rAttente d'une connexion...\r\n");
   	  HAL_Delay(2000);
     }*/
-  wifi_state=wifi_state_ready;
+  wifi_state=wifi_state_disconnected;
   connexion_MQTT(MQTT_HOST,MQTT_PORT);
-
-  printf("Voilà");
+  subscribe_topic_MQTT(ARROSEUR_TOPIC,"0");
+  //publish_topic_MQTT(ARROSEUR_TOPIC,"ça marche\r\n",MQTT_QOS);
+  printf("Voila");
 
 
   //Declenchement du mode MiniAP ici
@@ -163,39 +166,43 @@ int main(void)
     while (1)
     {
 
-	  __NOP();
+
 	  switch(wifi_state)
 	  {
 	  	  case(wifi_state_ready):
 				printf("\r\nConnexion MQTT");
-	  	  	  	  wifi_state=wifi_state_connected;
-		  //if(WiFi_MODULE_SUCCESS!=
+
+
 				checkStatus(wifi_mqtt_connect((uint8_t*)MQTT_HOST,MQTT_PORT));
-			//  {
-			 // printf("\r\n Connexion Failed");
-			 // wifi_state=wifi_state_error;
-			  //}
-		  wifi_mqtt_subscribe((uint8_t *)ARROSEUR_TOPIC);
-		  char *msg ="Salut les gars";
-		  wifi_mqtt_publish((uint8_t *)ARROSEUR_TOPIC, strlen(msg), msg);
+				wifi_state=wifi_state_connected;
+		  //wifi_mqtt_subscribe((uint8_t *)ARROSEUR_TOPIC);
+		  //
+		  //wifi_mqtt_publish((uint8_t *)ARROSEUR_TOPIC, strlen(msg), msg);
 		  break;
 	  	  case(wifi_state_error):
 		 printf("\r\n Connexion au wifi  en cours");
-		if(WiFi_MODULE_SUCCESS!=wifi_connect("Honor229","stephane",2))
-		{
-			 printf("\r\n Connexion au wifi réussie");
-			 wifi_state=wifi_state_ready;
-		}
+			if(WiFi_MODULE_SUCCESS!=wifi_connect("Honor229","stephane",2))
+			{
+				 printf("\r\n Connexion au wifi réussie");
+				 wifi_state=wifi_state_ready;
+			}
 	  	  break;
 	  	  case(wifi_state_connected):
-	  			  printf("\r\nConnexion MQTT réussie!\r\n");
-	  	 checkStatus(wifi_mqtt_publish((uint8_t *)ARROSEUR_TOPIC, strlen(msg), msg));
-	  	  	  checkStatus(wifi_mqtt_subscribe((uint8_t *)ARROSEUR_TOPIC));
+	  	  printf("\r\nConnexion MQTT réussie!\r\n");
+	  	  char *msg ="Salut les gars";
+	  	  	  //checkStatus(wifi_mqtt_publish((uint8_t *)ARROSEUR_TOPIC, strlen(msg), msg));
+	  	  	  //checkStatus(wifi_mqtt_subscribe((uint8_t *)ARROSEUR_TOPIC));
+	  	 	 subscribe_topic_MQTT(ARROSEUR_TOPIC,"0");
 	  	  	  wifi_state=wifi_state_idle;
 	  	  	  	  break;
+	  	  case(wifi_state_disconnected):
+	  		 connexion_MQTT(MQTT_HOST,MQTT_PORT);
+	  	  	  wifi_state = wifi_state_connected;
+	  	  break;
 	  	  default:
 	  		while(1){
-	  			//Wifi_Process();
+	  			//HAL_Delay(5000);
+	  			// publish_topic_MQTT(ARROSEUR_TOPIC,"ça marche\r\n","2");
 	  		}
 	  		break;
 	  }
@@ -572,6 +579,10 @@ void ind_wifi_connected()
   wifi_state = wifi_state_connected;
 }
 
+void ind_wifi_mqtt_data_received(uint8_t client_id, uint8_t *topic, uint32_t chunk_size, uint32_t message_size, uint32_t total_message_size, uint8_t *data_ptr)
+{
+	printf("Données recues.\r\n");
+}
 
 /**
   * @}
