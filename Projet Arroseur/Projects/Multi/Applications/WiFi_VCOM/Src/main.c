@@ -41,13 +41,15 @@
 #include "wifi_module.h"
 #include "wifi_globals.h"
 #include "connexionMQTT.h"
+//#define MQTT_HOST "broker.mqttdashboard.com"
+#define DEBUG_PRINT 1
 #define MQTT_HOST "89.156.159.82"
-//#define MQTT_HOST "test.mosquittto.org"
 #define MQTT_PWD  ""
 //#define MQTT_PORT  8080
-#define MQTT_PORT  9001
-#define ARROSEUR_TOPIC "test/stef"
+#define MQTT_PORT  "9001"
+#define ARROSEUR_TOPIC "testStef"
 #define SPWF04 1
+#define WIFI_USE_VCOM 0
 /** @defgroup WIFI_Examples
   * @{
   */
@@ -63,8 +65,9 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 void UART_Msg_Gpio_Init(void);
+void checkStatus(WiFi_Status_t status);
 void USART_PRINT_MSG_Configuration(UART_HandleTypeDef *UART_MsgHandle, uint32_t baud_rate);
-
+WiFi_Status_t connexion_MQTT(char *host,char*port);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -116,13 +119,15 @@ int main(void)
   printf("\r\nInitialisation du module wifi...\r\n");
   if(wifi_init(&config)!=WiFi_MODULE_SUCCESS)
   {printf("\r\n Erreur dans l'initialisation..\r\n");}
-
+  //WiFi_Module_Init();
+  //WiFi_Configuration();
+  //WiFi_Enable(1);
   #if defined (USE_STM32L0XX_NUCLEO)
     autodetect = WiFi_Module_UART_Configuration(115200); //115200 //460800 //921600  
   #else
     autodetect = WiFi_Module_UART_Configuration(921600); //115200 //460800 //921600
   #endif
-  if(autodetect==HAL_OK)    
+  if(autodetect==HAL_OK)
     UART_DMA_Init();
   else {
     printf("\rError in baud-rate auto-detection...\r\n");
@@ -136,7 +141,9 @@ int main(void)
   	  HAL_Delay(2000);
     }*/
   wifi_state=wifi_state_ready;
+  connexion_MQTT(MQTT_HOST,MQTT_PORT);
 
+  printf("Voilà");
 
 
   //Declenchement du mode MiniAP ici
@@ -150,7 +157,7 @@ int main(void)
  // wifi_enable(1);*/
 
 
-
+//Start_Timer();
 
 
     while (1)
@@ -162,11 +169,12 @@ int main(void)
 	  	  case(wifi_state_ready):
 				printf("\r\nConnexion MQTT");
 	  	  	  	  wifi_state=wifi_state_connected;
-		  if(WiFi_MODULE_SUCCESS!=wifi_mqtt_connect((uint8_t*)MQTT_HOST,MQTT_PORT))
-			  {
-			  printf("\r\n Connexion Failed");
-			  wifi_state=wifi_state_error;
-			  }
+		  //if(WiFi_MODULE_SUCCESS!=
+				checkStatus(wifi_mqtt_connect((uint8_t*)MQTT_HOST,MQTT_PORT));
+			//  {
+			 // printf("\r\n Connexion Failed");
+			 // wifi_state=wifi_state_error;
+			  //}
 		  wifi_mqtt_subscribe((uint8_t *)ARROSEUR_TOPIC);
 		  char *msg ="Salut les gars";
 		  wifi_mqtt_publish((uint8_t *)ARROSEUR_TOPIC, strlen(msg), msg);
@@ -181,16 +189,20 @@ int main(void)
 	  	  break;
 	  	  case(wifi_state_connected):
 	  			  printf("\r\nConnexion MQTT réussie!\r\n");
-	  	  	  	  wifi_mqtt_publish((uint8_t *)ARROSEUR_TOPIC, strlen(msg), msg);
-	  	  break;
+	  	 checkStatus(wifi_mqtt_publish((uint8_t *)ARROSEUR_TOPIC, strlen(msg), msg));
+	  	  	  checkStatus(wifi_mqtt_subscribe((uint8_t *)ARROSEUR_TOPIC));
+	  	  	  wifi_state=wifi_state_idle;
+	  	  	  	  break;
 	  	  default:
-	  		  printf("Je sais pas\r\n");
-	  		  wifi_state=wifi_state_error;
+	  		while(1){
+	  			//Wifi_Process();
+	  		}
+	  		break;
 	  }
 
 	 // HAL_Delay(5000);
 	//  printf("\r\nConnexion MQTT passée");
-    }
+   }
 
 
 
@@ -212,9 +224,60 @@ void se_connecter_au_reseau_wifi(char* ssid, char* key){
 		printf("\rSans bon param...\r\n");
 
 	}
-
 }
-
+void checkStatus(WiFi_Status_t status)
+	{
+		switch (status)
+		{
+		case WiFi_MODULE_SUCCESS:
+			printf("\r\nWIFI_MODULE_SUCCESS\r\n");
+			break;
+		case WiFi_TIME_OUT_ERROR:
+			printf("\r\nWIFI_TIME_OUT_ERROR\r\n");
+			break;
+		case WiFi_MODULE_ERROR:
+					printf("\r\nWIFI_MODULE_ERROR\r\n");
+					break;
+		default:
+			printf("\r\nSOMETHINg ELSE\r\n");
+								break;
+		 /* WiFi_TIME_OUT_ERROR           = 1,
+		  WiFi_MODULE_ERROR,
+		  WiFi_HAL_OK,
+		  WiFi_NOT_SUPPORTED,
+		  WiFi_NOT_READY,
+		  WiFi_SCAN_FAILED,
+		  WiFi_AT_CMD_BUSY,
+		  WiFi_SSID_ERROR,
+		  WiFi_SecKey_ERROR,
+		  WiFi_CONFIG_ERROR,
+		  WiFi_STA_MODE_ERROR,
+		  WiFi_AP_MODE_ERROR,
+		  WiFi_AT_CMD_RESP_ERROR,
+		  WiFi_AT_FILE_LENGTH_ERROR,
+		  WiFi_HAL_UART_ERROR,
+		  WiFi_IN_LOW_POWER_ERROR,
+		  WiFi_HW_FAILURE_ERROR,
+		  WiFi_HEAP_TOO_SMALL_WARNING,
+		  WiFi_STACK_OVERFLOW_ERROR,
+		  WiFi_HARD_FAULT_ERROR,
+		  WiFi_MALLOC_FAILED_ERROR,
+		  WiFi_INIT_ERROR,
+		  WiFi_POWER_SAVE_WARNING,
+		  WiFi_SIGNAL_LOW_WARNING,
+		  WiFi_JOIN_FAILED,
+		  WiFi_SCAN_BLEWUP,
+		  WiFi_START_FAILED_ERROR,
+		  WiFi_EXCEPTION_ERROR,
+		  WiFi_DE_AUTH,
+		  WiFi_DISASSOCIATION,
+		  WiFi_UNHANDLED_IND_ERROR,
+		  WiFi_RX_MGMT,
+		  WiFi_RX_DATA,
+		  WiFi_RX_UNK
+		}*/
+		}
+	}
 
 
 
