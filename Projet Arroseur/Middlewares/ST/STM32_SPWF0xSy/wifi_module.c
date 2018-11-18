@@ -38,6 +38,8 @@
 #include "wifi_module.h"
 #include "wifi_globals.h"
 
+void Wifi_Process(void);
+
 /** @addtogroup MIDDLEWARES
 * @{
 */ 
@@ -567,8 +569,8 @@ void WiFi_Configuration()
     (0=none, 1=WEP, 2=WPA-Personal (TKIP/AES) or WPA2-Personal (TKIP/AES)) */  
   WiFi_Config_Variables.wifi_mode               =  WiFi_STA_MODE;
   WiFi_Config_Variables.wifi_priv_mode          =  WPA_Personal;
-  WiFi_Config_Variables.wifi_ssid               =  "SPWF0x" ;
-  WiFi_Config_Variables.Wifi_Sec_key            =  "12341234";
+  WiFi_Config_Variables.wifi_ssid               =  "Honor229" ;
+  WiFi_Config_Variables.Wifi_Sec_key            =  "stephane";
   
    /*Power Management Settings*/
   WiFi_Config_Variables.sleep_enabled           = 0;//0=disabled, 1=enabled
@@ -2277,12 +2279,12 @@ void WiFi_HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandleArg)
 WiFi_Status_t USART_Receive_AT_Resp( )
 {
 
-  /*while(IO_status_flag.AT_Response_Received != WIFI_TRUE) {
+ /* while(IO_status_flag.AT_Response_Received != WIFI_TRUE) {
 
 	  __NOP(); //nothing to do
 
-	}*/
-
+	}
+*/
 
 
 
@@ -3898,6 +3900,1330 @@ __weak void ind_wifi_inputssi_callback(void)
 
 __weak void ind_wifi_output_from_remote_callback(uint8_t *data_ptr)
 {
+}
+
+void Wifi_Process(void)
+{
+  /**********************************************************************
+  *                                                                     *
+  *       Be careful not to make a blocking                             *
+  *       call from this function, see                                  *
+  *       example Socket_Read() and Socket_Close()                      *
+  *                                                                     *
+  **********************************************************************/
+  WiFi_Status_t status = WiFi_MODULE_SUCCESS;
+  HAL_StatusTypeDef HAL_status = HAL_OK;
+
+  if(WiFi_Control_Variables.stop_event_dequeue == WIFI_FALSE)
+  {
+    __disable_irq();
+    wifi_instances.DeQed_wifi_event = pop_eventbuffer_queue(&wifi_instances.event_buff);
+    __enable_irq();
+
+    if(wifi_instances.DeQed_wifi_event!=NULL)
+    {
+      switch(wifi_instances.DeQed_wifi_event->event)
+      {
+        case WIFI_WIND_EVENT:
+          Process_DeQed_Wind_Indication(wifi_instances.DeQed_wifi_event);
+          break;
+
+        case WIFI_WEBSOCK_ID_EVENT:
+          WiFi_Counter_Variables.Socket_Open_ID = wifi_instances.DeQed_wifi_event->socket_id;
+          open_web_socket[wifi_instances.DeQed_wifi_event->socket_id]  = WIFI_TRUE;
+          IO_status_flag.AT_event_processing = WIFI_NO_EVENT;
+          #if defined(CONSOLE_UART_ENABLED)
+            IO_status_flag.AT_Response_Received = WIFI_TRUE;
+            WiFi_Counter_Variables.AT_RESPONSE = WiFi_MODULE_SUCCESS;
+          #endif
+          break;
+
+        case WIFI_SOCK_ID_EVENT:
+          /*check ID and update SocketID array*/
+          if(WiFi_Counter_Variables.no_of_open_client_sockets >= 8)  //Max number of clients is 8
+          {
+            IO_status_flag.AT_Response_Received = WIFI_TRUE;
+            WiFi_Counter_Variables.AT_RESPONSE = WiFi_NOT_SUPPORTED;
+            break;
+          }
+          WiFi_Counter_Variables.no_of_open_client_sockets++;
+          open_sockets[wifi_instances.DeQed_wifi_event->socket_id]  = WIFI_TRUE;
+          WiFi_Counter_Variables.Socket_Open_ID = wifi_instances.DeQed_wifi_event->socket_id;
+          IO_status_flag.AT_event_processing = WIFI_NO_EVENT;
+          #if defined(CONSOLE_UART_ENABLED)
+            IO_status_flag.AT_Response_Received = WIFI_TRUE;
+            WiFi_Counter_Variables.AT_RESPONSE = WiFi_MODULE_SUCCESS;
+          #endif
+          break;
+
+        case WIFI_SOCK_SERVER_ID_EVENT:
+          /*check ID and update ServerSocketID array*/
+          WiFi_Control_Variables.enable_timeout_timer = WIFI_FALSE;
+          WiFi_Counter_Variables.timeout_tick = 0;
+          if(WiFi_Counter_Variables.no_of_open_server_sockets >= 4)  //Max number of server socket open is 4
+          {
+            IO_status_flag.AT_Response_Received = WIFI_TRUE;
+            WiFi_Counter_Variables.AT_RESPONSE = WiFi_NOT_SUPPORTED;
+            break;
+          }
+          WiFi_Counter_Variables.no_of_open_server_sockets++;
+          open_server_sockets[wifi_instances.DeQed_wifi_event->socket_id]  = WIFI_TRUE;
+          WiFi_Counter_Variables.Server_Socket_Open_ID = wifi_instances.DeQed_wifi_event->socket_id;
+          IO_status_flag.AT_event_processing = WIFI_NO_EVENT;
+          #if defined(CONSOLE_UART_ENABLED)
+            IO_status_flag.AT_Response_Received = WIFI_TRUE;
+            WiFi_Counter_Variables.AT_RESPONSE = WiFi_MODULE_SUCCESS;
+          #endif
+          break;
+
+        #ifdef SPWF04
+          case WIFI_TFTP_EVENT:
+            Reset_AT_CMD_Buffer();
+            #if defined(CONSOLE_UART_ENABLED)
+              if(WiFi_Counter_Variables.http_ind==1) //by default port number is 69, user port number not used !
+              {
+                if(WiFi_Counter_Variables.curr_port_number!=0)
+                  sprintf((char*)WiFi_AT_Cmd_Buff,AT_TFTPPUT_REQUEST,WiFi_Counter_Variables.curr_hostname, (int)WiFi_Counter_Variables.curr_port_number, WiFi_Counter_Variables.curr_path);
+                else
+                  sprintf((char*)WiFi_AT_Cmd_Buff,AT_TFTPPUT_REQUEST,WiFi_Counter_Variables.curr_hostname,69,WiFi_Counter_Variables.curr_path);//@TBD:Error!
+              }
+              else if(WiFi_Counter_Variables.http_ind==0)
+              {
+                if(WiFi_Counter_Variables.curr_port_number!=0)
+                  sprintf((char*)WiFi_AT_Cmd_Buff,AT_TFTPGET_REQUEST,WiFi_Counter_Variables.curr_hostname, (int)WiFi_Counter_Variables.curr_port_number, WiFi_Counter_Variables.curr_path);
+                else
+                  sprintf((char*)WiFi_AT_Cmd_Buff,AT_TFTPGET_REQUEST,WiFi_Counter_Variables.curr_hostname,69,WiFi_Counter_Variables.curr_path);
+              }
+
+              status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+            #else /*SPI Tx*/
+              if(WiFi_Counter_Variables.http_ind==1)
+              {
+                if(WiFi_Counter_Variables.curr_port_number!=0)
+                  sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.TFTPPUT=%s,%d,%s",WiFi_Counter_Variables.curr_hostname, (int)WiFi_Counter_Variables.curr_port_number, WiFi_Counter_Variables.curr_path);
+                else
+                  sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.TFTPPUT=%s,NULL,%s",WiFi_Counter_Variables.curr_hostname, WiFi_Counter_Variables.curr_path);//@TBD:Error!
+              }
+              else if(WiFi_Counter_Variables.http_ind==0)
+              {
+                if(WiFi_Counter_Variables.curr_port_number!=0)
+                  sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.TFTPGET=%s,%d,%s,NULL",WiFi_Counter_Variables.curr_hostname, (int)WiFi_Counter_Variables.curr_port_number, WiFi_Counter_Variables.curr_path);
+                else
+                  sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.TFTPGET=%s,NULL,%s,NULL",WiFi_Counter_Variables.curr_hostname, WiFi_Counter_Variables.curr_path);
+              }
+
+              run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+              status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+            #endif
+            if(status == WiFi_MODULE_SUCCESS)
+            {
+              WiFi_Counter_Variables.timeout_tick = 0;
+              WiFi_Control_Variables.enable_timeout_timer = WIFI_TRUE;
+              WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+              WiFi_Control_Variables.Ok_terminated_data_request_pending = WIFI_TRUE;
+              IO_status_flag.AT_event_processing = WIFI_TFTP_EVENT;
+            }
+            else
+            {
+              #if DEBUG_PRINT
+                printf("\r\n ERROR DURING TFTP COMMAND TRANSFER \r\n");
+              #endif
+              WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+              IO_status_flag.AT_Response_Received = WIFI_TRUE;
+            }
+            break;
+
+          case WIFI_MQTT_ID_EVENT:
+            /* MQTT ID received */
+            WiFi_Counter_Variables.Socket_Open_ID = wifi_instances.DeQed_wifi_event->socket_id;
+            IO_status_flag.AT_event_processing = WIFI_NO_EVENT;
+            IO_status_flag.AT_Response_Received = WIFI_TRUE;
+            WiFi_Counter_Variables.AT_RESPONSE = WiFi_MODULE_SUCCESS;
+            break;
+
+          case WIFI_MQTT_EVENT:
+            Reset_AT_CMD_Buffer();
+            if(mqtt_type == CONNECT || mqtt_type == SUBSCRIBE || mqtt_type == UNSUBSCRIBE || mqtt_type == DISCONNECT)
+            {
+              if(mqtt_type == CONNECT)
+              {
+                #ifdef CONSOLE_UART_ENABLED
+                  sprintf((char*)WiFi_AT_Cmd_Buff,AT_MQTT_CONN,WiFi_Counter_Variables.curr_hostname,(int)WiFi_Counter_Variables.curr_port_number);
+                  status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+                #else
+                  sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.MQTTCONN=%s,%d,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,\r",WiFi_Counter_Variables.curr_hostname,(int)WiFi_Counter_Variables.curr_port_number);
+                  run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+                  IO_status_flag.AT_event_processing = WIFI_MQTT_CONNECT_EVENT;
+                  status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+                #endif
+              }
+              else if(mqtt_type == SUBSCRIBE)
+              {
+                #ifdef CONSOLE_UART_ENABLED
+                  sprintf((char*)WiFi_AT_Cmd_Buff,AT_MQTT_SUB,WiFi_Counter_Variables.curr_path);
+                  status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+                #else
+                  sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.MQTTSUB=0,%s,\r",WiFi_Counter_Variables.curr_path);
+                  run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+                  status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+                  IO_status_flag.AT_event_processing = WIFI_MQTT_EVENT;
+                #endif
+              }
+              else if(mqtt_type == UNSUBSCRIBE)
+              {
+                #ifdef CONSOLE_UART_ENABLED
+                  sprintf((char*)WiFi_AT_Cmd_Buff,AT_MQTT_UNSUB,WiFi_Counter_Variables.curr_path);
+                  status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+                #else
+                  sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.MQTTUNSUB=0,%s\r",WiFi_Counter_Variables.curr_path);
+                  run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+                  status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+                  IO_status_flag.AT_event_processing = WIFI_MQTT_EVENT;
+                #endif
+              }
+              else
+              {
+                #ifdef CONSOLE_UART_ENABLED
+                  sprintf((char*)WiFi_AT_Cmd_Buff,AT_MQTT_DISC);
+                  status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+                #else
+                  sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.MQTTDISC=0");
+                  run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+                  status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+                  IO_status_flag.AT_event_processing = WIFI_MQTT_EVENT;
+                #endif
+              }
+
+              if(status != WiFi_MODULE_SUCCESS)
+              {
+                #if DEBUG_PRINT
+                  printf("\r\n ERROR During MQTT \r\n");
+                #endif
+                WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+                IO_status_flag.AT_Response_Received = WIFI_TRUE;
+              }
+            }
+            else if(mqtt_type == PUBLISH)
+            {
+              #ifdef CONSOLE_UART_ENABLED
+                sprintf((char*)WiFi_AT_Cmd_Buff,AT_MQTT_PUB,WiFi_Counter_Variables.curr_path,WiFi_Counter_Variables.curr_DataLength);
+                status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+              #else
+                sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.MQTTPUB=0,%s,NULL,NULL,%d %s",WiFi_Counter_Variables.curr_path, WiFi_Counter_Variables.curr_DataLength,"DATA");
+                run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+                status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+              #endif
+              if(status != WiFi_MODULE_SUCCESS)
+              {
+                #if DEBUG_PRINT
+                  printf("\r\n ERROR During MQTT \r\n");
+                #endif
+                WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+                IO_status_flag.AT_Response_Received = WIFI_TRUE;
+              }
+              else
+              {
+                Reset_AT_CMD_Buffer();
+                #if defined(CONSOLE_UART_ENABLED)
+                  memcpy((char*)WiFi_AT_Cmd_Buff, (char*)WiFi_Counter_Variables.curr_data, WiFi_Counter_Variables.curr_DataLength);
+                  status = USART_Transmit_AT_Cmd(WiFi_Counter_Variables.curr_DataLength);
+                #else
+                  //SPI_Transmit_Manager_Poll(WiFi_AT_Cmd_Buff, WiFi_Counter_Variables.curr_DataLength);
+                  status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+                  IO_status_flag.AT_event_processing = WIFI_MQTT_EVENT;
+                  IO_status_flag.send_data = WIFI_TRUE;
+                  WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+                #endif
+              }
+            }
+            mqtt_type = NO_TYPE;
+            /* Just to try */
+            Reset_AT_CMD_Buffer();
+            break;
+
+          case WIFI_SMTP_EVENT:
+            Reset_AT_CMD_Buffer();
+            #if defined(CONSOLE_UART_ENABLED)
+              sprintf((char*)WiFi_AT_Cmd_Buff,AT_SEND_MAIL,WiFi_Counter_Variables.curr_hostname,(int)WiFi_Counter_Variables.curr_port_number, \
+                      WiFi_Counter_Variables.curr_path,WiFi_Counter_Variables.curr_pURL, WiFi_Counter_Variables.temp, WiFi_Counter_Variables.curr_DataLength);
+              status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+            #else
+              sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.SMTP=%s,%lu,NULL,NULL,NULL,NULL,%s,%s,NULL,NULL,%s,NULL,%d %s", \
+                      WiFi_Counter_Variables.curr_hostname,WiFi_Counter_Variables.curr_port_number,WiFi_Counter_Variables.curr_path, \
+                      WiFi_Counter_Variables.curr_pURL, WiFi_Counter_Variables.temp, WiFi_Counter_Variables.curr_DataLength, "DATA");
+              run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+              IO_status_flag.AT_event_processing = WIFI_SMTP_EVENT;
+              status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+            #endif
+
+            if(status != WiFi_MODULE_SUCCESS)
+            {
+              #if DEBUG_PRINT
+                printf("\r\n ERROR During SMTP \r\n");
+              #endif
+              WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+              IO_status_flag.AT_Response_Received = WIFI_TRUE;
+            }
+            else
+            {
+              Reset_AT_CMD_Buffer();
+              #if defined(CONSOLE_UART_ENABLED)
+                memcpy((char*)WiFi_AT_Cmd_Buff, (char*)WiFi_Counter_Variables.curr_data, WiFi_Counter_Variables.curr_DataLength);
+                #if defined (USE_STM32L0XX_NUCLEO) || (USE_STM32F4XX_NUCLEO) || (USE_STM32L4XX_NUCLEO)
+                  __disable_irq();
+                #endif
+                status = USART_Transmit_AT_Cmd(WiFi_Counter_Variables.curr_DataLength);
+                #if defined (USE_STM32L0XX_NUCLEO) || (USE_STM32F4XX_NUCLEO) || (USE_STM32L4XX_NUCLEO)
+                  __enable_irq();
+                #endif
+              #else
+                //SPI_Transmit_Manager_Poll(WiFi_AT_Cmd_Buff, WiFi_Counter_Variables.curr_DataLength);
+                status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+                IO_status_flag.AT_event_processing = WIFI_CLIENT_SOCKET_WRITE_EVENT;  /* Check which state to keep here */
+                IO_status_flag.send_data = WIFI_TRUE;
+                WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+              #endif
+            }
+            break;
+
+          case WIFI_CLIENT_SOCKET_LIST_EVENT:
+            Reset_AT_CMD_Buffer();
+            #if defined(CONSOLE_UART_ENABLED)
+              sprintf((char*)WiFi_AT_Cmd_Buff,AT_LIST_OPEN_CLIENT_SOCKET);
+
+              status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+            #else
+              sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.SOCKL");
+              run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+              IO_status_flag.AT_event_processing = WIFI_LIST_EVENT;
+              status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+            #endif
+
+              if(status != WiFi_MODULE_SUCCESS)
+              {
+                #if DEBUG_PRINT
+                  printf("\r\n ERROR During LIST \r\n");
+                #endif
+                WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+                IO_status_flag.AT_Response_Received = WIFI_TRUE;
+              }
+              else
+              {
+                WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+                WiFi_Control_Variables.Ok_terminated_data_request_pending = WIFI_TRUE;
+                WiFi_Control_Variables.enable_receive_socket_list_response = WIFI_TRUE;
+              }
+            break;
+
+          case WIFI_CLIENT_WEB_SOCKET_LIST_EVENT:
+            Reset_AT_CMD_Buffer();
+            #if defined(CONSOLE_UART_ENABLED)
+              sprintf((char*)WiFi_AT_Cmd_Buff,AT_LIST_OPEN_WEB_CLIENT_SOCKET);
+
+              status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+            #else
+              sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.WSOCKL");
+              run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+              IO_status_flag.AT_event_processing = WIFI_LIST_EVENT;
+              status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+            #endif
+
+             if(status != WiFi_MODULE_SUCCESS)
+              {
+                #if DEBUG_PRINT
+                  printf("\r\n ERROR During LIST \r\n");
+                #endif
+                WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+                IO_status_flag.AT_Response_Received = WIFI_TRUE;
+              }
+              else
+              {
+                WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+                WiFi_Control_Variables.Ok_terminated_data_request_pending = WIFI_TRUE;
+                WiFi_Control_Variables.enable_receive_socket_list_response = WIFI_TRUE;
+              }
+            break;
+
+          case WIFI_SERVER_SOCKET_LIST_EVENT:
+            Reset_AT_CMD_Buffer();
+            #if defined(CONSOLE_UART_ENABLED)
+              sprintf((char*)WiFi_AT_Cmd_Buff,AT_LIST_BOUND_CLIENT_SOCKET);
+              status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+            #else
+              sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.SOCKDL");
+              run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+              IO_status_flag.AT_event_processing = WIFI_LIST_EVENT;
+              status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+            #endif
+
+            if(status != WiFi_MODULE_SUCCESS)
+            {
+              #if DEBUG_PRINT
+                printf("\r\n ERROR During LIST \r\n");
+              #endif
+              WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+              IO_status_flag.AT_Response_Received = WIFI_TRUE;
+              IO_status_flag.AT_event_processing = WIFI_HTTP_EVENT;
+            }
+            else
+            {
+              WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+              WiFi_Control_Variables.Ok_terminated_data_request_pending = WIFI_TRUE;
+              WiFi_Control_Variables.enable_receive_socket_list_response = WIFI_TRUE;
+            }
+            break;
+
+          case WIFI_SERVER_SOCKET_WRITE_EVENT:
+            Reset_AT_CMD_Buffer();
+
+            /* AT+S.SOCKDW=<id>,<clientID>,len<cr> */
+            #if defined(CONSOLE_UART_ENABLED)
+              sprintf((char*)WiFi_AT_Cmd_Buff,AT_SERVER_SOCKET_WRITE, WiFi_Counter_Variables.curr_serverID, WiFi_Counter_Variables.curr_sockID, \
+                      WiFi_Counter_Variables.curr_DataLength);
+              status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+            #else
+              sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.SOCKDW=%d,%d,%d %s", WiFi_Counter_Variables.curr_serverID, WiFi_Counter_Variables.curr_sockID, \
+                      WiFi_Counter_Variables.curr_DataLength, "DATA");
+              run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+              status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+            #endif
+            if(status == WiFi_MODULE_SUCCESS)
+            {
+              Reset_AT_CMD_Buffer();
+              #if defined(CONSOLE_UART_ENABLED)
+                  WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+                  HAL_status = HAL_UART_Transmit_DMA(&UartWiFiHandle, (uint8_t *)WiFi_Counter_Variables.curr_data, WiFi_Counter_Variables.curr_DataLength);
+              #else
+                //SPI_Transmit_Manager_Poll(WiFi_AT_Cmd_Buff, WiFi_Counter_Variables.curr_DataLength);
+                status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+                IO_status_flag.AT_event_processing = WIFI_SERVER_SOCKET_WRITE_EVENT;
+                IO_status_flag.send_data = WIFI_TRUE;
+                WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+                Start_AT_CMD_Timer();
+              #endif
+            }
+            if(status != WiFi_MODULE_SUCCESS || HAL_status != HAL_OK)
+            {
+              #if DEBUG_PRINT
+                printf("\r\n ERROR In Server Socket Write\r\n");
+              #endif
+              IO_status_flag.AT_Response_Received = WIFI_TRUE;
+              WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+            }
+            break;
+
+          case WIFI_CLIENT_WEB_SOCKET_WRITE_EVENT:
+            Reset_AT_CMD_Buffer();
+
+            /* AT+S.WSOCKW=00,11<cr> */
+            #if defined(CONSOLE_UART_ENABLED)
+              sprintf((char*)WiFi_AT_Cmd_Buff,AT_WEB_SOCKET_WRITE,0,WiFi_Counter_Variables.curr_DataLength);
+              status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+            #else
+              sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.WSOCKW=%d,0,0,0,%d %s",0, WiFi_Counter_Variables.curr_DataLength, "DATA");
+              run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+              status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+            #endif
+            if(status == WiFi_MODULE_SUCCESS)
+            {
+              Reset_AT_CMD_Buffer();
+
+              #if defined(CONSOLE_UART_ENABLED)
+                WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+                HAL_status = HAL_UART_Transmit_DMA(&UartWiFiHandle, (uint8_t *)WiFi_Counter_Variables.curr_data, WiFi_Counter_Variables.curr_DataLength);
+              #else
+                  //SPI_Transmit_Manager_Poll(WiFi_AT_Cmd_Buff, WiFi_Counter_Variables.curr_DataLength);
+                  status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+                  IO_status_flag.AT_event_processing = WIFI_CLIENT_WEB_SOCKET_WRITE_EVENT;
+                  IO_status_flag.send_data = WIFI_TRUE;
+                  WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+                  Start_AT_CMD_Timer();
+              #endif
+            }
+            if(status != WiFi_MODULE_SUCCESS || HAL_status != HAL_OK)
+            {
+              #if DEBUG_PRINT
+                printf("\r\n ERROR In Socket Write\r\n");
+              #endif
+              IO_status_flag.AT_Response_Received = WIFI_TRUE;
+              WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+            }
+            break;
+
+          case WIFI_CLIENT_WEB_SOCKET_OPEN_EVENT:
+            Reset_AT_CMD_Buffer();
+            #if defined(CONSOLE_UART_ENABLED)
+                /* AT+S.SOCKON = myserver,1234,t <cr> */
+                sprintf((char*)WiFi_AT_Cmd_Buff,AT_WEB_SOCKET_OPEN,WiFi_Counter_Variables.curr_hostname,(int)WiFi_Counter_Variables.curr_port_number);
+                status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+            #else
+                /* AT+S.SOCKON = myserver,1234,t <cr> */
+                //@TBD: Set "is_secure_socket" only when the socket being opened is TLS/"s"/"domain.txt"
+                if((strcmp((char const *)WiFi_Counter_Variables.curr_protocol,"t")!=0) && (strcmp((char const *)WiFi_Counter_Variables.curr_protocol,"u")!=0))
+                  WiFi_Control_Variables.is_secure_socket = WIFI_TRUE;
+                sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.WSOCKON=%s,%d,NULL,0,NULL,NULL,NULL,NULL,NULL",WiFi_Counter_Variables.curr_hostname,(int)WiFi_Counter_Variables.curr_port_number);//TLS=0 currently; TBD: support TLS
+                run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+                status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+            #endif
+
+            if(status != WiFi_MODULE_SUCCESS)
+            {
+              #if DEBUG_PRINT
+                printf("\r\n ERROR During Web Socket Open \r\n");
+              #endif
+              IO_status_flag.AT_Response_Received = WIFI_TRUE;
+              WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+            }
+            else
+            {
+              IO_status_flag.AT_event_processing = WIFI_CLIENT_WEB_SOCKET_OPEN_EVENT;
+              WiFi_Counter_Variables.timeout_tick = 0;
+              WiFi_Control_Variables.enable_timeout_timer = WIFI_TRUE;
+            }
+            break;
+
+          case WIFI_CLIENT_WEB_SOCKET_CLOSE_EVENT:
+            if(open_web_socket[wifi_instances.DeQed_wifi_event->socket_id])
+            {
+              Reset_AT_CMD_Buffer();
+              //@TBD: Do a SOCK.R (Read) before closing the socket
+               #if defined(CONSOLE_UART_ENABLED)
+                /* AT+S.WSOCKC=<socket_id><status><cr>   status = 0->normal closure 1->going away*/
+                sprintf((char*)WiFi_AT_Cmd_Buff,AT_WEB_SOCKET_CLOSE,wifi_instances.DeQed_wifi_event->socket_id);
+                status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+              #else
+                sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.WSOCKC=%d,0",wifi_instances.DeQed_wifi_event->socket_id);
+                IO_status_flag.prevent_push_OK_event    = WIFI_TRUE;
+                IO_status_flag.web_socket_close_ongoing = WIFI_TRUE;
+                run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+                status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+              #endif
+              if(status == WiFi_MODULE_SUCCESS)
+              {
+                WiFi_Counter_Variables.AT_RESPONSE = WiFi_MODULE_SUCCESS;
+                WiFi_Control_Variables.stop_event_dequeue          = WIFI_TRUE;
+                WiFi_Counter_Variables.remote_socket_closed_id     = wifi_instances.DeQed_wifi_event->socket_id;
+
+                //for making changes in the value of open_web_sockets[sock_id] if no error is returned
+                IO_status_flag.web_socket_close_ongoing = WIFI_TRUE;
+
+                //prevent the OK received after socket close command to be Q'ed
+                IO_status_flag.prevent_push_OK_event       = WIFI_TRUE;
+              }
+              else
+              {
+                #if DEBUG_PRINT
+                  printf("\r\n ERROR During Socket Close \r\n");
+                #endif
+              }
+            }
+            break;
+
+        #endif
+
+        case WIFI_HTTP_EVENT:
+          Reset_AT_CMD_Buffer();
+          #if defined(CONSOLE_UART_ENABLED)
+            if(WiFi_Counter_Variables.http_ind==1)
+              sprintf((char*)WiFi_AT_Cmd_Buff,AT_HTTPPOST_REQUEST,WiFi_Counter_Variables.curr_hostname, WiFi_Counter_Variables.curr_path, (int)WiFi_Counter_Variables.curr_port_number);
+            else if(WiFi_Counter_Variables.http_ind==0)
+              sprintf((char*)WiFi_AT_Cmd_Buff,AT_HTTPGET_REQUEST,WiFi_Counter_Variables.curr_hostname, WiFi_Counter_Variables.curr_path, (int)WiFi_Counter_Variables.curr_port_number);
+
+            status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+          #else /*SPI Tx*/
+            if(WiFi_Counter_Variables.http_ind==1)
+            {
+              if(WiFi_Counter_Variables.curr_port_number!=0)
+                sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.HTTPPOST=%s,%s,%d,0,NULL,NULL,NULL,NULL",WiFi_Counter_Variables.curr_hostname, WiFi_Counter_Variables.curr_path, (int)WiFi_Counter_Variables.curr_port_number);
+              else
+                sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.HTTPPOST=%s,%s",WiFi_Counter_Variables.curr_hostname, WiFi_Counter_Variables.curr_path);//@TBD:Error!
+            }
+            else if(WiFi_Counter_Variables.http_ind==0)
+            {
+              if(WiFi_Counter_Variables.curr_port_number!=0)
+                sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.HTTPGET=%s,%s,%d,0,NULL,NULL,NULL,NULL",WiFi_Counter_Variables.curr_hostname, WiFi_Counter_Variables.curr_path, (int)WiFi_Counter_Variables.curr_port_number);
+              else
+                sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.HTTPGET=%s,%s,80,0,NULL,NULL,NULL,NULL",WiFi_Counter_Variables.curr_hostname, WiFi_Counter_Variables.curr_path);
+            }
+
+            run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+            status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+          #endif
+          if(status == WiFi_MODULE_SUCCESS)
+          {
+            WiFi_Counter_Variables.timeout_tick = 0;
+            WiFi_Control_Variables.enable_timeout_timer = WIFI_TRUE;
+            WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+            WiFi_Control_Variables.Ok_terminated_data_request_pending = WIFI_TRUE;
+            IO_status_flag.AT_event_processing = WIFI_HTTP_EVENT;
+          }
+          else
+          {
+            #if DEBUG_PRINT
+              printf("\r\n ERROR DURING HTTP COMMAND TRANSFER \r\n");
+            #endif
+            WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+            IO_status_flag.AT_Response_Received = WIFI_TRUE;
+          }
+          break;
+
+        case WIFI_CLIENT_SOCKET_WRITE_EVENT:
+          Reset_AT_CMD_Buffer();
+
+          /* AT+S.SOCKW=00,11<cr> */
+          #if defined(CONSOLE_UART_ENABLED)
+            sprintf((char*)WiFi_AT_Cmd_Buff,AT_SOCKET_WRITE, WiFi_Counter_Variables.curr_sockID, WiFi_Counter_Variables.curr_DataLength);
+            status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+          #else
+            sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.SOCKW=%d,%d %s", WiFi_Counter_Variables.curr_sockID, WiFi_Counter_Variables.curr_DataLength, "DATA");
+            run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+            status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+          #endif
+          if(status == WiFi_MODULE_SUCCESS)
+          {
+            Reset_AT_CMD_Buffer();
+            #if defined(CONSOLE_UART_ENABLED)
+
+              #if defined(SPWF01)
+                #if defined (USE_STM32L0XX_NUCLEO) || (USE_STM32F4XX_NUCLEO) || (USE_STM32L4XX_NUCLEO)
+                  __disable_irq();
+                #endif
+                if(HAL_UART_Transmit_IT(&UartWiFiHandle, (uint8_t *)WiFi_Counter_Variables.curr_data, WiFi_Counter_Variables.curr_DataLength)!= HAL_OK)
+                {
+                  status = WiFi_HAL_UART_ERROR;
+                }
+                #if defined (USE_STM32L0XX_NUCLEO) || (USE_STM32F4XX_NUCLEO) || (USE_STM32L4XX_NUCLEO)
+                  __enable_irq();
+                #endif
+              #else
+                WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+                HAL_status = HAL_UART_Transmit_DMA(&UartWiFiHandle, (uint8_t *)WiFi_Counter_Variables.curr_data, WiFi_Counter_Variables.curr_DataLength);
+              #endif
+
+            #else
+              //SPI_Transmit_Manager_Poll(WiFi_AT_Cmd_Buff, WiFi_Counter_Variables.curr_DataLength);
+              status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+              IO_status_flag.AT_event_processing = WIFI_CLIENT_SOCKET_WRITE_EVENT;
+              IO_status_flag.send_data = WIFI_TRUE;
+              WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+              Start_AT_CMD_Timer();
+            #endif
+          }
+          if(status != WiFi_MODULE_SUCCESS || HAL_status != HAL_OK)
+          {
+            #if DEBUG_PRINT
+              printf("\r\n ERROR In Socket Write\r\n");
+            #endif
+            IO_status_flag.AT_Response_Received = WIFI_TRUE;
+            WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+          }
+          break;
+
+        case WIFI_CLIENT_SOCKET_OPEN_EVENT:
+          Reset_AT_CMD_Buffer();
+          #if defined(CONSOLE_UART_ENABLED)
+              /* AT+S.SOCKON = myserver,1234,t <cr> */
+              sprintf((char*)WiFi_AT_Cmd_Buff,AT_SOCKET_OPEN,WiFi_Counter_Variables.curr_hostname,(int)WiFi_Counter_Variables.curr_port_number,WiFi_Counter_Variables.curr_protocol);
+              status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+          #else
+              /* AT+S.SOCKON = myserver,1234,t <cr> */
+              //@TBD: Set "is_secure_socket" only when the socket being opened is TLS/"s"/"domain.txt"
+              if((strcmp((char const *)WiFi_Counter_Variables.curr_protocol,"t")!=0) && (strcmp((char const *)WiFi_Counter_Variables.curr_protocol,"u")!=0))
+                WiFi_Control_Variables.is_secure_socket = WIFI_TRUE;
+              sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.SOCKON=%s,%d,NULL,%s",WiFi_Counter_Variables.curr_hostname,(int)WiFi_Counter_Variables.curr_port_number,WiFi_Counter_Variables.curr_protocol);
+              run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+              status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+          #endif
+
+          if(status != WiFi_MODULE_SUCCESS)
+          {
+            #if DEBUG_PRINT
+              printf("\r\n ERROR During Socket Open \r\n");
+            #endif
+            IO_status_flag.AT_Response_Received = WIFI_TRUE;
+            WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+          }
+          else
+          {
+            IO_status_flag.AT_event_processing = WIFI_CLIENT_SOCKET_OPEN_EVENT;
+            WiFi_Counter_Variables.timeout_tick = 0;
+            WiFi_Control_Variables.enable_timeout_timer = WIFI_TRUE;
+          }
+          break;
+
+        case WIFI_SERVER_SOCKET_OPEN_EVENT:
+          Reset_AT_CMD_Buffer();
+          /* AT+S.SOCKDON=portNo,t<cr> */
+          #if defined(CONSOLE_UART_ENABLED)
+            sprintf((char*)WiFi_AT_Cmd_Buff,AT_SERVER_SOCKET_OPEN,(int)WiFi_Counter_Variables.curr_port_number,WiFi_Counter_Variables.curr_protocol);
+            status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+          #else
+            sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.SOCKDON=%d,%s",(int)WiFi_Counter_Variables.curr_port_number,WiFi_Counter_Variables.curr_protocol);
+            run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+            status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+          #endif
+
+          if(status != WiFi_MODULE_SUCCESS)
+          {
+            #if DEBUG_PRINT
+              printf("\r\n ERROR During Server Socket Open \r\n");
+            #endif
+            IO_status_flag.AT_Response_Received = WIFI_TRUE;
+            WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+          }
+          else
+          {
+            IO_status_flag.AT_event_processing = WIFI_SERVER_SOCKET_OPEN_EVENT;
+            WiFi_Counter_Variables.timeout_tick = 0;
+            WiFi_Control_Variables.enable_timeout_timer = WIFI_TRUE;
+          }
+          break;
+
+        case WIFI_CLIENT_SOCKET_CLOSE_EVENT:
+          if(open_sockets[wifi_instances.DeQed_wifi_event->socket_id])
+          {
+            Reset_AT_CMD_Buffer();
+            //@TBD: Do a SOCK.R (Read) before closing the socket
+             #if defined(CONSOLE_UART_ENABLED)
+                 /* AT+S.SOCKC=00<cr> */
+                sprintf((char*)WiFi_AT_Cmd_Buff,AT_SOCKET_CLOSE,wifi_instances.DeQed_wifi_event->socket_id);
+                status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+            #else
+                sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.SOCKC=%d",wifi_instances.DeQed_wifi_event->socket_id);
+                run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+                status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+            #endif
+            if(status == WiFi_MODULE_SUCCESS)
+            {
+              WiFi_Counter_Variables.AT_RESPONSE = WiFi_MODULE_SUCCESS;
+              WiFi_Control_Variables.stop_event_dequeue          = WIFI_TRUE;
+              WiFi_Counter_Variables.remote_socket_closed_id     = wifi_instances.DeQed_wifi_event->socket_id;
+
+              //for making changes in the value of open_sockets[sock_id] if no error is returned
+              IO_status_flag.client_socket_close_ongoing = WIFI_TRUE;
+
+              //prevent the OK received after socket close command to be Q'ed
+              IO_status_flag.prevent_push_OK_event       = WIFI_TRUE;
+            }
+            else
+            {
+              #if DEBUG_PRINT
+                printf("\r\n ERROR During Socket Close \r\n");
+              #endif
+            }
+          }
+          else
+            printf("\r\n Socket already close");
+          break;
+
+        case WIFI_SERVER_SOCKET_CLOSE_EVENT:
+          Reset_AT_CMD_Buffer();
+          #ifdef SPWF04
+            if(open_server_sockets[wifi_instances.DeQed_wifi_event->server_id])
+            {
+              #if defined(CONSOLE_UART_ENABLED)
+                if(wifi_instances.DeQed_wifi_event->socket_id != 9)
+                {
+                  /* cannot check if the socket we are trying to close is connected to socket or not because
+                     in tls sometimes we get wind:62 without getting wind:61. */
+                    sprintf((char *)WiFi_AT_Cmd_Buff,AT_SPECIFIC_CLIENT_ON_SERVER_CLOSE,wifi_instances.DeQed_wifi_event->server_id,wifi_instances.DeQed_wifi_event->socket_id);
+                    WiFi_Control_Variables.close_specific_client = WIFI_TRUE;
+                }
+                else
+                {
+                  /* @TBD: Not implemented now */
+                  WiFi_Control_Variables.stop_event_dequeue      = WIFI_TRUE;
+                  /* Query every connected client and if result of all query zero then close the server */
+                  sprintf((char *)WiFi_AT_Cmd_Buff,AT_SERVER_SOCKET_CLOSE,wifi_instances.DeQed_wifi_event->server_id);
+                  WiFi_Control_Variables.close_complete_server_socket = WIFI_TRUE;
+                }
+                status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+              #else
+                if(wifi_instances.DeQed_wifi_event->socket_id != 9)
+                {
+                    /* cannot check if the socket we are trying to close is connected to socket or not because
+                     in tls sometimes we get wind:62 without getting wind:61. */
+                    sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.SOCKDC=%d,%d",wifi_instances.DeQed_wifi_event->server_id,wifi_instances.DeQed_wifi_event->socket_id);
+                    WiFi_Control_Variables.close_specific_client = WIFI_TRUE;
+                }
+                else
+                  sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.SOCKDC=%d",wifi_instances.DeQed_wifi_event->server_id);
+                run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+                status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+              #endif
+              if(status == WiFi_MODULE_SUCCESS)
+              {
+                WiFi_Counter_Variables.AT_RESPONSE = WiFi_MODULE_SUCCESS;
+                WiFi_Control_Variables.stop_event_dequeue      = WIFI_TRUE;
+                WiFi_Counter_Variables.remote_server_closed_id = wifi_instances.DeQed_wifi_event->server_id;
+                WiFi_Counter_Variables.remote_socket_closed_id = wifi_instances.DeQed_wifi_event->socket_id;
+
+                //for making changes in the value of open_sockets[sock_id] if no error is returned
+                IO_status_flag.server_socket_close_ongoing = WIFI_TRUE;
+
+                //prevent the OK received after socket close command to be Q'ed
+                IO_status_flag.prevent_push_OK_event       = WIFI_TRUE;
+              }
+              else
+              {
+                #if DEBUG_PRINT
+                  printf("\r\n ERROR During Socket Close \r\n");
+                #endif
+              }
+            }
+          #else
+            sprintf((char *)WiFi_AT_Cmd_Buff,AT_SERVER_SOCKET_CLOSE);
+            status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+            if(status == WiFi_MODULE_SUCCESS)
+            {
+              WiFi_Counter_Variables.AT_RESPONSE = WiFi_MODULE_SUCCESS;
+              WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+            }
+          #endif
+          break;
+
+        case WIFI_FILE_CREATE_EVENT:
+          Reset_AT_CMD_Buffer();
+
+          /* AT+S.FSC=/index.html,<datalength> */
+          #ifdef CONSOLE_UART_ENABLED
+            sprintf((char*)WiFi_AT_Cmd_Buff, AT_CREATE_FILE, WiFi_Counter_Variables.curr_filename, WiFi_Counter_Variables.curr_DataLength);
+
+            status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+            if (status != WiFi_MODULE_SUCCESS)
+            {
+              IO_status_flag.AT_Response_Received = WIFI_TRUE;
+              WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+            }
+            else
+            {
+              #ifdef SPWF01
+                status = USART_Receive_AT_Resp( );
+                if(status != WiFi_MODULE_SUCCESS)
+                {
+                  IO_status_flag.AT_Response_Received = WIFI_TRUE;
+                  WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+                }
+
+                /* AT+S.FSA=/index.html */
+                sprintf((char*)WiFi_AT_Cmd_Buff,AT_APPEND_FILE,WiFi_Counter_Variables.curr_filename,WiFi_Counter_Variables.curr_DataLength);
+                status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+                if(status != WiFi_MODULE_SUCCESS)
+                {
+                  IO_status_flag.AT_Response_Received = WIFI_TRUE;
+                  WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+                }
+              #endif
+              Reset_AT_CMD_Buffer();
+              memcpy((char*)WiFi_AT_Cmd_Buff, (char*)WiFi_Counter_Variables.curr_data,WiFi_Counter_Variables.curr_DataLength);
+              status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+              if(status != WiFi_MODULE_SUCCESS)
+              {
+                IO_status_flag.AT_Response_Received = WIFI_TRUE;
+                WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+              }
+            }
+            #else  // for SPI SPWF04
+              sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.FSC=%s,%d %s", WiFi_Counter_Variables.curr_filename, WiFi_Counter_Variables.curr_DataLength, "DATA");
+              run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+              status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+
+              if(status == WiFi_MODULE_SUCCESS)
+              {
+                //SPI_Transmit_Manager_Poll(WiFi_AT_Cmd_Buff, WiFi_Counter_Variables.curr_DataLength);
+                status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+                IO_status_flag.AT_event_processing = WIFI_NO_EVENT;
+                IO_status_flag.send_data = WIFI_TRUE;
+                WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+              }
+            if(status != WiFi_MODULE_SUCCESS)
+            {
+              #if DEBUG_PRINT
+                printf("\r\n ERROR In Socket Write\r\n");
+              #endif
+              IO_status_flag.AT_Response_Received = WIFI_TRUE;
+              WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+            }
+            #endif
+            break;
+
+          case WIFI_FILE_EVENT:
+            Reset_AT_CMD_Buffer();
+
+            if(WiFi_Counter_Variables.curr_filename == NULL)
+            {
+              /* AT+S.FSL */
+              #ifdef CONSOLE_UART_ENABLED
+                sprintf((char*)WiFi_AT_Cmd_Buff,AT_DISPLAY_FILENAME_LIST);
+              #else
+                sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.FSL");
+                run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+                status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+              #endif
+            }
+            else if(WiFi_Counter_Variables.curr_hostname == NULL)
+            {
+              /* AT+S.FSP=/index.html */
+              #ifdef CONSOLE_UART_ENABLED
+                sprintf((char*)WiFi_AT_Cmd_Buff,AT_DISPLAY_FILE_CONTENT,WiFi_Counter_Variables.curr_filename);
+              #else
+                sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.FSP=/%s,NULL,NULL",WiFi_Counter_Variables.curr_filename);
+                run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+                status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+              #endif
+            }
+            else
+            {
+              /* AT+S.FSUPDATE=%s,/outfile.img  */
+              #ifdef CONSOLE_UART_ENABLED
+                sprintf((char*)WiFi_AT_Cmd_Buff,AT_DOWNLOAD_IMAGE_FILE,WiFi_Counter_Variables.curr_hostname,WiFi_Counter_Variables.curr_filename,(int)WiFi_Counter_Variables.curr_port_number);
+              #else
+                sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.FSUPDATE=e,%s,/%s,%d,NULL,NULL,NULL",WiFi_Counter_Variables.curr_hostname,WiFi_Counter_Variables.curr_filename,(int)WiFi_Counter_Variables.curr_port_number);
+                run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+                status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+              #endif
+            }
+
+            #ifdef CONSOLE_UART_ENABLED
+              status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+            #endif
+            if(status == WiFi_MODULE_SUCCESS)
+            {
+              WiFi_Control_Variables.enable_receive_file_response = WIFI_TRUE;
+              #ifdef CONSOLE_UART_ENABLED
+                #ifdef SPWF01
+                  WiFi_Control_Variables.enable_receive_data_chunk  = WIFI_TRUE;
+                #endif
+                WiFi_Control_Variables.enable_receive_http_response = WIFI_TRUE;
+              #else
+                WiFi_Control_Variables.stop_event_dequeue = WIFI_TRUE;
+                WiFi_Control_Variables.Ok_terminated_data_request_pending = WIFI_TRUE;
+                IO_status_flag.AT_event_processing = WIFI_HTTP_EVENT;
+              #endif
+            }
+            else
+            {
+              #if DEBUG_PRINT
+                printf("\r\n ERROR DURING FILE OPERATION \r\n");
+              #endif
+              IO_status_flag.AT_Response_Received = WIFI_TRUE;
+              WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+            }
+            break;
+
+          case WIFI_FILE1_EVENT:
+            Reset_AT_CMD_Buffer();
+
+            if( WiFi_Counter_Variables.volume == -1 && WiFi_Counter_Variables.erase == -1)
+            {
+              if(WiFi_Counter_Variables.curr_filename !=NULL && WiFi_Counter_Variables.mod_filename!=NULL)
+              {
+                /* Rename a file.... AT+S.FSR=<old_filename>,<new_filename> */
+                #if defined(SPWF04) && defined(CONSOLE_UART_ENABLED)
+                    sprintf((char*)WiFi_AT_Cmd_Buff,AT_RENAME_FILE, WiFi_Counter_Variables.curr_filename,WiFi_Counter_Variables.mod_filename);
+                #elif defined(SPWF04)
+                    sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.FSR=/%s,%s", WiFi_Counter_Variables.curr_filename,WiFi_Counter_Variables.mod_filename);
+                    run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+                    status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+                #endif
+              }
+              else if(WiFi_Counter_Variables.curr_filename !=NULL && WiFi_Counter_Variables.mod_filename==NULL)
+              {
+                  /* Delete a file...AT+S.FSD=<filename> */
+                  #ifdef CONSOLE_UART_ENABLED
+                    sprintf((char*)WiFi_AT_Cmd_Buff,AT_DELETE_FILE, WiFi_Counter_Variables.curr_filename);
+                  #else
+                    sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.FSD=/%s", WiFi_Counter_Variables.curr_filename);
+                    run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+                    status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+                  #endif
+              }
+            }
+            else
+            {
+              /* erase user memory volume...AT+S.FSU=[<volume>],[<erase>] */
+              #if defined(SPWF04) && defined(CONSOLE_UART_ENABLED)
+                  sprintf((char*)WiFi_AT_Cmd_Buff,AT_UNMOUNT_USER_MEMORY, WiFi_Counter_Variables.volume,WiFi_Counter_Variables.erase);
+              #elif defined SPWF04
+                  sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.FSU");
+                  run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+                  status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code
+              #endif
+            }
+            #ifdef CONSOLE_UART_ENABLED
+              status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+            #endif
+            /* Wait till OK of this command is not received */
+            if(status != WiFi_MODULE_SUCCESS)
+             {
+                 #if DEBUG_PRINT
+                   printf("\r\n ERROR During File Event\r\n");
+                 #endif
+                 IO_status_flag.AT_Response_Received = WIFI_TRUE;
+                 WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+             }
+            break;
+
+          case WIFI_FW_UPDATE_EVENT:
+            Reset_AT_CMD_Buffer();
+            #if defined(CONSOLE_UART_ENABLED)
+              /*AT+S.FWUPDATE=e,<hostname>,[<path&query>,<port>,<TLS>,<username>,<passwd>]\r*/
+              sprintf((char*)WiFi_AT_Cmd_Buff,AT_FWUPDATE,WiFi_Counter_Variables.curr_hostname,WiFi_Counter_Variables.curr_filename,(int)WiFi_Counter_Variables.curr_port_number);
+              status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
+            #else
+              sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.FWUPDATE=e,%s,/%s,%d,0,NULL,NULL",WiFi_Counter_Variables.curr_hostname,WiFi_Counter_Variables.curr_filename,(int)WiFi_Counter_Variables.curr_port_number);
+              run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
+              status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+            #endif
+
+            if(status == WiFi_MODULE_SUCCESS)
+            {
+              WiFi_Control_Variables.enable_fw_update_read      = WIFI_TRUE;
+              #if defined(SPWF01)
+                WiFi_Control_Variables.enable_receive_data_chunk  = WIFI_TRUE;
+              #else
+                #if defined(CONSOLE_UART_ENABLED)
+                  WiFi_Control_Variables.enable_receive_http_response = WIFI_TRUE;
+                #else
+                  IO_status_flag.AT_event_processing = WIFI_FW_UPDATE_EVENT;
+                #endif
+              #endif
+            }
+            else
+            {
+              #if DEBUG_PRINT
+                printf("\r\n ERROR DURING FIRMWARE UPDATE \r\n");
+              #endif
+              IO_status_flag.AT_Response_Received = WIFI_TRUE;
+              WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+            }
+            break;
+
+          case WIFI_ERROR_EVENT:
+            #if DEBUG_PRINT
+              //printf("\r\n ERROR!\r\n");
+            #endif
+            IO_status_flag.AT_Response_Received = WIFI_TRUE;
+            WiFi_Counter_Variables.AT_RESPONSE = WiFi_AT_CMD_RESP_ERROR;
+            IO_status_flag.AT_event_processing = WIFI_NO_EVENT;
+            break;
+
+          case WIFI_OK_EVENT:
+            #if DEBUG_PRINT
+            printf("\r\n<<OK\r\n");
+            #endif
+            #ifndef CONSOLE_UART_ENABLED
+              WiFi_Control_Variables.enable_receive_socket_list_response = WIFI_FALSE;
+              WiFi_Control_Variables.enable_receive_file_response = WIFI_FALSE;
+            #endif
+            // no break
+          case WIFI_GCFG_EVENT:
+          case WIFI_GPIO_EVENT:
+            IO_status_flag.AT_Response_Received = WIFI_TRUE;
+            WiFi_Counter_Variables.AT_RESPONSE = WiFi_MODULE_SUCCESS;
+            IO_status_flag.AT_event_processing = WIFI_NO_EVENT;
+            break;
+
+          case WIFI_STANDBY_CONFIG_EVENT:
+            #if DEBUG_PRINT
+                printf("\r\nGoing into standby..\r\n");
+            #endif
+            break;
+
+          case WIFI_RESUME_CONFIG_EVENT:
+            #if DEBUG_PRINT
+                printf("\r\nResuming from standby..\r\n");
+            #endif
+            WiFi_Control_Variables.trigger_wakeup_callback = WIFI_TRUE;
+            break;
+
+          default:
+            break;
+       }
+    }
+  }
+  /* If data is pending on client socket SOCKON, make read requests*/
+  if(WiFi_Control_Variables.start_sock_read == WIFI_TRUE)
+          {
+              WiFi_Control_Variables.start_sock_read = WIFI_FALSE;
+              Socket_Read(WiFi_Counter_Variables.Socket_Data_Length);
+          }
+  /* Call Query, after notification for TLS is received */
+  else if(WiFi_Control_Variables.enable_query == WIFI_TRUE && IO_status_flag.enable_dequeue == WIFI_TRUE)
+          {
+              WiFi_Control_Variables.enable_query = WIFI_FALSE;
+              //@TBD: Flushing the buffer may be detrimental if we have genuine follow on WIND55?
+              Socket_Pending_Data();
+          }
+  #ifdef SPWF04
+    /* If data is pending on server socket SOCKDON, make read requests*/
+    else if(WiFi_Control_Variables.start_sockd_read == WIFI_TRUE)
+            {
+                WiFi_Control_Variables.start_sockd_read = WIFI_FALSE;
+                Socket_Server_Read(WiFi_Counter_Variables.Socket_Data_Length);
+            }
+    else if(WiFi_Control_Variables.enable_server_query == WIFI_TRUE && IO_status_flag.enable_dequeue == WIFI_TRUE)
+            {
+                WiFi_Control_Variables.enable_server_query = WIFI_FALSE;
+                Server_Pending_Data();
+            }
+    else if(WiFi_Control_Variables.enable_websocket_query == WIFI_TRUE && IO_status_flag.enable_dequeue == WIFI_TRUE)
+            {
+                WiFi_Control_Variables.enable_websocket_query = WIFI_FALSE;
+                Websocket_Pending_Data();
+            }
+    else if(WiFi_Control_Variables.start_websock_read == WIFI_TRUE)
+            {
+                WiFi_Control_Variables.start_websock_read = WIFI_FALSE;
+                Websocket_Read(WiFi_Counter_Variables.Socket_Data_Length);
+            }
+    else if(WiFi_Control_Variables.Client_Websocket_Close_Cmd == WIFI_TRUE)//for client socket
+            {
+                WiFi_Control_Variables.Client_Websocket_Close_Cmd = WIFI_FALSE;
+                Queue_Client_Close_Event(WiFi_Counter_Variables.client_websocket_close_id, WEB_SOCKET);
+                IO_status_flag.client_socket_close_type = NET_SOCKET;//default to net socket all the time
+            }
+    else if(WiFi_Control_Variables.Mqtt_Close_Cmd)
+            {
+                WiFi_Control_Variables.Mqtt_Close_Cmd = WIFI_FALSE;
+                ind_wifi_mqtt_closed(WiFi_Counter_Variables.mqtt_closed_id);
+            }
+    else if(WiFi_Control_Variables.Mqtt_Data_Publish_Callback)
+            {
+              WiFi_Control_Variables.Mqtt_Data_Publish_Callback = WIFI_FALSE;
+              ind_wifi_mqtt_data_received(WiFi_Counter_Variables.Socket_Open_ID,WiFi_Counter_Variables.temp,WiFi_Counter_Variables.number_of_bytes,WiFi_Counter_Variables.chunk_size,WiFi_Counter_Variables.message_size,(uint8_t *)UserDataBuff);
+              WiFi_Control_Variables.stop_event_dequeue = WIFI_FALSE;
+              memset(UserDataBuff, 0x00, MAX_BUFFER_GLOBAL);//Flush the buffer
+            }
+  #endif
+  else if(WiFi_Control_Variables.Pending_SockON_Callback==WIFI_TRUE)//for client socket
+          {
+              WiFi_Control_Variables.Pending_SockON_Callback=WIFI_FALSE;
+              //Now callback to user with user_data pointer <UserDataBuff>
+              ind_wifi_socket_data_received(-1, WiFi_Counter_Variables.sockon_id_user, (uint8_t *)UserDataBuff, WiFi_Counter_Variables.message_size, WiFi_Counter_Variables.chunk_size, NET_SOCKET);
+              memset(UserDataBuff, 0x00, MAX_BUFFER_GLOBAL);//Flush the buffer
+              Resume_Dequeue();
+          }
+
+  else if(WiFi_Control_Variables.Pending_SockD_Callback == WIFI_TRUE)//for server socket
+          {
+              WiFi_Control_Variables.Pending_SockD_Callback=WIFI_FALSE;
+              //Now callback to user with user_data pointer <UserDataBuff>
+              ind_wifi_socket_data_received(WiFi_Counter_Variables.sockdon_id_user, WiFi_Counter_Variables.sockon_id_user, (uint8_t *)UserDataBuff, WiFi_Counter_Variables.message_size, WiFi_Counter_Variables.chunk_size, NET_SOCKET);
+              memset(UserDataBuff, 0x00, MAX_BUFFER_GLOBAL); //Flush the buffer
+              Resume_Dequeue();
+          }
+
+  else if(WiFi_Control_Variables.Client_Socket_Close_Cmd == WIFI_TRUE)//for client socket
+          {
+              // Q the close socket event
+              if(open_sockets[WiFi_Counter_Variables.client_socket_close_id])
+                {
+                  Queue_Client_Close_Event(WiFi_Counter_Variables.client_socket_close_id, NET_SOCKET);
+                }
+              WiFi_Control_Variables.Client_Socket_Close_Cmd = WIFI_FALSE;
+          }
+
+  else if(WiFi_Control_Variables.SockON_Server_Closed_Callback==WIFI_TRUE)//for client socket
+          {
+              //callback the user
+              #ifdef SPWF04
+                if(IO_status_flag.client_socket_close_type==WEB_SOCKET)
+                  ind_wifi_socket_client_remote_server_closed(&WiFi_Counter_Variables.closed_socket_id, WEB_SOCKET);
+                else if(IO_status_flag.client_socket_close_type==NET_SOCKET)
+              #endif
+                ind_wifi_socket_client_remote_server_closed(&WiFi_Counter_Variables.closed_socket_id, NET_SOCKET);
+
+              IO_status_flag.client_socket_close_type = NET_SOCKET;//default to net socket all the time
+              WiFi_Control_Variables.SockON_Server_Closed_Callback = WIFI_FALSE;
+              WiFi_Control_Variables.stop_event_dequeue = WIFI_FALSE;
+          }
+
+  else if(WiFi_Control_Variables.HTTP_Data_available == WIFI_TRUE)
+          {
+              WiFi_Control_Variables.HTTP_Data_available=WIFI_FALSE;
+              if(WiFi_Control_Variables.enable_receive_file_response)
+              {
+                ind_wifi_file_data_available((uint8_t *)UserDataBuff);
+              }
+              else if(WiFi_Control_Variables.enable_receive_socket_list_response)
+                ind_wifi_socket_list_data_available((uint8_t *)UserDataBuff);
+              else
+                ind_wifi_http_data_available((uint8_t *)UserDataBuff,WiFi_Counter_Variables.UserDataBuff_index);
+              memset(UserDataBuff, 0x00, MAX_BUFFER_GLOBAL);//Flush the buffer
+              Resume_Dequeue();
+          }
+
+  else if (WiFi_Control_Variables.FILE_Data_available == WIFI_TRUE)
+          {
+              ind_wifi_file_data_available((uint8_t *) UserDataBuff);
+              memset(UserDataBuff, 0x00, MAX_BUFFER_GLOBAL);//Flush the buffer
+              Resume_Dequeue();
+              WiFi_Control_Variables.FILE_Data_available = WIFI_FALSE;
+          }
+  else if(WiFi_Control_Variables.Client_Connected == WIFI_TRUE)
+          {
+              ind_socket_server_client_joined();
+              WiFi_Control_Variables.Client_Connected = WIFI_FALSE;
+          }
+
+  else if(WiFi_Control_Variables.Client_Disconnected == WIFI_TRUE)
+          {
+              ind_socket_server_client_left();
+              WiFi_Control_Variables.Client_Disconnected = WIFI_FALSE;
+          }
+
+  //Make callbacks from here to user for pending events
+  switch(IO_status_flag.WiFi_WIND_State)
+  {
+      //Make callbacks from here to user for pending events
+      case WiFiHWStarted:
+        if(IO_status_flag.wifi_ready == 2)//Twice reset for User Callback
+         {
+            IO_status_flag.wifi_ready++;//will increment to 3 (max)
+            ind_wifi_on();//Call this once only...This if for wifi_on (instead of console active
+         }
+        break;
+
+      case WiFiUp:
+        if(wifi_connected == 0)
+         {
+            wifi_connected = 1;
+            ind_wifi_connected();  //wifi connected
+         }
+//        IO_status_flag.WiFi_WIND_State = Undefine_state;
+        break;
+
+      case WiFiStarted_MiniAPMode:
+         ind_wifi_ap_ready();
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         break;
+
+      case WiFiAPClientJoined:
+         ind_wifi_ap_client_joined(WiFi_Counter_Variables.client_MAC_address);
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         break;
+
+      case WiFiAPClientLeft:
+         ind_wifi_ap_client_left(WiFi_Counter_Variables.client_MAC_address);
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         break;
+
+      case Deep_Sleep_Callback:
+         ind_wifi_resuming();
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         break;
+
+      case standby_resume_callback:
+         ind_wifi_resuming();
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         break;
+
+      case WiFiHWFailure:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_error(WiFi_HW_FAILURE_ERROR);     //call with error number
+         break;
+
+      case HardFault:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_error(WiFi_HARD_FAULT_ERROR);     //call with error number
+         break;
+
+      case StackOverFlow:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_error(WiFi_STACK_OVERFLOW_ERROR); //call with error number
+         break;
+
+      case Mallocfailed:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_error(WiFi_MALLOC_FAILED_ERROR);  //call with error number
+         break;
+
+      case InitFailure:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_error(WiFi_INIT_ERROR);   //call with error number
+         break;
+
+      case StartFailed:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_error(WiFi_START_FAILED_ERROR);   //call with error number
+         break;
+
+      case WiFiException:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_error(WiFi_EXCEPTION_ERROR);      //call with error number
+         break;
+
+      case PS_Mode_Failure:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_warning(WiFi_POWER_SAVE_WARNING); //call with error number
+         break;
+
+      case HeapTooSmall:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_warning(WiFi_HEAP_TOO_SMALL_WARNING);     //call with error number
+         break;
+
+      case WiFiSignalLOW:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_warning(WiFi_SIGNAL_LOW_WARNING); //call with error number
+         break;
+
+      case WiFiDeauthentication:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_connection_error(WiFi_DE_AUTH);
+         break;
+
+      case WiFiDisAssociation:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_connection_error(WiFi_DISASSOCIATION);
+         break;
+
+      case WiFiJoinFailed:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_connection_error(WiFi_JOIN_FAILED);
+         break;
+
+      case WiFiScanBlewUp:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_connection_error(WiFi_SCAN_BLEWUP);    //@TBD to check if user made call, so not call callback if true
+         break;
+
+      case WiFiScanFailed:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_connection_error(WiFi_SCAN_FAILED);    //@TBD to check if user made call, so not call callback if true
+         break;
+
+      case WiFiUnHandledInd:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_packet_lost(WiFi_UNHANDLED_IND_ERROR); //@TBD to check if user made call, so not call callback if true
+         break;
+
+      case WiFiRXMgmt:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_packet_lost(WiFi_RX_MGMT);  //@TBD to check if user made call, so not call callback if true
+         break;
+
+      case WiFiRXData:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_packet_lost(WiFi_RX_DATA);  //@TBD to check if user made call, so not call callback if true
+         break;
+
+      case WiFiRxUnk:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_packet_lost(WiFi_RX_UNK);  //@TBD to check if user made call, so not call callback if true
+         break;
+
+      case WiFiSockdDataLost:
+         IO_status_flag.WiFi_WIND_State = Undefine_state;
+         ind_wifi_socket_server_data_lost();  //@TBD to check if user made call, so not call callback if true
+         break;
+
+      case WiFiDeAuth:
+      case WiFiPowerDown:
+      case Undefine_state:
+    	 break;
+  }
 }
 
 /**
