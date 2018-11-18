@@ -33,4 +33,8 @@ STM32F4xx-Nucleo-WiFi_VCOM_SPWF01/Example/SW4STM32 \
 STM32F4xx-Nucleo-WiFi_VCOM_SPWF01/Example/User \
 STM32F4xx-Nucleo-WiFi_VCOM_SPWF01/Middlewares/ST/STM32_SPWF0xSy/Utils \
 STM32F4xx-Nucleo-WiFi_VCOM_SPWF01/Middlewares/ST/STM32_SPWF0xSy \
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> branch 'Stef' of https://github.com/miqreh/CS06.git

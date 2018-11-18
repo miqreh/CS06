@@ -16,7 +16,11 @@
 "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_usart.o"
 "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_ll_dma.o"
 "Example/SW4STM32/startup_stm32f401xe.o"
+<<<<<<< HEAD
 "Example/User/connexionMQTT.o"
+=======
+"Example/User/config_wifi.o"
+>>>>>>> branch 'Stef' of https://github.com/miqreh/CS06.git
 "Example/User/console.o"
 "Example/User/main.o"
 "Example/User/stm32_xx_hal_msp.o"

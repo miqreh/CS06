@@ -40,12 +40,16 @@
 #include "string.h"
 #include "wifi_module.h"
 #include "wifi_globals.h"
+<<<<<<< HEAD
 #include "connexionMQTT.h"
 //#define MQTT_HOST "broker.mqttdashboard.com"
 #define DEBUG_PRINT 1
 #define MQTT_HOST "89.156.159.82"
 #define MQTT_PWD  ""
 //#define MQTT_PORT  8080
+=======
+#include "config_wifi.h"
+>>>>>>> branch 'Stef' of https://github.com/miqreh/CS06.git
 
 
 #define SPWF04 1
@@ -105,9 +109,6 @@ int main(void)
 
   printf("\r\n\n/********************************************************\n");
   printf("\r *                                                      *\n");
-  printf("\r * X-CUBE-WIFI1 Expansion Software v3.1.1               *\n");
-  printf("\r * Console Application                                  *\n");
-  printf("\r * Send AT commands to SPWF module directly             *\n");
   printf("\r *                                                      *\n"); 
   printf("\r *******************************************************/\n\r\n");
   
@@ -149,8 +150,11 @@ int main(void)
   printf("Voila");
 
 
-  //Declenchement du mode MiniAP ici
+  //Déclenchement du mode MiniAP ici
+  int connected;
+  connected = launch_config_wifi();
 
+<<<<<<< HEAD
    // uint8_t ssid[] = "Arroseur connecte";
     //char key[] = "1234";
 
@@ -158,6 +162,8 @@ int main(void)
   //wifi_enable(0);
  /* wifi_connect("Honor229","stephane",2);
  // wifi_enable(1);*/
+=======
+>>>>>>> branch 'Stef' of https://github.com/miqreh/CS06.git
 
 
 //Start_Timer();
@@ -216,11 +222,10 @@ int main(void)
 }
 
 
-void se_connecter_au_reseau_wifi(char* ssid, char* key){
 
 
-	printf("\rOn est dans la fonction se connecter au wifi...\r\n");
 
+<<<<<<< HEAD
 	if (strcmp(ssid,"nicopucewifi") ==0){
 
 		printf("\rAvec les bons param...\r\n");
@@ -285,6 +290,9 @@ void checkStatus(WiFi_Status_t status)
 		}*/
 		}
 	}
+=======
+
+>>>>>>> branch 'Stef' of https://github.com/miqreh/CS06.git
 
 
 
