@@ -2279,7 +2279,7 @@ void WiFi_HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandleArg)
 WiFi_Status_t USART_Receive_AT_Resp( )
 {
 
- /* while(IO_status_flag.AT_Response_Received != WIFI_TRUE) {
+ /*while(IO_status_flag.AT_Response_Received != WIFI_TRUE) {
 
 	  __NOP(); //nothing to do
 
@@ -5225,6 +5225,8 @@ void Wifi_Process(void)
     	 break;
   }
 }
+
+//commence ligne 3905
 
 /**
   * @}

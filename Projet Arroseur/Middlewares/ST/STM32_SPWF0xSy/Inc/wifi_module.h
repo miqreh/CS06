@@ -469,7 +469,7 @@ typedef enum {
   WiFi_MiniAP_Disassociated     = 72,
   System_Conf_Updated           = 73, /*SPWF04*/
   Rejected_Found_Network  = 74,
-#if defined(SPWF04)  
+//#if defined(SPWF04)
   /*Additional WINDs for SPWF04*/
   Rejected_Association          = 75,
   SockD_Dropping_Client         = 83,
@@ -480,7 +480,7 @@ typedef enum {
   Websocket_Closed              = 89,
 //  UDP_Broadcast_Received        = 90,
   TFTP_File_Received            = 90,
-#endif  
+//#endif
   Undefine_Indication     = 0xFF
 } WiFi_Indication_t;
 
