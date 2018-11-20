@@ -13,14 +13,17 @@ topicDeclenchement="arroseur/declenchement"
 topicMonitoring="arroseur/monitoring"
 topicProgrammation="arroseur/programmation"
 
+port =9001
+
 QoS=2
    #0 - at most once
    #1 - at least once
    #2 - exactly once
 #ouvrir le client MQTT
-client = MQTT.Client(ClientID) #create new instance
-client.connect(broker_address) #connect to broker
+client = MQTT.Client(ClientID,transport='websockets') #create new instance
+client.connect(broker_address,port) #connect to broker
 client.loop_start()
+
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     if(msg.payload=="Manuel"):
