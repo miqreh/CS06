@@ -11,7 +11,7 @@ ClientID="RaspberryArroseur2"
 #Topics
 topicDeclenchement="arroseur/declenchement"
 topicMonitoring="arroseur/monitoring"
-topicProgrammation="arroseur/programmation"
+topicProgrammation = "arroseur/programmation"
 
 port =9001
 
@@ -58,8 +58,8 @@ nombre =10
 while (1):
 
     client.publish(topicProgrammation, nombre, QoS)
-    print(nombre)
-    time.sleep(30)
+    print("sleep\r\n")
+    time.sleep(5)
     nombre += 10
     print(nombre)
     if(nombre > 200):
