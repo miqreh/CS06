@@ -61,6 +61,7 @@ while (1):
     print(nombre)
     time.sleep(30)
     nombre += 10
+    print(nombre)
     if(nombre > 200):
         nombre=0
 
