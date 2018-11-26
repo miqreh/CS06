@@ -1,10 +1,10 @@
 #!/usr/bin/python
 
 #représente la connexion à la base de données
-DBhost=""
-DBuser=""
-DBpwd=""
-Db=""
+DBhost="89.156.159.82"
+DBuser="root"
+DBpwd="Cs06Arroseur@2018"
+Db="arrosage"
 
 
 import pymysql.cursors
