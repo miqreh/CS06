@@ -1,14 +1,23 @@
 #!/usr/bin/python
 
 #représente la connexion à la base de données
-DBhost="89.156.159.82"
-DBuser="root"
-DBpwd="Cs06Arroseur@2018"
-Db="arrosage"
+#DBhost="89.156.159.82"
+#DBuser="root"
+#DBpwd="Cs06Arroseur@2018"
+#Db="arrosage"
 
+# config Local
+DBhost="localhost"
+DBuser="root"
+DBpwd=""
+Db="arrosage"
 
 import pymysql.cursors
 # Connexion en local
+#db = pymysql.connect(host=DBhost,
+ #                      user=DBuser,
+  #                     passwd=DBpwd,
+   #                    db=Db,charset="utf8mb4",cursorclass=pymysql.cursors.DictCursor)
 db = pymysql.connect(host=DBhost,
                        user=DBuser,
                        passwd=DBpwd,
