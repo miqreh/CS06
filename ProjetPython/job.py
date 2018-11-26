@@ -57,7 +57,7 @@ def declencher_arrosage():
 
 
 def programmer_arrosage(secondes):
-    schedule.every(secondes).seconds.do(test).tag(tag)
+    schedule.every(secondes).seconds.do(test).tag(config.tag)
     message = "\r\n Arrosage programmé toutes les " + str(secondes) + " secondes"
     log(message)
     print(message)
@@ -69,14 +69,28 @@ def clear_schedule():
     schedule.clear(config.tag)
     print("\r\nMise à jour de la base de données...")
     # refresh plannings à partir de la base de données
-
+    refresh_from_database()
 
 def test():
     print("\r\nexécution")
     return schedule.CancelJob()
 
+def refresh_from_database():
+    # Query pour avoir tous les plannings
+    query = 'Select * From planning inner join zone on planning.idprog = zone.idprog where date_arrosage >= NOW()'
+    results = database.cursor.fetchall()
+    database.cursor.execute(query)
+    for d in results:
+        print(d)
+        date = functions.date_to_datetime(d['date_arrosage'], d['heure_debut'])
+        print(date)
+        seconds = functions.seconds_remaining(date)
+        print(seconds)
+        programmer_arrosage(seconds)
+
+
 # Mettre à jour les plannings programmés toutes les heures
-schedule.every(1).hour.do(clear_schedule)
+schedule.every(30).seconds.do(clear_schedule)
 
 # Souscription aux différents topics
 client.subscribe([(topicDeclenchement, QoS), (topicProgrammation, QoS)])
