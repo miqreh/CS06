@@ -28,10 +28,10 @@ client.connect(broker_address,port)  # connect to broker
 def on_message(client_mqtt, userdata, msg):
     log(msg.payload, msg.topic, client_mqtt)
     print(msg.topic + " " + str(msg.payload))
-    if msg.topic == topicDeclenchement:
+    if msg.topic == config.topicDeclenchement:
         if msg.payload == "Manuel":
             declencher_arrosage()
-    elif msg.topic == topicProgrammation:
+    elif msg.topic == config.topicProgrammation:
         secondes = int(str(msg.payload).replace("b", "").replace("'", ""))
         programmer_arrosage(secondes)
 
@@ -46,13 +46,13 @@ def log(message, topic="", client_mqtt=""):
         msg += "\r\nTopic: " + topic
     msg += "\r\nMessage: " + message + "\r\n le " + str(now)
     print(msg)
-    client.publish(topicMonitoring, msg, QoS)
+    config.client.publish(config.topicMonitoring, msg, config.QoS)
 
 
 def declencher_arrosage():
     message = "Manuel"
-    info = client.publish(topicDeclenchement, message, QoS)
-    log(message, topicDeclenchement)
+    info = config.client.publish(config.topicDeclenchement, message, config.QoS)
+    log(message, config.topicDeclenchement)
     print(info)
 
 
@@ -66,14 +66,14 @@ def programmer_arrosage(secondes):
 
 # mettre à jour les plannings programmés
 def clear_schedule():
-    schedule.clear(tag)
+    schedule.clear(config.tag)
     print("\r\nMise à jour de la base de données...")
     # refresh plannings à partir de la base de données
 
 
 def test():
     print("\r\nexécution")
-
+    schedule.CancelJob()
 
 # Mettre à jour les plannings programmés toutes les heures
 schedule.every(1).hour.do(clear_schedule)

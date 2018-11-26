@@ -4,24 +4,10 @@ import schedule
 import datetime
 import time
 
-##Configuration
-#broker MQTT
-broker_address="89.156.159.82"
-ClientID="RaspberryArroseur2"
-#Topics
-topicDeclenchement="arroseur/declenchement"
-topicMonitoring="arroseur/monitoring"
-topicProgrammation = "arroseur/programmation"
-
-port =9001
-
-QoS=2
-   #0 - at most once
-   #1 - at least once
-   #2 - exactly once
-#ouvrir le client MQTT
+import config
+ClientID="Test"
 client = MQTT.Client(ClientID,transport='websockets') #create new instance
-client.connect(broker_address,port) #connect to broker
+client.connect(config.broker_address,config.portWS) #connect to broker
 client.loop_start()
 
 def on_message(client, userdata, msg):
@@ -37,14 +23,14 @@ def log(message,topic=""):
         msg +="\r\nTopic: "+topic
     msg+="\r\nMessage: "+message+"\r\n le "+str(now)
     print(msg)
-    client.publish(topicMonitoring,msg,QoS)
+    client.publish(config.topicMonitoring,msg,config.QoS)
 
 
 def declencherArrosage():
     message="Manuel"
-    info = client.publish(topicDeclenchement,message,QoS)
+    info = client.publish(config.topicDeclenchement,message,config.QoS)
    # client.loop()
-    log(message,topicDeclenchement)
+    log(message,config.topicDeclenchement)
     print(info)
 
 
@@ -57,7 +43,7 @@ def programmerArrosage():
 nombre =10
 while (1):
 
-    client.publish(topicProgrammation, nombre, QoS)
+    client.publish(config.topicProgrammation, nombre,config.QoS)
     print("sleep\r\n")
     time.sleep(5)
     nombre += 10
