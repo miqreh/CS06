@@ -73,7 +73,7 @@ def clear_schedule():
 
 def test():
     print("\r\nexécution")
-    schedule.CancelJob()
+    return schedule.CancelJob()
 
 # Mettre à jour les plannings programmés toutes les heures
 schedule.every(1).hour.do(clear_schedule)
