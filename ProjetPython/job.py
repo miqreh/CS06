@@ -46,12 +46,12 @@ def log(message, topic="", client_mqtt=""):
         msg += "\r\nTopic: " + topic
     msg += "\r\nMessage: " + message + "\r\n le " + str(now)
     print(msg)
-    config.client.publish(config.topicMonitoring, msg, config.QoS)
+    client.publish(config.topicMonitoring, msg, config.QoS)
 
 
 def declencher_arrosage():
     message = "Manuel"
-    info = config.client.publish(config.topicDeclenchement, message, config.QoS)
+    info = client.publish(config.topicDeclenchement, message, config.QoS)
     log(message, config.topicDeclenchement)
     print(info)
 
@@ -78,8 +78,9 @@ def test():
 def refresh_from_database():
     # Query pour avoir tous les plannings
     query = 'Select * From planning inner join zone on planning.idprog = zone.idprog where date_arrosage >= NOW()'
-    results = database.cursor.fetchall()
     database.cursor.execute(query)
+    results = database.cursor.fetchall()
+
     for d in results:
         print(d)
         date = functions.date_to_datetime(d['date_arrosage'], d['heure_debut'])
