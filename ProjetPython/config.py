@@ -1,9 +1,11 @@
 ##Configuration
 # broker MQTT
-broker_address = "89.156.159.82"
+#broker_address = "89.156.159.82"
+broker_address="localhost"
 ClientID = "RaspberryArroseur"
 # Topics
 topicDeclenchement = "arroseur/declenchement"
+topicArret="arroseur/arret"
 topicProgrammation = "arroseur/programmation"
 topicMonitoring = "arroseur/monitoring"
 

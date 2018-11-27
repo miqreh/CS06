@@ -49,17 +49,30 @@ def log(message, topic="", client_mqtt=""):
     client.publish(config.topicMonitoring, msg, config.QoS)
 
 
-def declencher_arrosage():
-    message = "Manuel"
+def declencher_arrosage(zones):
+    message = ""
+    for zone,value in zones.items():
+        message += zone +" : " + str(value) + "\r\n"
+
     info = client.publish(config.topicDeclenchement, message, config.QoS)
     log(message, config.topicDeclenchement)
     print(info)
+    return schedule.CancelJob()
 
 
-def programmer_arrosage(secondes):
-    schedule.every(secondes).seconds.do(test).tag(config.tag)
+def eteindre_arrosage():
+    message = "Stop"
+    info = client.publish(config.topicArret, message, config.QoS)
+    log(message, config.topicArret)
+    print(info)
+    return schedule.CancelJob()
+
+
+def programmer_arrosage(secondes,zones,duree):
+    schedule.every(secondes).seconds.do(declencher_arrosage,zones).tag(config.tag)
+    schedule.every(secondes+duree).seconds.do(eteindre_arrosage).tag(config.tag)
     date = datetime.datetime.now()+ datetime.timedelta(seconds=secondes)
-    message = "\r\n Arrosage programmé le " + str(date)
+    message = "\r\n Arrosage programmé le " + str(date) + " pendant "+ str(datetime.timedelta(seconds=duree))
     log(message)
     print(message)
     # les traiter
@@ -72,9 +85,8 @@ def clear_schedule():
     # refresh plannings à partir de la base de données
     refresh_from_database()
 
-def test():
-    print("\r\nexécution")
-    return schedule.CancelJob()
+
+
 
 def refresh_from_database():
     # Query pour avoir tous les plannings
@@ -88,7 +100,14 @@ def refresh_from_database():
         print(date)
         seconds = functions.seconds_remaining(date)
         print(seconds)
-        programmer_arrosage(seconds)
+        zones = {}
+        zones["zone1"] = d['zone_1']
+        zones["zone2"] = d['zone_2']
+        zones["zone3"] = d['zone_3']
+        print(zones)
+        duree = d["duree"]
+
+        programmer_arrosage(seconds,zones,round(duree.seconds))
 
 
 # Mettre à jour les plannings programmés toutes les heures
