@@ -69,9 +69,6 @@ extern wifi_bool wind_55_in_Q;
 /***********All Buffers**************/
 
 
-int ssid_ou_key = 0; //0 = ssid et 1 = key
-char ssid_received[100];
-char key_received[100];
 
 
 
@@ -608,7 +605,7 @@ void wifi_reset(void)
 
 //  IO_status_flag.WiFi_WIND_State.WiFiHWStarted = WIFI_FALSE;
   wifi_connected = 0; //reset wifi_connected to get user callback
-//  memset((void*)&IO_status_flag.WiFi_WIND_State,0x00,sizeof(IO_status_flag.WiFi_WIND_State)); /*reset the WIND State?*/
+  memset((void*)&IO_status_flag.WiFi_WIND_State,0x00,sizeof(IO_status_flag.WiFi_WIND_State)); /*reset the WIND State?*/
   IO_status_flag.WiFi_WIND_State = Undefine_state;
 
   /* ===   RESET PIN - PC12   ===*/
@@ -671,9 +668,9 @@ void Receive_DMA_Uart_Data(void)
 {
   if(HAL_UART_Receive_DMA(&UartWiFiHandle, (uint8_t *)dma_buffer, DMA_BUFFER_SIZE) !=HAL_OK)
     {
-      #if DEBUG_PRINT
+     #if DEBUG_PRINT
       printf("HAL_UARTx_Receive_IT Error");
-      #endif
+     #endif
     }
   else 
     {
@@ -689,6 +686,10 @@ void Receive_DMA_Uart_Data(void)
 */
 void Wifi_TIM_Handler(TIM_HandleTypeDef *htim)
 {
+
+
+	printf("\rDans TIM HANDLER\r\n");
+
   /**********************************************************************
   *                                                                     *
   *       Be careful not to make a blocking                             *
@@ -705,10 +706,14 @@ void Wifi_TIM_Handler(TIM_HandleTypeDef *htim)
     wifi_instances.DeQed_wifi_event = pop_eventbuffer_queue(&wifi_instances.event_buff);
     __enable_irq();
 
+    printf("\rDans Switch avec %d\r\n", wifi_instances.DeQed_wifi_event->event);
+
     if(wifi_instances.DeQed_wifi_event!=NULL)
     {
+
       switch(wifi_instances.DeQed_wifi_event->event)
       {
+
         case WIFI_WIND_EVENT:
           Process_DeQed_Wind_Indication(wifi_instances.DeQed_wifi_event);
           break;
@@ -1858,9 +1863,15 @@ void Wifi_TIM_Handler(TIM_HandleTypeDef *htim)
               WiFi_Control_Variables.Client_Disconnected = WIFI_FALSE;
           }
 
+
+  printf("\rSwitch IO status flag avec %d\r\n", IO_status_flag.WiFi_WIND_State);
+
+
+
   //Make callbacks from here to user for pending events
   switch(IO_status_flag.WiFi_WIND_State)
   {
+
       //Make callbacks from here to user for pending events
       case WiFiHWStarted: 
         if(IO_status_flag.wifi_ready == 2)//Twice reset for User Callback
@@ -1881,11 +1892,15 @@ void Wifi_TIM_Handler(TIM_HandleTypeDef *htim)
 
       case WiFiStarted_MiniAPMode:
          ind_wifi_ap_ready();
+
+         printf("\rWiFiStarted_MiniAPMode\r\n");
+
          IO_status_flag.WiFi_WIND_State = Undefine_state;
          break;
 
       case WiFiAPClientJoined: 
          ind_wifi_ap_client_joined(WiFi_Counter_Variables.client_MAC_address);
+         printf("\rWifi AP Client Joined\r\n");
          IO_status_flag.WiFi_WIND_State = Undefine_state;
          break;
 
@@ -2007,6 +2022,7 @@ void Wifi_TIM_Handler(TIM_HandleTypeDef *htim)
       case WiFiDeAuth:
       case WiFiPowerDown:
       case Undefine_state:
+    	  printf("\rUndefine statge\r\n");
     	 break;
   }
 }
@@ -2044,6 +2060,12 @@ void Stop_Timer()
 */
 void Stop_Dequeue()
 {
+	printf("\rON STOP DEQUEUE\r\n");
+	printf("\rON STOP DEQUEUE\r\n");
+	printf("\rON STOP DEQUEUE\r\n");
+	printf("\rON STOP DEQUEUE\r\n");
+	printf("\rON STOP DEQUEUE\r\n");
+	printf("\rON STOP DEQUEUE\r\n");
   IO_status_flag.enable_dequeue = WIFI_FALSE;
 }
 
@@ -2203,6 +2225,9 @@ void WiFi_HAL_UART_TxCpltCallback(UART_HandleTypeDef *UartHandleArg)
 */
 void WiFi_HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandleArg)
 {
+
+	printf("\r DANS WIFI HAL UART RxCpltCallback\n");
+
 #ifdef WIFI_USE_VCOM
   //if (UartHandleArg==&UartWiFiHandle)
 #endif  
@@ -2215,11 +2240,11 @@ void WiFi_HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandleArg)
       __enable_irq();
       Start_Timer();
     #else
-//        __disable_irq();
-//        push_buffer_queue(&wifi_instances.big_buff, WiFi_Counter_Variables.uart_byte);
-//        __enable_irq();
-//        HAL_UART_Receive_IT(&UartWiFiHandle, (uint8_t *)WiFi_Counter_Variables.uart_byte, 1);
-//        //console_push_ready = SET;
+        __disable_irq();
+        push_buffer_queue(&wifi_instances.big_buff, WiFi_Counter_Variables.uart_byte);
+        __enable_irq();
+        HAL_UART_Receive_IT(&UartWiFiHandle, (uint8_t *)WiFi_Counter_Variables.uart_byte, 1);
+    //    console_push_ready = SET;
     #endif
 
     #ifndef WIFI_USE_VCOM
@@ -2282,16 +2307,14 @@ void WiFi_HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandleArg)
 * @retval WiFi_Status_t : Response of AT cmd  
 */
 
-WiFi_Status_t USART_Receive_AT_Resp( )
+WiFi_Status_t USART_Receive_AT_Resp()
 {
 
-  /*while(IO_status_flag.AT_Response_Received != WIFI_TRUE) {
+  //while(IO_status_flag.AT_Response_Received != WIFI_TRUE) {
 
-	  __NOP(); //nothing to do
+	  //__NOP(); //nothing to do
 
-	}*/
-
-
+	//}
 
 
   IO_status_flag.AT_Response_Received = WIFI_FALSE;
@@ -2315,11 +2338,13 @@ void WiFi_HAL_UART_ErrorCallback(UART_HandleTypeDef *UartHandle)
 void WiFi_HAL_UART_IdleCallback(UART_HandleTypeDef *UartHandle)
 {
 
+	printf("\rON EST DANS WIFI HAL UART IDLECALLBACK\r\n");
+
   #if defined(SPWF04) && defined(CONSOLE_UART_ENABLED)
 
     /* Read DMA buffer */
     Read_DMA_Buffer();
-    //fflush(stdout);
+    fflush(stdout);
   #endif
 }
 /**
@@ -2367,9 +2392,15 @@ void Process_WiFi(void)
 
 void Process_DeQed_Wind_Indication(wifi_event_TypeDef * L_DeQued_wifi_event)
 {
+
+	printf("\rProcess Wind Indication %d\r\n", IO_status_flag.WiFi_WIND_State);
+
+
   switch(L_DeQued_wifi_event->wind)
   {
     case Poweron:
+    	printf("\rPower ON\r\n");
+
       IO_status_flag.WiFi_WIND_State = Undefine_state;
       wifi_connected = 0;
       WiFi_Counter_Variables.wifi_up = 0; 
@@ -2827,6 +2858,9 @@ void Queue_Wifi_Send_Mail_Event(uint8_t *hostname,
 
 void Queue_Http_Event(uint8_t * hostname, uint8_t * path, uint32_t port_number, uint8_t http_ind) 
 {
+
+printf("\rWE RECEIVE AN HTTP EVENT...\r\n");
+
   Wait_For_Sock_Read_To_Complete();
 
   WiFi_Counter_Variables.curr_hostname = hostname;
@@ -3163,12 +3197,38 @@ WiFi_Status_t Read_WiFi_Mode(char *string)
     {
       status = USART_Receive_AT_Resp( );
     }
+  else {
+
+	  printf("\rErreur dans USART Transmit:%d\n", status);
+	  printf("\rErreur dans USART Transmit:%d\n", status);
+  }
+
+  if(status != WiFi_MODULE_SUCCESS)
+      {
+	  printf("\rErreur dans USART Receive:%d\n", status);
+	  	  	  printf("\rErreur dans USART Receive:%d\n", status);
+      }
+
+
+  HAL_Delay(1000);
   
   pStr = (char *) strstr((const char *)&WiFi_Counter_Variables.get_cfg_value,"wifi_mode = ");
+
+
+
   if(pStr != NULL)
     {
+	  printf("\rPointeur non nul\n");
+	  printf("\rPointeur non nul\n");
+	  printf("\rPointeur non nul\n");
+	  printf("\rPointeur non nul\n");
       string[0] = *(pStr + 12) ;
     }
+  else{
+
+  }
+
+  //printf("\rTest wi-fi mode depuis wifi module = %c\n", string[0]);
 
   return status ;
 }
@@ -3838,10 +3898,13 @@ __weak void ind_wifi_connected(void)
 	
 __weak void ind_wifi_ap_ready(void)
 {
+	printf("\rMode mini AP PRet\r\n");
 }
+
 
 __weak void ind_wifi_ap_client_joined(uint8_t * client_mac_address)
 {
+	printf("\rCNouveau client connecte a l'AP\r\n");
 }
 
 __weak void ind_wifi_ap_client_left(uint8_t * client_mac_address)
@@ -3913,17 +3976,6 @@ __weak void ind_wifi_output_from_remote_callback(uint8_t *data_ptr)
 
 	printf("\rEnregistrement des param\r\n");
 
-	if (ssid_ou_key==0){
-
-		strcpy(ssid_received,data_ptr);
-		ssid_ou_key=1;
-	}
-	else{
-
-		strcpy(key_received,data_ptr);
-		ssid_ou_key=0;
-		se_connecter_au_reseau_wifi(&ssid_received, &key_received);
-	}
 }
 
 

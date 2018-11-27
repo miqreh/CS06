@@ -41,6 +41,7 @@
 #include "wifi_module.h"
 #include "wifi_globals.h"
 #include "config_wifi.h"
+#include "ring_buffer.h"
 
 /** @defgroup WIFI_Examples
   * @{
@@ -82,11 +83,7 @@ int main(void)
   
 #ifdef USART_PRINT_MSG
   UART_Msg_Gpio_Init();
-#if defined (USE_STM32L0XX_NUCLEO)
-  USART_PRINT_MSG_Configuration(&UART_MsgHandle, 115200);//L0 max rate?
-#else
   USART_PRINT_MSG_Configuration(&UART_MsgHandle, 921600);
-#endif
   Set_UartMsgHandle(&UART_MsgHandle);//this is required for the console handler initialization
 #endif  
   
@@ -99,13 +96,15 @@ int main(void)
   #if defined (USE_STM32L0XX_NUCLEO)
     autodetect = WiFi_Module_UART_Configuration(115200); //115200 //460800 //921600  
   #else
-    autodetect = WiFi_Module_UART_Configuration(921600); //115200 //460800 //921600  
+    autodetect = WiFi_Module_UART_Configuration(921600); //115200 //460800 //921600
   #endif
   if(autodetect==HAL_OK)    
     UART_DMA_Init();
   else {
     printf("\rError in baud-rate auto-detection...\r\n");
   }
+
+
   HAL_Delay(2000);
   printf("\rConsole Ready...\r\n");
 
@@ -113,18 +112,50 @@ int main(void)
 
 
 
+
+
+ // printf("\r%d\r\n", IO_status_flag.WiFi_WIND_State);
+
   //Déclenchement du mode MiniAP ici
   int connected;
   connected = launch_config_wifi();
+ // printf("\r%d\r\n", IO_status_flag.WiFi_WIND_State);
 
 
 
+  //TIM_HandleTypeDef *htim;
 
+
+ // Timer_Config();
+ // Start_Timer();
+
+  /*
+
+  Start_Timer();
+  Resume_Dequeue();
+ 	 */
 
 
     while (1)
     {
 	  __NOP();
+
+	 // Receive_DMA_Uart_Data();
+	 // Read_DMA_Buffer();
+
+	  /*unused_data_handling(0);
+	  */
+	  HAL_Delay(5000);
+	  //printf("\rDMA BUFFER PTR : %s\r\n", dma_buffer_ptr);
+	 /* printf("\rIO_status_flag.WiFi_WIND_State : %d\r\n",IO_status_flag.WiFi_WIND_State);
+	  printf("\r IO_status_flag.enable_dequeue : %d\r\n",IO_status_flag.enable_dequeue);
+	  printf("\r IO_status_flag.AT_Response_Received : %d\r\n",IO_status_flag.AT_Response_Received);
+	  printf("\r IO_status_flag.WiFi_Enabled: %d\r\n",IO_status_flag.WiFi_Enabled);
+	  printf("\r IO_status_flag.data_mode: %d\r\n",IO_status_flag.data_mode);
+	  printf("\r IO_status_flag.UartReady: %d\r\n",IO_status_flag.UartReady);*/
+
+	  //print_ring_buffer();
+
     }
 
 
@@ -422,12 +453,12 @@ void UART_Msg_Gpio_Init()
 void ind_wifi_on()
 {
   printf("\r\nwifi_ready callback\r\n");
-  wifi_state = wifi_state_ready;
+  //wifi_state = wifi_state_ready;
 }
   
 void ind_wifi_connected()
 {
-  wifi_state = wifi_state_connected;
+ // wifi_state = wifi_state_connected;
 }
 
 

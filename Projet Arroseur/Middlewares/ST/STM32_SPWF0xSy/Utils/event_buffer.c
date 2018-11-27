@@ -127,6 +127,10 @@ int event_empty(wifi_event_buffer *buffer) {
   */
 void push_eventbuffer_queue(wifi_event_buffer *buffer, wifi_event_TypeDef data) 
 {
+
+	printf("\rWE PUSH AN EVENT IN THE QUEUE...\r\n\n\n\n");
+
+
   int bufsize;
   uint32_t index;
   
@@ -163,13 +167,16 @@ wifi_event_TypeDef * pop_eventbuffer_queue(wifi_event_buffer *buffer)
   int bufsize;
   uint32_t index;
 
+
+
   if (event_empty(buffer)) 
     {
-      //printf("\r\Event Buffer Empty!!\r\n");
+      printf("\rEvent Buffer Empty!!\r\n");
       return NULL;
     } 
   else
     {
+	  printf("\rBuffer pas empty\r\n");
       /* First in First Out*/
       index=buffer->start/ELEMENT_SIZE;
       element.data_length = buffer->element[index].data_length;

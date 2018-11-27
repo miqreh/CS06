@@ -14,8 +14,6 @@ Archive member included to satisfy reference by file (symbol)
                               /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-exit.o) (_global_impure_ptr)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
                               /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/crt0.o (__libc_init_array)
-/Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
-                              Example/User/config_wifi.o (malloc)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memchr.o)
                               Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o (memchr)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcmp.o)
@@ -31,7 +29,7 @@ Archive member included to satisfy reference by file (symbol)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-printf.o)
                               Example/User/config_wifi.o (printf)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-puts.o)
-                              Example/User/config_wifi.o (puts)
+                              Example/User/console.o (puts)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-reent.o)
                               Example/User/syscalls.o (errno)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sbrkr.o)
@@ -45,11 +43,11 @@ Archive member included to satisfy reference by file (symbol)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
                               /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o) (__sread)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcat.o)
-                              Example/User/config_wifi.o (strcat)
+                              Middlewares/ST/STM32_SPWF0xSy/wifi_module.o (strcat)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strchr.o)
                               Middlewares/ST/STM32_SPWF0xSy/Utils/spwf04WiFi.o (strchr)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcmp.o)
-                              Example/User/config_wifi.o (strcmp)
+                              Middlewares/ST/STM32_SPWF0xSy/wifi_module.o (strcmp)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcpy.o)
                               Drivers/BSP/X-NUCLEO-IDW0xx1/stm32_spwf_wifi.o (strcpy)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strlen.o)
@@ -80,6 +78,8 @@ Archive member included to satisfy reference by file (symbol)
                               /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o) (_lseek_r)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
                               /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wsetup.o) (__smakebuf_r)
+/Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
+                              /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtok.o) (malloc)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mbtowc_r.o)
                               /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o) (__ascii_mbtowc)
 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
@@ -166,9 +166,7 @@ topic               0x64              Middlewares/ST/STM32_SPWF0xSy/wifi_module_
 Received_Header     0x5               Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
 Spi_Transmit_Event  0x1               Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
 WAKEUP_InitStruct   0x14              Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
-key_received        0x64              Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
 element             0x8               Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
-ssid_received       0x64              Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
 wind_no             0x1               Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
 Client_Socket_Close_Callback
                     0x8               Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
@@ -3127,8 +3125,10 @@ Discarded input sections
  .text          0x0000000000000000        0x0 Example/User/config_wifi.o
  .data          0x0000000000000000        0x0 Example/User/config_wifi.o
  .bss           0x0000000000000000        0x0 Example/User/config_wifi.o
- .text.se_connecter_au_reseau_wifi
-                0x0000000000000000       0x34 Example/User/config_wifi.o
+ .text.connect_to_local_network
+                0x0000000000000000       0x1a Example/User/config_wifi.o
+ .text.deconnect_to_local_network
+                0x0000000000000000       0x22 Example/User/config_wifi.o
  .debug_macro   0x0000000000000000      0xa78 Example/User/config_wifi.o
  .debug_macro   0x0000000000000000      0x1ed Example/User/config_wifi.o
  .debug_macro   0x0000000000000000       0x31 Example/User/config_wifi.o
@@ -3438,9 +3438,9 @@ Discarded input sections
  .data          0x0000000000000000        0x0 Example/User/main.o
  .bss           0x0000000000000000        0x0 Example/User/main.o
  .text.ind_wifi_on
-                0x0000000000000000       0x18 Example/User/main.o
- .text.ind_wifi_connected
                 0x0000000000000000        0xc Example/User/main.o
+ .text.ind_wifi_connected
+                0x0000000000000000        0x2 Example/User/main.o
  .debug_macro   0x0000000000000000      0xa78 Example/User/main.o
  .debug_macro   0x0000000000000000      0x1ed Example/User/main.o
  .debug_macro   0x0000000000000000       0x31 Example/User/main.o
@@ -4041,14 +4041,16 @@ Discarded input sections
  .text.event_empty
                 0x0000000000000000        0xc Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
  .text.push_eventbuffer_queue
-                0x0000000000000000       0x70 Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
+                0x0000000000000000       0x7c Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
  .text.pop_eventbuffer_queue
-                0x0000000000000000       0x64 Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
+                0x0000000000000000       0x7c Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
  .text.reset_event
                 0x0000000000000000       0x18 Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
- .debug_info    0x0000000000000000     0x2681 Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
- .debug_abbrev  0x0000000000000000      0x321 Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
- .debug_loc     0x0000000000000000      0x112 Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
+ .rodata.str1.1
+                0x0000000000000000       0x50 Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
+ .debug_info    0x0000000000000000     0x26db Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
+ .debug_abbrev  0x0000000000000000      0x34a Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
+ .debug_loc     0x0000000000000000      0x151 Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
  .debug_aranges
                 0x0000000000000000       0x48 Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
  .debug_ranges  0x0000000000000000       0x38 Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
@@ -4133,8 +4135,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
  .debug_macro   0x0000000000000000       0x41 Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
  .debug_macro   0x0000000000000000       0x28 Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
- .debug_line    0x0000000000000000      0xc1a Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
- .debug_str     0x0000000000000000    0x644f4 Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
+ .debug_line    0x0000000000000000      0xc2e Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
+ .debug_str     0x0000000000000000    0x64508 Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
  .comment       0x0000000000000000       0x7f Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
  .debug_frame   0x0000000000000000       0x8c Middlewares/ST/STM32_SPWF0xSy/Utils/event_buffer.o
  .ARM.attributes
@@ -4222,9 +4224,11 @@ Discarded input sections
  .text          0x0000000000000000        0x0 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .data          0x0000000000000000        0x0 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .bss           0x0000000000000000      0x400 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
- .text.init     0x0000000000000000       0x14 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
+ .text.print_ring_buffer
+                0x0000000000000000       0x10 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
+ .text.init     0x0000000000000000       0x20 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .text.flush_buffer_queue
-                0x0000000000000000        0xa Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
+                0x0000000000000000       0x1c Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .text.is_half_full
                 0x0000000000000000        0xe Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .text.is_half_empty
@@ -4232,17 +4236,19 @@ Discarded input sections
  .text.full     0x0000000000000000        0xc Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .text.empty    0x0000000000000000        0xa Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .text.push_buffer_queue
-                0x0000000000000000       0x30 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
+                0x0000000000000000       0x48 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .text.pop_buffer_queue
-                0x0000000000000000      0x120 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
+                0x0000000000000000      0x128 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .text.rewind_buffer_queue
-                0x0000000000000000       0x30 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
- .debug_info    0x0000000000000000     0x2796 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
- .debug_abbrev  0x0000000000000000      0x38c Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
- .debug_loc     0x0000000000000000      0x18b Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
+                0x0000000000000000       0x48 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
+ .rodata.str1.1
+                0x0000000000000000       0x14 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
+ .debug_info    0x0000000000000000     0x281b Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
+ .debug_abbrev  0x0000000000000000      0x37e Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
+ .debug_loc     0x0000000000000000      0x24e Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .debug_aranges
-                0x0000000000000000       0x60 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
- .debug_ranges  0x0000000000000000       0xa0 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
+                0x0000000000000000       0x68 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
+ .debug_ranges  0x0000000000000000       0xa8 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .debug_macro   0x0000000000000000      0x480 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .debug_macro   0x0000000000000000      0xa78 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .debug_macro   0x0000000000000000       0x22 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
@@ -4324,10 +4330,10 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .debug_macro   0x0000000000000000       0x41 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .debug_macro   0x0000000000000000       0x28 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
- .debug_line    0x0000000000000000      0xc71 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
- .debug_str     0x0000000000000000    0x64509 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
+ .debug_line    0x0000000000000000      0xc88 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
+ .debug_str     0x0000000000000000    0x6450a Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .comment       0x0000000000000000       0x7f Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
- .debug_frame   0x0000000000000000       0xb8 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
+ .debug_frame   0x0000000000000000       0xd8 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .ARM.attributes
                 0x0000000000000000       0x39 Middlewares/ST/STM32_SPWF0xSy/Utils/ring_buffer.o
  .group         0x0000000000000000        0xc Middlewares/ST/STM32_SPWF0xSy/Utils/spwf04WiFi.o
@@ -4854,8 +4860,10 @@ Discarded input sections
                 0x0000000000000000       0x16 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .text.wifi_network_scan
                 0x0000000000000000       0x5c Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+ .text.wifi_ap_start
+                0x0000000000000000       0xd0 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .text.wifi_connect
-                0x0000000000000000       0xec Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+                0x0000000000000000       0xe4 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .text.wifi_adhoc_create
                 0x0000000000000000      0x108 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .text.wifi_standby
@@ -4865,11 +4873,11 @@ Discarded input sections
  .text.wifi_wakeup
                 0x0000000000000000       0x54 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .text.wifi_disconnect
-                0x0000000000000000       0x94 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+                0x0000000000000000       0x8c Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .text.wifi_enable
-                0x0000000000000000       0x78 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+                0x0000000000000000       0x84 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .text.wifi_restore
-                0x0000000000000000       0x98 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+                0x0000000000000000       0x90 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .text.wifi_gpio_init
                 0x0000000000000000       0x54 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .text.wifi_gpio_read
@@ -4882,6 +4890,15 @@ Discarded input sections
                 0x0000000000000000       0x5c Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .text.wifi_get_status_variable_value
                 0x0000000000000000       0x80 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+ .rodata.str1.1
+                0x0000000000000000      0x2a0 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+ .debug_info    0x0000000000000000     0x4ecc Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+ .debug_abbrev  0x0000000000000000      0x3e3 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+ .debug_loc     0x0000000000000000     0x18ab Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+ .debug_aranges
+                0x0000000000000000      0x1e8 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+ .debug_ranges  0x0000000000000000      0x1f8 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+ .debug_macro   0x0000000000000000      0x486 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .debug_macro   0x0000000000000000      0xa78 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .debug_macro   0x0000000000000000      0x1ed Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .debug_macro   0x0000000000000000       0x31 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
@@ -4962,6 +4979,13 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .debug_macro   0x0000000000000000       0x41 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .debug_macro   0x0000000000000000       0x28 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+ .debug_macro   0x0000000000000000       0x4c Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+ .debug_line    0x0000000000000000     0x1312 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+ .debug_str     0x0000000000000000    0x6568c Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+ .comment       0x0000000000000000       0x7f Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+ .debug_frame   0x0000000000000000      0x6f8 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+ .ARM.attributes
+                0x0000000000000000       0x39 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  COMMON         0x0000000000000000       0x14 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .group         0x0000000000000000        0xc Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .group         0x0000000000000000        0xc Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
@@ -5045,7 +5069,7 @@ Discarded input sections
  .group         0x0000000000000000        0xc Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text          0x0000000000000000        0x0 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .data          0x0000000000000000        0x0 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
- .bss           0x0000000000000000        0x4 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+ .bss           0x0000000000000000        0x0 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Set_WiFi_Control_Variables
                 0x0000000000000000       0x78 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Set_WiFi_Counter_Variables
@@ -5059,21 +5083,23 @@ Discarded input sections
  .text.PowerUp_WiFi_Module
                 0x0000000000000000       0x10 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Receive_DMA_Uart_Data
-                0x0000000000000000       0x28 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000000000000       0x38 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Start_Timer
                 0x0000000000000000       0x14 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Stop_Timer
                 0x0000000000000000       0x18 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Stop_Dequeue
-                0x0000000000000000       0x10 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000000000000       0x3c Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Resume_Dequeue
                 0x0000000000000000       0x10 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.WiFi_HAL_UART_TxCpltCallback
                 0x0000000000000000        0x2 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.WiFi_HAL_UART_RxCpltCallback
-                0x0000000000000000        0x2 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000000000000       0x34 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+ .text.USART_Receive_AT_Resp
+                0x0000000000000000       0x1c Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.WiFi_HAL_UART_IdleCallback
-                0x0000000000000000        0x4 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000000000000       0x24 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Process_WiFi
                 0x0000000000000000       0x4c Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Wait_For_Sock_Read_To_Complete
@@ -5089,7 +5115,7 @@ Discarded input sections
  .text.Queue_Wifi_Send_Mail_Event
                 0x0000000000000000       0x60 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Queue_Http_Event
-                0x0000000000000000       0x48 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000000000000       0x50 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Queue_Client_Write_Event
                 0x0000000000000000       0x60 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Queue_Wifi_File_Create_Event
@@ -5119,13 +5145,11 @@ Discarded input sections
  .text.WiFi_UART_Error_Handler
                 0x0000000000000000        0x4 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.wifi_firmware_middleware_version_compatibility
-                0x0000000000000000       0xa0 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
- .text.Read_WiFi_Mode
-                0x0000000000000000       0x60 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000000000000       0xb0 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Start_DeepSleep_Timer
                 0x0000000000000000       0x1c Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Process_DeQed_Wind_Indication
-                0x0000000000000000      0x388 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000000000000      0x374 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Stop_DeepSleep_Timer
                 0x0000000000000000       0x1c Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Wifi_SysTick_Isr
@@ -5142,6 +5166,12 @@ Discarded input sections
                 0x0000000000000000       0x70 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.SET_Configuration_Addr
                 0x0000000000000000       0x48 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+ .text.SET_Configuration_Value
+                0x0000000000000000       0x48 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+ .text.SET_SSID
+                0x0000000000000000       0x44 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+ .text.SET_WiFi_SecKey
+                0x0000000000000000       0x44 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Restore_Default_Setting
                 0x0000000000000000       0x40 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Save_Current_Setting
@@ -5163,9 +5193,9 @@ Discarded input sections
  .text.ind_wifi_connected
                 0x0000000000000000        0x2 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.ind_wifi_ap_ready
-                0x0000000000000000        0x2 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000000000000        0xc Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.ind_wifi_ap_client_joined
-                0x0000000000000000        0x2 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000000000000        0xc Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.ind_wifi_ap_client_left
                 0x0000000000000000        0x2 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.ind_wifi_on
@@ -5197,11 +5227,11 @@ Discarded input sections
  .text.ind_wifi_socket_list_data_available
                 0x0000000000000000        0x2 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.Wifi_TIM_Handler
-                0x0000000000000000      0xbec Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000000000000      0xd68 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.ind_wifi_inputssi_callback
                 0x0000000000000000        0x2 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .text.ind_wifi_output_from_remote_callback
-                0x0000000000000000       0x44 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000000000000        0xc Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .debug_macro   0x0000000000000000      0xa78 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .debug_macro   0x0000000000000000      0x1ed Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .debug_macro   0x0000000000000000       0x31 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
@@ -5374,11 +5404,13 @@ Discarded input sections
  .text.SPI_Transmit_Manager_Poll
                 0x0000000000000000       0x2c Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
  .text.SPI_Send_AT_Command
-                0x0000000000000000       0x30 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
+                0x0000000000000000       0x50 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
  .rodata        0x0000000000000000        0x1 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
- .debug_info    0x0000000000000000     0x2a8c Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
+ .rodata.str1.1
+                0x0000000000000000        0x9 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
+ .debug_info    0x0000000000000000     0x2ac2 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
  .debug_abbrev  0x0000000000000000      0x307 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
- .debug_loc     0x0000000000000000      0x13d Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
+ .debug_loc     0x0000000000000000      0x153 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
  .debug_aranges
                 0x0000000000000000       0x40 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
  .debug_ranges  0x0000000000000000       0x30 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
@@ -5464,10 +5496,10 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x41 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
  .debug_macro   0x0000000000000000       0x28 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
  .debug_macro   0x0000000000000000       0x11 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
- .debug_line    0x0000000000000000      0xc75 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
- .debug_str     0x0000000000000000    0x64cee Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
+ .debug_line    0x0000000000000000      0xc89 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
+ .debug_str     0x0000000000000000    0x64d04 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
  .comment       0x0000000000000000       0x7f Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
- .debug_frame   0x0000000000000000       0x8c Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
+ .debug_frame   0x0000000000000000       0xa8 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
  .ARM.attributes
                 0x0000000000000000       0x39 Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
  COMMON         0x0000000000000000      0x42d Middlewares/ST/STM32_SPWF0xSy/wifi_module_spi.o
@@ -5729,7 +5761,7 @@ Discarded input sections
  .bss           0x0000000000000000      0x224 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .text.memmem   0x0000000000000000       0x52 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .text.Soft_Reset
-                0x0000000000000000       0x3c Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
+                0x0000000000000000       0x44 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .text.unused_data_handling
                 0x0000000000000000       0xd4 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .text.Adjust_DMA_Buffer_Index
@@ -5739,18 +5771,18 @@ Discarded input sections
  .text.is_End_of_Buffer_Reached
                 0x0000000000000000       0x6c Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .text.Process_Wind_Indication
-                0x0000000000000000      0x20c Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
+                0x0000000000000000      0x278 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .text.Process_DMA_Buffer_Messages
-                0x0000000000000000     0x11b0 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
+                0x0000000000000000     0x11e4 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .text.Process_DMA_Buffer
-                0x0000000000000000      0x314 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
+                0x0000000000000000      0x3e0 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .text.Read_DMA_Buffer
-                0x0000000000000000       0x40 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
+                0x0000000000000000       0x54 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .text.Queue_Server_Write_Event
                 0x0000000000000000       0x54 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .rodata.str1.1
-                0x0000000000000000      0x236 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
- .debug_info    0x0000000000000000     0x449e Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
+                0x0000000000000000      0x351 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
+ .debug_info    0x0000000000000000     0x4703 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .debug_abbrev  0x0000000000000000      0x49a Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .debug_loc     0x0000000000000000     0x1389 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .debug_aranges
@@ -5837,10 +5869,10 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .debug_macro   0x0000000000000000       0x41 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .debug_macro   0x0000000000000000       0x28 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
- .debug_line    0x0000000000000000     0x1277 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
- .debug_str     0x0000000000000000    0x653c6 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
+ .debug_line    0x0000000000000000     0x1299 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
+ .debug_str     0x0000000000000000    0x653e6 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .comment       0x0000000000000000       0x7f Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
- .debug_frame   0x0000000000000000      0x19c Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
+ .debug_frame   0x0000000000000000      0x1a8 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  .ARM.attributes
                 0x0000000000000000       0x39 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
  COMMON         0x0000000000000000      0x774 Middlewares/ST/STM32_SPWF0xSy/wifi_module_uart_04.o
@@ -5894,10 +5926,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
  .data          0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
  .bss           0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
- .text          0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
- .data          0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
- .bss           0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
- .text.free     0x0000000000000000       0x10 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
  .data          0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memchr.o)
  .bss           0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memchr.o)
  .text          0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcmp.o)
@@ -6077,6 +6105,14 @@ Discarded input sections
  .text          0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
  .data          0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
  .bss           0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
+ .text          0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
+ .data          0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
+ .bss           0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
+ .text.malloc   0x0000000000000000       0x10 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
+ .text.free     0x0000000000000000       0x10 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
+ .debug_frame   0x0000000000000000       0x30 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
+ .ARM.attributes
+                0x0000000000000000       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
  .text          0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mbtowc_r.o)
  .data          0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mbtowc_r.o)
  .bss           0x0000000000000000        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mbtowc_r.o)
@@ -6311,7 +6347,7 @@ LOAD /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.
                 0x0000000008000000                g_pfnVectors
                 0x0000000008000194                . = ALIGN (0x4)
 
-.text           0x00000000080001a0     0x339c
+.text           0x00000000080001a0     0x31e4
                 0x00000000080001a0                . = ALIGN (0x4)
  *(.text)
  .text          0x00000000080001a0       0x40 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
@@ -6513,399 +6549,381 @@ LOAD /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.
                 0x00000000080016f0                DMA2_Stream6_IRQHandler
                 0x00000000080016f0                RTC_Alarm_IRQHandler
  *fill*         0x00000000080016f2        0x2 
- .text.save_identification_informations
-                0x00000000080016f4       0xb4 Example/User/config_wifi.o
-                0x00000000080016f4                save_identification_informations
  .text.launch_config_wifi
-                0x00000000080017a8       0x50 Example/User/config_wifi.o
-                0x00000000080017a8                launch_config_wifi
+                0x00000000080016f4       0x28 Example/User/config_wifi.o
+                0x00000000080016f4                launch_config_wifi
  .text.uartSendChar
-                0x00000000080017f8       0x24 Example/User/console.o
-                0x00000000080017f8                uartSendChar
+                0x000000000800171c       0x24 Example/User/console.o
+                0x000000000800171c                uartSendChar
  .text.uartReceiveChar
-                0x000000000800181c       0x4c Example/User/console.o
-                0x000000000800181c                uartReceiveChar
+                0x0000000008001740       0x4c Example/User/console.o
+                0x0000000008001740                uartReceiveChar
  .text.__io_putchar
-                0x0000000008001868        0x4 Example/User/console.o
-                0x0000000008001868                __io_putchar
+                0x000000000800178c        0x4 Example/User/console.o
+                0x000000000800178c                __io_putchar
  .text.__io_getchar
-                0x000000000800186c        0x4 Example/User/console.o
-                0x000000000800186c                __io_getchar
+                0x0000000008001790        0x4 Example/User/console.o
+                0x0000000008001790                __io_getchar
  .text.SystemClock_Config
-                0x0000000008001870       0x80 Example/User/main.o
-                0x0000000008001870                SystemClock_Config
+                0x0000000008001794       0x80 Example/User/main.o
+                0x0000000008001794                SystemClock_Config
  .text.USART_PRINT_MSG_Configuration
-                0x00000000080018f0       0x40 Example/User/main.o
-                0x00000000080018f0                USART_PRINT_MSG_Configuration
+                0x0000000008001814       0x40 Example/User/main.o
+                0x0000000008001814                USART_PRINT_MSG_Configuration
  .text.UART_Msg_Gpio_Init
-                0x0000000008001930       0xa8 Example/User/main.o
-                0x0000000008001930                UART_Msg_Gpio_Init
+                0x0000000008001854       0xa8 Example/User/main.o
+                0x0000000008001854                UART_Msg_Gpio_Init
  .text.startup.main
-                0x00000000080019d8       0xa0 Example/User/main.o
-                0x00000000080019d8                main
+                0x00000000080018fc       0xa8 Example/User/main.o
+                0x00000000080018fc                main
  .text.HAL_UART_MspInit
-                0x0000000008001a78       0xc0 Example/User/stm32_xx_hal_msp.o
-                0x0000000008001a78                HAL_UART_MspInit
+                0x00000000080019a4       0xc0 Example/User/stm32_xx_hal_msp.o
+                0x00000000080019a4                HAL_UART_MspInit
  .text.HAL_UART_MspDeInit
-                0x0000000008001b38       0x48 Example/User/stm32_xx_hal_msp.o
-                0x0000000008001b38                HAL_UART_MspDeInit
+                0x0000000008001a64       0x48 Example/User/stm32_xx_hal_msp.o
+                0x0000000008001a64                HAL_UART_MspDeInit
  .text.NMI_Handler
-                0x0000000008001b80        0x2 Example/User/stm32_xx_it.o
-                0x0000000008001b80                NMI_Handler
+                0x0000000008001aac        0x2 Example/User/stm32_xx_it.o
+                0x0000000008001aac                NMI_Handler
  .text.HardFault_Handler
-                0x0000000008001b82        0xa Example/User/stm32_xx_it.o
-                0x0000000008001b82                HardFault_Handler
+                0x0000000008001aae        0xa Example/User/stm32_xx_it.o
+                0x0000000008001aae                HardFault_Handler
  .text.MemManage_Handler
-                0x0000000008001b8c        0x6 Example/User/stm32_xx_it.o
-                0x0000000008001b8c                MemManage_Handler
+                0x0000000008001ab8        0x6 Example/User/stm32_xx_it.o
+                0x0000000008001ab8                MemManage_Handler
  .text.BusFault_Handler
-                0x0000000008001b92        0x6 Example/User/stm32_xx_it.o
-                0x0000000008001b92                BusFault_Handler
+                0x0000000008001abe        0x6 Example/User/stm32_xx_it.o
+                0x0000000008001abe                BusFault_Handler
  .text.UsageFault_Handler
-                0x0000000008001b98        0x6 Example/User/stm32_xx_it.o
-                0x0000000008001b98                UsageFault_Handler
+                0x0000000008001ac4        0x6 Example/User/stm32_xx_it.o
+                0x0000000008001ac4                UsageFault_Handler
  .text.SVC_Handler
-                0x0000000008001b9e        0x6 Example/User/stm32_xx_it.o
-                0x0000000008001b9e                SVC_Handler
+                0x0000000008001aca        0x6 Example/User/stm32_xx_it.o
+                0x0000000008001aca                SVC_Handler
  .text.DebugMon_Handler
-                0x0000000008001ba4        0x4 Example/User/stm32_xx_it.o
-                0x0000000008001ba4                DebugMon_Handler
+                0x0000000008001ad0        0x4 Example/User/stm32_xx_it.o
+                0x0000000008001ad0                DebugMon_Handler
  .text.PendSV_Handler
-                0x0000000008001ba8        0x2 Example/User/stm32_xx_it.o
-                0x0000000008001ba8                PendSV_Handler
- *fill*         0x0000000008001baa        0x2 
+                0x0000000008001ad4        0x2 Example/User/stm32_xx_it.o
+                0x0000000008001ad4                PendSV_Handler
+ *fill*         0x0000000008001ad6        0x2 
  .text.TIM3_IRQHandler
-                0x0000000008001bac        0xc Example/User/stm32_xx_it.o
-                0x0000000008001bac                TIM3_IRQHandler
+                0x0000000008001ad8        0xc Example/User/stm32_xx_it.o
+                0x0000000008001ad8                TIM3_IRQHandler
  .text.TIM2_IRQHandler
-                0x0000000008001bb8        0xc Example/User/stm32_xx_it.o
-                0x0000000008001bb8                TIM2_IRQHandler
+                0x0000000008001ae4        0xc Example/User/stm32_xx_it.o
+                0x0000000008001ae4                TIM2_IRQHandler
  .text.SysTick_Handler
-                0x0000000008001bc4        0x4 Example/User/stm32_xx_it.o
-                0x0000000008001bc4                SysTick_Handler
+                0x0000000008001af0        0x4 Example/User/stm32_xx_it.o
+                0x0000000008001af0                SysTick_Handler
  .text.HAL_TIM_PeriodElapsedCallback
-                0x0000000008001bc8        0x2 Example/User/stm32_xx_it.o
-                0x0000000008001bc8                HAL_TIM_PeriodElapsedCallback
+                0x0000000008001af4        0xc Example/User/stm32_xx_it.o
+                0x0000000008001af4                HAL_TIM_PeriodElapsedCallback
  .text.HAL_UART_RxCpltCallback
-                0x0000000008001bca        0x2 Example/User/stm32_xx_it.o
-                0x0000000008001bca                HAL_UART_RxCpltCallback
+                0x0000000008001b00        0xc Example/User/stm32_xx_it.o
+                0x0000000008001b00                HAL_UART_RxCpltCallback
  .text.HAL_UART_TxCpltCallback
-                0x0000000008001bcc        0x2 Example/User/stm32_xx_it.o
-                0x0000000008001bcc                HAL_UART_TxCpltCallback
+                0x0000000008001b0c        0x2 Example/User/stm32_xx_it.o
+                0x0000000008001b0c                HAL_UART_TxCpltCallback
+ *fill*         0x0000000008001b0e        0x2 
  .text.HAL_UART_ErrorCallback
-                0x0000000008001bce        0x4 Example/User/stm32_xx_it.o
-                0x0000000008001bce                HAL_UART_ErrorCallback
- *fill*         0x0000000008001bd2        0x2 
+                0x0000000008001b10       0x18 Example/User/stm32_xx_it.o
+                0x0000000008001b10                HAL_UART_ErrorCallback
  .text.USART1_IRQHandler
-                0x0000000008001bd4        0xc Example/User/stm32_xx_it.o
-                0x0000000008001bd4                USART1_IRQHandler
+                0x0000000008001b28        0xc Example/User/stm32_xx_it.o
+                0x0000000008001b28                USART1_IRQHandler
  .text.USART2_IRQHandler
-                0x0000000008001be0        0xc Example/User/stm32_xx_it.o
-                0x0000000008001be0                USART2_IRQHandler
+                0x0000000008001b34        0xc Example/User/stm32_xx_it.o
+                0x0000000008001b34                USART2_IRQHandler
  .text.DMA1_Stream5_IRQHandler
-                0x0000000008001bec       0x1c Example/User/stm32_xx_it.o
-                0x0000000008001bec                DMA1_Stream5_IRQHandler
+                0x0000000008001b40       0x1c Example/User/stm32_xx_it.o
+                0x0000000008001b40                DMA1_Stream5_IRQHandler
  .text.DMA2_Stream2_IRQHandler
-                0x0000000008001c08       0x1c Example/User/stm32_xx_it.o
-                0x0000000008001c08                DMA2_Stream2_IRQHandler
- .text._sbrk    0x0000000008001c24       0x40 Example/User/syscalls.o
-                0x0000000008001c24                _sbrk
- .text._write   0x0000000008001c64       0x1c Example/User/syscalls.o
-                0x0000000008001c64                _write
- .text._close   0x0000000008001c80        0x6 Example/User/syscalls.o
-                0x0000000008001c80                _close
- .text._fstat   0x0000000008001c86        0xa Example/User/syscalls.o
-                0x0000000008001c86                _fstat
- .text._isatty  0x0000000008001c90        0x4 Example/User/syscalls.o
-                0x0000000008001c90                _isatty
- .text._lseek   0x0000000008001c94        0x4 Example/User/syscalls.o
-                0x0000000008001c94                _lseek
- .text._read    0x0000000008001c98        0xe Example/User/syscalls.o
-                0x0000000008001c98                _read
- *fill*         0x0000000008001ca6        0x2 
+                0x0000000008001b5c       0x1c Example/User/stm32_xx_it.o
+                0x0000000008001b5c                DMA2_Stream2_IRQHandler
+ .text._sbrk    0x0000000008001b78       0x40 Example/User/syscalls.o
+                0x0000000008001b78                _sbrk
+ .text._write   0x0000000008001bb8       0x1c Example/User/syscalls.o
+                0x0000000008001bb8                _write
+ .text._close   0x0000000008001bd4        0x6 Example/User/syscalls.o
+                0x0000000008001bd4                _close
+ .text._fstat   0x0000000008001bda        0xa Example/User/syscalls.o
+                0x0000000008001bda                _fstat
+ .text._isatty  0x0000000008001be4        0x4 Example/User/syscalls.o
+                0x0000000008001be4                _isatty
+ .text._lseek   0x0000000008001be8        0x4 Example/User/syscalls.o
+                0x0000000008001be8                _lseek
+ .text._read    0x0000000008001bec        0xe Example/User/syscalls.o
+                0x0000000008001bec                _read
+ *fill*         0x0000000008001bfa        0x2 
  .text.Set_UartMsgHandle
-                0x0000000008001ca8        0xc Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
-                0x0000000008001ca8                Set_UartMsgHandle
- .text.wifi_ap_start
-                0x0000000008001cb4       0xdc Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
-                0x0000000008001cb4                wifi_ap_start
+                0x0000000008001bfc        0xc Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
+                0x0000000008001bfc                Set_UartMsgHandle
  .text.DMA1_TransferComplete
-                0x0000000008001d90       0x44 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                0x0000000008001d90                DMA1_TransferComplete
+                0x0000000008001c08       0x44 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000008001c08                DMA1_TransferComplete
  .text.DMA2_TransferComplete
-                0x0000000008001dd4       0x48 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                0x0000000008001dd4                DMA2_TransferComplete
+                0x0000000008001c4c       0x48 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000008001c4c                DMA2_TransferComplete
  .text.Receive_Data
-                0x0000000008001e1c       0x38 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                0x0000000008001e1c                Receive_Data
- .text.USART_Receive_AT_Resp
-                0x0000000008001e54       0x1c Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                0x0000000008001e54                USART_Receive_AT_Resp
+                0x0000000008001c94       0x44 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000008001c94                Receive_Data
  .text.Reset_AT_CMD_Buffer
-                0x0000000008001e70       0x10 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                0x0000000008001e70                Reset_AT_CMD_Buffer
+                0x0000000008001cd8       0x10 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000008001cd8                Reset_AT_CMD_Buffer
  .text.Error_Handler
-                0x0000000008001e80        0x6 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                0x0000000008001e80                Error_Handler
- *fill*         0x0000000008001e86        0x2 
+                0x0000000008001ce8        0x6 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000008001ce8                Error_Handler
+ *fill*         0x0000000008001cee        0x2 
  .text.UART_DMA_Init
-                0x0000000008001e88      0x138 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                0x0000000008001e88                UART_DMA_Init
+                0x0000000008001cf0      0x138 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000008001cf0                UART_DMA_Init
  .text.WiFi_HAL_UART_ErrorCallback
-                0x0000000008001fc0        0x4 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                0x0000000008001fc0                WiFi_HAL_UART_ErrorCallback
+                0x0000000008001e28        0x4 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000008001e28                WiFi_HAL_UART_ErrorCallback
  .text.USART_Transmit_AT_Cmd
-                0x0000000008001fc4       0x7c Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                0x0000000008001fc4                USART_Transmit_AT_Cmd
- .text.SET_Configuration_Value
-                0x0000000008002040       0x48 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                0x0000000008002040                SET_Configuration_Value
- .text.SET_SSID
-                0x0000000008002088       0x44 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                0x0000000008002088                SET_SSID
- .text.SET_WiFi_SecKey
-                0x00000000080020cc       0x44 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                0x00000000080020cc                SET_WiFi_SecKey
+                0x0000000008001e2c       0x88 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000008001e2c                USART_Transmit_AT_Cmd
+ .text.Read_WiFi_Mode
+                0x0000000008001eb4       0xb4 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000008001eb4                Read_WiFi_Mode
  .text.Attention_Cmd_Check
-                0x0000000008002110       0xa4 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                0x0000000008002110                Attention_Cmd_Check
+                0x0000000008001f68       0xa4 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000008001f68                Attention_Cmd_Check
  .text.WaitForResponse
-                0x00000000080021b4       0x48 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                0x00000000080021b4                WaitForResponse
+                0x000000000800200c       0x48 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x000000000800200c                WaitForResponse
  .text.config_init_value
-                0x00000000080021fc       0x4c Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                0x00000000080021fc                config_init_value
+                0x0000000008002054       0x4c Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000008002054                config_init_value
  .text.__sflush_r
-                0x0000000008002248      0x10c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
-                0x0000000008002248                __sflush_r
+                0x00000000080020a0      0x10c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
+                0x00000000080020a0                __sflush_r
  .text._fflush_r
-                0x0000000008002354       0x54 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
-                0x0000000008002354                _fflush_r
- .text.std      0x00000000080023a8       0x48 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x00000000080021ac       0x54 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
+                0x00000000080021ac                _fflush_r
+ .text.std      0x0000000008002200       0x48 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
  .text._cleanup_r
-                0x00000000080023f0        0xc /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
-                0x00000000080023f0                _cleanup_r
+                0x0000000008002248        0xc /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x0000000008002248                _cleanup_r
  .text.__sfmoreglue
-                0x00000000080023fc       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
-                0x00000000080023fc                __sfmoreglue
- .text.__sinit  0x0000000008002428       0x60 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
-                0x0000000008002428                __sinit
- .text.__sfp    0x0000000008002488       0x78 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
-                0x0000000008002488                __sfp
+                0x0000000008002254       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x0000000008002254                __sfmoreglue
+ .text.__sinit  0x0000000008002280       0x60 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x0000000008002280                __sinit
+ .text.__sfp    0x00000000080022e0       0x78 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x00000000080022e0                __sfp
  .text._fwalk_reent
-                0x0000000008002500       0x3c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fwalk.o)
-                0x0000000008002500                _fwalk_reent
+                0x0000000008002358       0x3c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fwalk.o)
+                0x0000000008002358                _fwalk_reent
  .text.__libc_init_array
-                0x000000000800253c       0x48 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
-                0x000000000800253c                __libc_init_array
- .text.malloc   0x0000000008002584       0x10 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
-                0x0000000008002584                malloc
- .text.memcpy   0x0000000008002594       0x16 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcpy-stub.o)
-                0x0000000008002594                memcpy
- .text.memset   0x00000000080025aa       0x10 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
-                0x00000000080025aa                memset
- *fill*         0x00000000080025ba        0x2 
- .text._free_r  0x00000000080025bc       0x9c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-freer.o)
-                0x00000000080025bc                _free_r
+                0x0000000008002394       0x48 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
+                0x0000000008002394                __libc_init_array
+ .text.memcpy   0x00000000080023dc       0x16 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcpy-stub.o)
+                0x00000000080023dc                memcpy
+ .text.memset   0x00000000080023f2       0x10 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
+                0x00000000080023f2                memset
+ *fill*         0x0000000008002402        0x2 
+ .text._free_r  0x0000000008002404       0x9c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-freer.o)
+                0x0000000008002404                _free_r
  .text._malloc_r
-                0x0000000008002658       0xb4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
-                0x0000000008002658                _malloc_r
- .text.printf   0x000000000800270c       0x30 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-printf.o)
-                0x000000000800270c                printf
-                0x000000000800270c                iprintf
- .text._puts_r  0x000000000800273c       0xb8 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-puts.o)
-                0x000000000800273c                _puts_r
- .text.puts     0x00000000080027f4       0x10 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-puts.o)
-                0x00000000080027f4                puts
- .text._sbrk_r  0x0000000008002804       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sbrkr.o)
-                0x0000000008002804                _sbrk_r
- .text.sprintf  0x0000000008002824       0x40 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sprintf.o)
-                0x0000000008002824                sprintf
-                0x0000000008002824                siprintf
- .text.__sread  0x0000000008002864       0x22 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
-                0x0000000008002864                __sread
+                0x00000000080024a0       0xb4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
+                0x00000000080024a0                _malloc_r
+ .text.printf   0x0000000008002554       0x30 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-printf.o)
+                0x0000000008002554                printf
+                0x0000000008002554                iprintf
+ .text._puts_r  0x0000000008002584       0xb8 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-puts.o)
+                0x0000000008002584                _puts_r
+ .text.puts     0x000000000800263c       0x10 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-puts.o)
+                0x000000000800263c                puts
+ .text._sbrk_r  0x000000000800264c       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sbrkr.o)
+                0x000000000800264c                _sbrk_r
+ .text.sprintf  0x000000000800266c       0x40 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sprintf.o)
+                0x000000000800266c                sprintf
+                0x000000000800266c                siprintf
+ .text.__sread  0x00000000080026ac       0x22 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
+                0x00000000080026ac                __sread
  .text.__swrite
-                0x0000000008002886       0x38 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
-                0x0000000008002886                __swrite
- .text.__sseek  0x00000000080028be       0x24 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
-                0x00000000080028be                __sseek
+                0x00000000080026ce       0x38 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
+                0x00000000080026ce                __swrite
+ .text.__sseek  0x0000000008002706       0x24 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
+                0x0000000008002706                __sseek
  .text.__sclose
-                0x00000000080028e2        0x8 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
-                0x00000000080028e2                __sclose
- .text.strcat   0x00000000080028ea       0x1e /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcat.o)
-                0x00000000080028ea                strcat
- .text.strcpy   0x0000000008002908       0x10 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcpy.o)
-                0x0000000008002908                strcpy
- .text.strstr   0x0000000008002918       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strstr.o)
-                0x0000000008002918                strstr
+                0x000000000800272a        0x8 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
+                0x000000000800272a                __sclose
+ .text.strcat   0x0000000008002732       0x1e /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcat.o)
+                0x0000000008002732                strcat
+ .text.strcpy   0x0000000008002750       0x10 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcpy.o)
+                0x0000000008002750                strcpy
+ .text.strstr   0x0000000008002760       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strstr.o)
+                0x0000000008002760                strstr
  .text.__swbuf_r
-                0x000000000800294c       0xa4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wbuf.o)
-                0x000000000800294c                __swbuf_r
+                0x0000000008002794       0xa4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wbuf.o)
+                0x0000000008002794                __swbuf_r
  .text._write_r
-                0x00000000080029f0       0x24 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-writer.o)
-                0x00000000080029f0                _write_r
+                0x0000000008002838       0x24 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-writer.o)
+                0x0000000008002838                _write_r
  .text.__swsetup_r
-                0x0000000008002a14       0xdc /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wsetup.o)
-                0x0000000008002a14                __swsetup_r
+                0x000000000800285c       0xdc /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wsetup.o)
+                0x000000000800285c                __swsetup_r
  .text._close_r
-                0x0000000008002af0       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-closer.o)
-                0x0000000008002af0                _close_r
+                0x0000000008002938       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-closer.o)
+                0x0000000008002938                _close_r
  .text._lseek_r
-                0x0000000008002b10       0x24 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-lseekr.o)
-                0x0000000008002b10                _lseek_r
+                0x0000000008002958       0x24 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-lseekr.o)
+                0x0000000008002958                _lseek_r
  .text.__swhatbuf_r
-                0x0000000008002b34       0x48 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
-                0x0000000008002b34                __swhatbuf_r
+                0x000000000800297c       0x48 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
+                0x000000000800297c                __swhatbuf_r
  .text.__smakebuf_r
-                0x0000000008002b7c       0x80 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
-                0x0000000008002b7c                __smakebuf_r
+                0x00000000080029c4       0x80 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
+                0x00000000080029c4                __smakebuf_r
  .text.__malloc_lock
-                0x0000000008002bfc        0x2 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
-                0x0000000008002bfc                __malloc_lock
+                0x0000000008002a44        0x2 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
+                0x0000000008002a44                __malloc_lock
  .text.__malloc_unlock
-                0x0000000008002bfe        0x2 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
-                0x0000000008002bfe                __malloc_unlock
+                0x0000000008002a46        0x2 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
+                0x0000000008002a46                __malloc_unlock
  .text.__ssputs_r
-                0x0000000008002c00       0xb4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-svfprintf.o)
-                0x0000000008002c00                __ssputs_r
+                0x0000000008002a48       0xb4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-svfprintf.o)
+                0x0000000008002a48                __ssputs_r
  .text._svfprintf_r
-                0x0000000008002cb4      0x1ec /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-svfprintf.o)
-                0x0000000008002cb4                _svfprintf_r
-                0x0000000008002cb4                _svfiprintf_r
+                0x0000000008002afc      0x1ec /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-svfprintf.o)
+                0x0000000008002afc                _svfprintf_r
+                0x0000000008002afc                _svfiprintf_r
  .text.__sfputc_r
-                0x0000000008002ea0       0x2e /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x0000000008002ce8       0x2e /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
  .text.__sfputs_r
-                0x0000000008002ece       0x24 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
-                0x0000000008002ece                __sfputs_r
- *fill*         0x0000000008002ef2        0x2 
+                0x0000000008002d16       0x24 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x0000000008002d16                __sfputs_r
+ *fill*         0x0000000008002d3a        0x2 
  .text._vfprintf_r
-                0x0000000008002ef4      0x228 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
-                0x0000000008002ef4                _vfiprintf_r
-                0x0000000008002ef4                _vfprintf_r
+                0x0000000008002d3c      0x228 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x0000000008002d3c                _vfiprintf_r
+                0x0000000008002d3c                _vfprintf_r
  .text._printf_common
-                0x000000000800311c       0xea /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
-                0x000000000800311c                _printf_common
- *fill*         0x0000000008003206        0x2 
+                0x0000000008002f64       0xea /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x0000000008002f64                _printf_common
+ *fill*         0x000000000800304e        0x2 
  .text._printf_i
-                0x0000000008003208      0x224 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
-                0x0000000008003208                _printf_i
- .text._read_r  0x000000000800342c       0x24 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-readr.o)
-                0x000000000800342c                _read_r
+                0x0000000008003050      0x224 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x0000000008003050                _printf_i
+ .text._read_r  0x0000000008003274       0x24 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-readr.o)
+                0x0000000008003274                _read_r
  .text._fstat_r
-                0x0000000008003450       0x24 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fstatr.o)
-                0x0000000008003450                _fstat_r
+                0x0000000008003298       0x24 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fstatr.o)
+                0x0000000008003298                _fstat_r
  .text._isatty_r
-                0x0000000008003474       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-isattyr.o)
-                0x0000000008003474                _isatty_r
- .text.memmove  0x0000000008003494       0x32 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memmove.o)
-                0x0000000008003494                memmove
+                0x00000000080032bc       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-isattyr.o)
+                0x00000000080032bc                _isatty_r
+ .text.memmove  0x00000000080032dc       0x32 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memmove.o)
+                0x00000000080032dc                memmove
  .text._realloc_r
-                0x00000000080034c6       0x4c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-reallocr.o)
-                0x00000000080034c6                _realloc_r
+                0x000000000800330e       0x4c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-reallocr.o)
+                0x000000000800330e                _realloc_r
  .text._malloc_usable_size_r
-                0x0000000008003512       0x10 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-msizer.o)
-                0x0000000008003512                _malloc_usable_size_r
+                0x000000000800335a       0x10 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-msizer.o)
+                0x000000000800335a                _malloc_usable_size_r
  *(.glue_7)
- .glue_7        0x0000000008003522        0x0 linker stubs
+ .glue_7        0x000000000800336a        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x0000000008003522        0x0 linker stubs
+ .glue_7t       0x000000000800336a        0x0 linker stubs
  *(.eh_frame)
- *fill*         0x0000000008003522        0x2 
- .eh_frame      0x0000000008003524        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+ *fill*         0x000000000800336a        0x2 
+ .eh_frame      0x000000000800336c        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
  *(.init)
- .init          0x0000000008003524        0x4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crti.o
-                0x0000000008003524                _init
- .init          0x0000000008003528        0x8 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
+ .init          0x000000000800336c        0x4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crti.o
+                0x000000000800336c                _init
+ .init          0x0000000008003370        0x8 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
  *(.fini)
- .fini          0x0000000008003530        0x4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crti.o
-                0x0000000008003530                _fini
- .fini          0x0000000008003534        0x8 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
-                0x000000000800353c                . = ALIGN (0x4)
-                0x000000000800353c                _etext = .
+ .fini          0x0000000008003378        0x4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crti.o
+                0x0000000008003378                _fini
+ .fini          0x000000000800337c        0x8 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
+                0x0000000008003384                . = ALIGN (0x4)
+                0x0000000008003384                _etext = .
 
-.vfp11_veneer   0x000000000800353c        0x0
- .vfp11_veneer  0x000000000800353c        0x0 linker stubs
+.vfp11_veneer   0x0000000008003384        0x0
+ .vfp11_veneer  0x0000000008003384        0x0 linker stubs
 
-.v4_bx          0x000000000800353c        0x0
- .v4_bx         0x000000000800353c        0x0 linker stubs
+.v4_bx          0x0000000008003384        0x0
+ .v4_bx         0x0000000008003384        0x0 linker stubs
 
-.iplt           0x000000000800353c        0x0
- .iplt          0x000000000800353c        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+.iplt           0x0000000008003384        0x0
+ .iplt          0x0000000008003384        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
 
-.rodata         0x000000000800353c      0x918
-                0x000000000800353c                . = ALIGN (0x4)
+.rodata         0x0000000008003384      0xa8c
+                0x0000000008003384                . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x000000000800353c       0x18 Drivers/BSP/X-NUCLEO-IDW0xx1/stm32_spwf_wifi.o
- .rodata        0x0000000008003554        0x8 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
- .rodata        0x000000000800355c       0x10 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
-                0x000000000800355c                APBAHBPrescTable
+ .rodata        0x0000000008003384       0x18 Drivers/BSP/X-NUCLEO-IDW0xx1/stm32_spwf_wifi.o
+ .rodata        0x000000000800339c        0x8 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
+ .rodata        0x00000000080033a4       0x10 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
+                0x00000000080033a4                APBAHBPrescTable
  *(.rodata*)
  .rodata.str1.1
-                0x000000000800356c       0x48 Drivers/BSP/X-NUCLEO-IDW0xx1/stm32_spwf_wifi.o
+                0x00000000080033b4       0x48 Drivers/BSP/X-NUCLEO-IDW0xx1/stm32_spwf_wifi.o
  .rodata.str1.1
-                0x00000000080035b4       0xd8 Example/User/config_wifi.o
-                                         0xdd (size before relaxing)
+                0x00000000080033fc       0x24 Example/User/config_wifi.o
+                                         0x25 (size before relaxing)
  .rodata.str1.1
-                0x000000000800368c      0x117 Example/User/main.o
+                0x0000000008003420      0x117 Example/User/main.o
  .rodata.str1.1
-                0x00000000080037a3      0x29f Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+                0x0000000008003537       0x76 Example/User/stm32_xx_it.o
  .rodata.str1.1
-                0x0000000008003a42      0x379 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                                        0x3b9 (size before relaxing)
- *fill*         0x0000000008003dbb        0x1 
+                0x00000000080035ad      0x7cb Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                                        0x7d6 (size before relaxing)
  .rodata.__sf_fake_stderr
-                0x0000000008003dbc       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
-                0x0000000008003dbc                __sf_fake_stderr
+                0x0000000008003d78       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x0000000008003d78                __sf_fake_stderr
  .rodata.__sf_fake_stdin
-                0x0000000008003ddc       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
-                0x0000000008003ddc                __sf_fake_stdin
+                0x0000000008003d98       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x0000000008003d98                __sf_fake_stdin
  .rodata.__sf_fake_stdout
-                0x0000000008003dfc       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
-                0x0000000008003dfc                __sf_fake_stdout
+                0x0000000008003db8       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x0000000008003db8                __sf_fake_stdout
  .rodata._global_impure_ptr
-                0x0000000008003e1c        0x4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-impure.o)
-                0x0000000008003e1c                _global_impure_ptr
+                0x0000000008003dd8        0x4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-impure.o)
+                0x0000000008003dd8                _global_impure_ptr
  .rodata._svfprintf_r.str1.1
-                0x0000000008003e20       0x11 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-svfprintf.o)
+                0x0000000008003ddc       0x11 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-svfprintf.o)
  .rodata._vfprintf_r.str1.1
-                0x0000000008003e31       0x11 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x0000000008003ded       0x11 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
  .rodata._printf_i.str1.1
-                0x0000000008003e31       0x22 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
-                0x0000000008003e54                . = ALIGN (0x4)
- *fill*         0x0000000008003e53        0x1 
+                0x0000000008003ded       0x22 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x0000000008003e10                . = ALIGN (0x4)
+ *fill*         0x0000000008003e0f        0x1 
 
-.rel.dyn        0x0000000008003e54        0x0
- .rel.iplt      0x0000000008003e54        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+.rel.dyn        0x0000000008003e10        0x0
+ .rel.iplt      0x0000000008003e10        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x0000000008003e54        0x0
-                0x0000000008003e54                __exidx_start = .
+.ARM            0x0000000008003e10        0x0
+                0x0000000008003e10                __exidx_start = .
  *(.ARM.exidx*)
-                0x0000000008003e54                __exidx_end = .
+                0x0000000008003e10                __exidx_end = .
 
-.preinit_array  0x0000000008003e54        0x0
-                0x0000000008003e54                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x0000000008003e10        0x0
+                0x0000000008003e10                PROVIDE (__preinit_array_start, .)
  *(.preinit_array*)
-                0x0000000008003e54                PROVIDE (__preinit_array_end, .)
+                0x0000000008003e10                PROVIDE (__preinit_array_end, .)
 
-.init_array     0x0000000008003e54        0x4
-                0x0000000008003e54                PROVIDE (__init_array_start, .)
+.init_array     0x0000000008003e10        0x4
+                0x0000000008003e10                PROVIDE (__init_array_start, .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x0000000008003e54        0x4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
-                0x0000000008003e58                PROVIDE (__init_array_end, .)
+ .init_array    0x0000000008003e10        0x4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+                0x0000000008003e14                PROVIDE (__init_array_end, .)
 
-.fini_array     0x0000000008003e58        0x4
+.fini_array     0x0000000008003e14        0x4
                 [!provide]                        PROVIDE (__fini_array_start, .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x0000000008003e58        0x4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+ .fini_array    0x0000000008003e14        0x4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
                 [!provide]                        PROVIDE (__fini_array_end, .)
-                0x0000000008003e5c                _sidata = LOADADDR (.data)
+                0x0000000008003e18                _sidata = LOADADDR (.data)
 
-.data           0x0000000020000000       0x74 load address 0x0000000008003e5c
+.data           0x0000000020000000       0x74 load address 0x0000000008003e18
                 0x0000000020000000                . = ALIGN (0x4)
                 0x0000000020000000                _sdata = .
  *(.data)
@@ -6924,11 +6942,11 @@ LOAD /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.
                 0x0000000020000074                . = ALIGN (0x4)
                 0x0000000020000074                _edata = .
 
-.igot.plt       0x0000000020000074        0x0 load address 0x0000000008003ed0
+.igot.plt       0x0000000020000074        0x0 load address 0x0000000008003e8c
  .igot.plt      0x0000000020000074        0x0 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
                 0x0000000020000074                . = ALIGN (0x4)
 
-.bss            0x0000000020000074     0x1998 load address 0x0000000008003ed0
+.bss            0x0000000020000074     0x18d0 load address 0x0000000008003e8c
                 0x0000000020000074                _sbss = .
                 0x0000000020000074                __bss_start__ = _sbss
  *(.bss)
@@ -6971,28 +6989,26 @@ LOAD /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.
                 0x00000000200015f8                pop_buffer
                 0x00000000200017f8                open_server_sockets
                 0x00000000200017fc                TimHandle
- COMMON         0x0000000020001838      0x1d0 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+ COMMON         0x0000000020001838      0x108 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
                 0x0000000020001838                DMA_UART_RX
                 0x0000000020001898                DMA_WIFI_UART
                 0x00000000200018f8                console_send_char
-                0x00000000200018f9                key_received
-                0x000000002000195d                ssid_received
-                0x00000000200019c4                wifi_instances
- COMMON         0x0000000020001a08        0x4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-reent.o)
-                0x0000000020001a08                errno
-                0x0000000020001a0c                . = ALIGN (0x4)
-                0x0000000020001a0c                _ebss = .
-                0x0000000020001a0c                __bss_end__ = _ebss
+                0x00000000200018fc                wifi_instances
+ COMMON         0x0000000020001940        0x4 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-reent.o)
+                0x0000000020001940                errno
+                0x0000000020001944                . = ALIGN (0x4)
+                0x0000000020001944                _ebss = .
+                0x0000000020001944                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x0000000020001a0c      0x400 load address 0x0000000008003ed0
-                0x0000000020001a0c                . = ALIGN (0x4)
-                0x0000000020001a0c                PROVIDE (end, .)
+                0x0000000020001944      0x400 load address 0x0000000008003e8c
+                0x0000000020001944                . = ALIGN (0x4)
+                0x0000000020001944                PROVIDE (end, .)
                 [!provide]                        PROVIDE (_end, .)
-                0x0000000020001a0c                . = (. + _Min_Heap_Size)
-                0x0000000020001e0c                . = (. + _Min_Stack_Size)
- *fill*         0x0000000020001a0c      0x400 
-                0x0000000020001e0c                . = ALIGN (0x4)
+                0x0000000020001944                . = (. + _Min_Heap_Size)
+                0x0000000020001d44                . = (. + _Min_Stack_Size)
+ *fill*         0x0000000020001944      0x400 
+                0x0000000020001d44                . = ALIGN (0x4)
 
 /DISCARD/
  libc.a(*)
@@ -7045,88 +7061,84 @@ LOAD /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.
  .ARM.attributes
                 0x0000000000000440       0x39 Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
  .ARM.attributes
-                0x0000000000000479       0x39 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
+                0x0000000000000479       0x39 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
  .ARM.attributes
-                0x00000000000004b2       0x39 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x00000000000004b2       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
  .ARM.attributes
-                0x00000000000004eb       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
+                0x00000000000004e6       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
  .ARM.attributes
-                0x000000000000051f       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+                0x000000000000051a       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fwalk.o)
  .ARM.attributes
-                0x0000000000000553       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fwalk.o)
+                0x000000000000054e       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-impure.o)
  .ARM.attributes
-                0x0000000000000587       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-impure.o)
+                0x0000000000000582       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
  .ARM.attributes
-                0x00000000000005bb       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
+                0x00000000000005b6       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memchr.o)
  .ARM.attributes
-                0x00000000000005ef       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
+                0x00000000000005d6       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcpy-stub.o)
  .ARM.attributes
-                0x0000000000000623       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memchr.o)
+                0x000000000000060a       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
  .ARM.attributes
-                0x0000000000000643       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcpy-stub.o)
+                0x000000000000063e       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-freer.o)
  .ARM.attributes
-                0x0000000000000677       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
+                0x0000000000000672       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
  .ARM.attributes
-                0x00000000000006ab       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-freer.o)
+                0x00000000000006a6       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-printf.o)
  .ARM.attributes
-                0x00000000000006df       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
+                0x00000000000006da       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-puts.o)
  .ARM.attributes
-                0x0000000000000713       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-printf.o)
+                0x000000000000070e       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-reent.o)
  .ARM.attributes
-                0x0000000000000747       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-puts.o)
+                0x0000000000000742       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sbrkr.o)
  .ARM.attributes
-                0x000000000000077b       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-reent.o)
+                0x0000000000000776       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sprintf.o)
  .ARM.attributes
-                0x00000000000007af       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sbrkr.o)
+                0x00000000000007aa       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
  .ARM.attributes
-                0x00000000000007e3       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sprintf.o)
+                0x00000000000007de       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcat.o)
  .ARM.attributes
-                0x0000000000000817       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
+                0x0000000000000812       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcpy.o)
  .ARM.attributes
-                0x000000000000084b       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcat.o)
+                0x0000000000000846       0x1b /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strlen.o)
  .ARM.attributes
-                0x000000000000087f       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcpy.o)
+                0x0000000000000861       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strstr.o)
  .ARM.attributes
-                0x00000000000008b3       0x1b /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strlen.o)
+                0x0000000000000895       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wbuf.o)
  .ARM.attributes
-                0x00000000000008ce       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strstr.o)
+                0x00000000000008c9       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-writer.o)
  .ARM.attributes
-                0x0000000000000902       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wbuf.o)
+                0x00000000000008fd       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wsetup.o)
  .ARM.attributes
-                0x0000000000000936       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-writer.o)
+                0x0000000000000931       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-closer.o)
  .ARM.attributes
-                0x000000000000096a       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wsetup.o)
+                0x0000000000000965       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-lseekr.o)
  .ARM.attributes
-                0x000000000000099e       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-closer.o)
+                0x0000000000000999       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
  .ARM.attributes
-                0x00000000000009d2       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-lseekr.o)
+                0x00000000000009cd       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
  .ARM.attributes
-                0x0000000000000a06       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
+                0x0000000000000a01       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-svfprintf.o)
  .ARM.attributes
-                0x0000000000000a3a       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
+                0x0000000000000a35       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
  .ARM.attributes
-                0x0000000000000a6e       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-svfprintf.o)
+                0x0000000000000a69       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
  .ARM.attributes
-                0x0000000000000aa2       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x0000000000000a9d       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-readr.o)
  .ARM.attributes
-                0x0000000000000ad6       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x0000000000000ad1       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fstatr.o)
  .ARM.attributes
-                0x0000000000000b0a       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-readr.o)
+                0x0000000000000b05       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-isattyr.o)
  .ARM.attributes
-                0x0000000000000b3e       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fstatr.o)
+                0x0000000000000b39       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memmove.o)
  .ARM.attributes
-                0x0000000000000b72       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-isattyr.o)
+                0x0000000000000b6d       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-reallocr.o)
  .ARM.attributes
-                0x0000000000000ba6       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memmove.o)
+                0x0000000000000ba1       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-msizer.o)
  .ARM.attributes
-                0x0000000000000bda       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-reallocr.o)
- .ARM.attributes
-                0x0000000000000c0e       0x34 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-msizer.o)
- .ARM.attributes
-                0x0000000000000c42       0x22 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
+                0x0000000000000bd5       0x22 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
 OUTPUT(STM32F4xx-Nucleo-WiFi_VCOM.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000    0x2cfca
+.debug_info     0x0000000000000000    0x2839f
  .debug_info    0x0000000000000000     0x24b2 Drivers/BSP/STM32F4xx-Nucleo/stm32f4xx_nucleo.o
  .debug_info    0x00000000000024b2     0x3177 Drivers/BSP/X-NUCLEO-IDW0xx1/stm32_spwf_wifi.o
  .debug_info    0x0000000000005629      0xd1f Drivers/CMSIS/system_stm32f4xx.o
@@ -7139,17 +7151,16 @@ OUTPUT(STM32F4xx-Nucleo-WiFi_VCOM.elf elf32-littlearm)
  .debug_info    0x000000000000fe76     0x193b Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
  .debug_info    0x00000000000117b1     0x1bcf Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o
  .debug_info    0x0000000000013380       0x22 Example/SW4STM32/startup_stm32f401xe.o
- .debug_info    0x00000000000133a2     0x2779 Example/User/config_wifi.o
- .debug_info    0x0000000000015b1b      0xfb1 Example/User/console.o
- .debug_info    0x0000000000016acc     0x308b Example/User/main.o
- .debug_info    0x0000000000019b57     0x2e34 Example/User/stm32_xx_hal_msp.o
- .debug_info    0x000000000001c98b     0x2800 Example/User/stm32_xx_it.o
- .debug_info    0x000000000001f18b     0x1039 Example/User/syscalls.o
- .debug_info    0x00000000000201c4     0x25f4 Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
- .debug_info    0x00000000000227b8     0x4ed0 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
- .debug_info    0x0000000000027688     0x5942 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+ .debug_info    0x00000000000133a2     0x2618 Example/User/config_wifi.o
+ .debug_info    0x00000000000159ba      0xfb1 Example/User/console.o
+ .debug_info    0x000000000001696b     0x30a0 Example/User/main.o
+ .debug_info    0x0000000000019a0b     0x2e34 Example/User/stm32_xx_hal_msp.o
+ .debug_info    0x000000000001c83f     0x285a Example/User/stm32_xx_it.o
+ .debug_info    0x000000000001f099     0x1039 Example/User/syscalls.o
+ .debug_info    0x00000000000200d2     0x25f4 Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
+ .debug_info    0x00000000000226c6     0x5cd9 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
 
-.debug_abbrev   0x0000000000000000     0x4492
+.debug_abbrev   0x0000000000000000     0x4043
  .debug_abbrev  0x0000000000000000      0x417 Drivers/BSP/STM32F4xx-Nucleo/stm32f4xx_nucleo.o
  .debug_abbrev  0x0000000000000417      0x3b0 Drivers/BSP/X-NUCLEO-IDW0xx1/stm32_spwf_wifi.o
  .debug_abbrev  0x00000000000007c7      0x216 Drivers/CMSIS/system_stm32f4xx.o
@@ -7162,17 +7173,16 @@ OUTPUT(STM32F4xx-Nucleo-WiFi_VCOM.elf elf32-littlearm)
  .debug_abbrev  0x0000000000001f15      0x33f Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
  .debug_abbrev  0x0000000000002254      0x3c7 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o
  .debug_abbrev  0x000000000000261b       0x12 Example/SW4STM32/startup_stm32f401xe.o
- .debug_abbrev  0x000000000000262d      0x32b Example/User/config_wifi.o
- .debug_abbrev  0x0000000000002958      0x2b4 Example/User/console.o
- .debug_abbrev  0x0000000000002c0c      0x37f Example/User/main.o
- .debug_abbrev  0x0000000000002f8b      0x325 Example/User/stm32_xx_hal_msp.o
- .debug_abbrev  0x00000000000032b0      0x39d Example/User/stm32_xx_it.o
- .debug_abbrev  0x000000000000364d      0x2f9 Example/User/syscalls.o
- .debug_abbrev  0x0000000000003946      0x252 Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
- .debug_abbrev  0x0000000000003b98      0x3e3 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
- .debug_abbrev  0x0000000000003f7b      0x517 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+ .debug_abbrev  0x000000000000262d      0x2e8 Example/User/config_wifi.o
+ .debug_abbrev  0x0000000000002915      0x2b4 Example/User/console.o
+ .debug_abbrev  0x0000000000002bc9      0x38d Example/User/main.o
+ .debug_abbrev  0x0000000000002f56      0x325 Example/User/stm32_xx_hal_msp.o
+ .debug_abbrev  0x000000000000327b      0x37e Example/User/stm32_xx_it.o
+ .debug_abbrev  0x00000000000035f9      0x2f9 Example/User/syscalls.o
+ .debug_abbrev  0x00000000000038f2      0x252 Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
+ .debug_abbrev  0x0000000000003b44      0x4ff Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
 
-.debug_loc      0x0000000000000000     0x98d9
+.debug_loc      0x0000000000000000     0x8110
  .debug_loc     0x0000000000000000      0x533 Drivers/BSP/STM32F4xx-Nucleo/stm32f4xx_nucleo.o
  .debug_loc     0x0000000000000533      0x13b Drivers/BSP/X-NUCLEO-IDW0xx1/stm32_spwf_wifi.o
  .debug_loc     0x000000000000066e      0x11c Drivers/CMSIS/system_stm32f4xx.o
@@ -7184,16 +7194,15 @@ OUTPUT(STM32F4xx-Nucleo-WiFi_VCOM.elf elf32-littlearm)
  .debug_loc     0x0000000000001c66     0x2f7c Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
  .debug_loc     0x0000000000004be2      0x726 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
  .debug_loc     0x0000000000005308     0x1145 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o
- .debug_loc     0x000000000000644d      0x109 Example/User/config_wifi.o
- .debug_loc     0x0000000000006556       0x8a Example/User/console.o
- .debug_loc     0x00000000000065e0       0x77 Example/User/main.o
- .debug_loc     0x0000000000006657       0xdd Example/User/stm32_xx_hal_msp.o
- .debug_loc     0x0000000000006734       0x81 Example/User/stm32_xx_it.o
- .debug_loc     0x00000000000067b5      0x338 Example/User/syscalls.o
- .debug_loc     0x0000000000006aed     0x18b9 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
- .debug_loc     0x00000000000083a6     0x1533 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+ .debug_loc     0x000000000000644d       0x42 Example/User/config_wifi.o
+ .debug_loc     0x000000000000648f       0x8a Example/User/console.o
+ .debug_loc     0x0000000000006519       0x77 Example/User/main.o
+ .debug_loc     0x0000000000006590       0xdd Example/User/stm32_xx_hal_msp.o
+ .debug_loc     0x000000000000666d       0xd9 Example/User/stm32_xx_it.o
+ .debug_loc     0x0000000000006746      0x338 Example/User/syscalls.o
+ .debug_loc     0x0000000000006a7e     0x1692 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
 
-.debug_aranges  0x0000000000000000      0xf58
+.debug_aranges  0x0000000000000000      0xd98
  .debug_aranges
                 0x0000000000000000       0xd0 Drivers/BSP/STM32F4xx-Nucleo/stm32f4xx_nucleo.o
  .debug_aranges
@@ -7227,17 +7236,15 @@ OUTPUT(STM32F4xx-Nucleo-WiFi_VCOM.elf elf32-littlearm)
  .debug_aranges
                 0x0000000000000970       0x38 Example/User/stm32_xx_hal_msp.o
  .debug_aranges
-                0x00000000000009a8       0x80 Example/User/stm32_xx_it.o
+                0x00000000000009a8       0x90 Example/User/stm32_xx_it.o
  .debug_aranges
-                0x0000000000000a28       0xb8 Example/User/syscalls.o
+                0x0000000000000a38       0xb8 Example/User/syscalls.o
  .debug_aranges
-                0x0000000000000ae0       0x20 Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
+                0x0000000000000af0       0x20 Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
  .debug_aranges
-                0x0000000000000b00      0x1e8 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
- .debug_aranges
-                0x0000000000000ce8      0x270 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                0x0000000000000b10      0x288 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
 
-.debug_ranges   0x0000000000000000     0x14f8
+.debug_ranges   0x0000000000000000     0x1310
  .debug_ranges  0x0000000000000000      0x2c0 Drivers/BSP/STM32F4xx-Nucleo/stm32f4xx_nucleo.o
  .debug_ranges  0x00000000000002c0       0xd8 Drivers/BSP/X-NUCLEO-IDW0xx1/stm32_spwf_wifi.o
  .debug_ranges  0x0000000000000398       0x18 Drivers/CMSIS/system_stm32f4xx.o
@@ -7254,13 +7261,12 @@ OUTPUT(STM32F4xx-Nucleo-WiFi_VCOM.elf elf32-littlearm)
  .debug_ranges  0x0000000000000d00       0x30 Example/User/console.o
  .debug_ranges  0x0000000000000d30       0x88 Example/User/main.o
  .debug_ranges  0x0000000000000db8       0xe8 Example/User/stm32_xx_hal_msp.o
- .debug_ranges  0x0000000000000ea0       0x70 Example/User/stm32_xx_it.o
- .debug_ranges  0x0000000000000f10       0xa8 Example/User/syscalls.o
- .debug_ranges  0x0000000000000fb8       0x10 Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
- .debug_ranges  0x0000000000000fc8      0x1f8 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
- .debug_ranges  0x00000000000011c0      0x338 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+ .debug_ranges  0x0000000000000ea0       0x80 Example/User/stm32_xx_it.o
+ .debug_ranges  0x0000000000000f20       0xa8 Example/User/syscalls.o
+ .debug_ranges  0x0000000000000fc8       0x10 Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
+ .debug_ranges  0x0000000000000fd8      0x338 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
 
-.debug_macro    0x0000000000000000    0x14c13
+.debug_macro    0x0000000000000000    0x14745
  .debug_macro   0x0000000000000000      0x3b0 Drivers/BSP/STM32F4xx-Nucleo/stm32f4xx_nucleo.o
  .debug_macro   0x00000000000003b0      0xa78 Drivers/BSP/STM32F4xx-Nucleo/stm32f4xx_nucleo.o
  .debug_macro   0x0000000000000e28      0x1ed Drivers/BSP/STM32F4xx-Nucleo/stm32f4xx_nucleo.o
@@ -7359,32 +7365,30 @@ OUTPUT(STM32F4xx-Nucleo-WiFi_VCOM.elf elf32-littlearm)
  .debug_macro   0x0000000000011f85       0x52 Example/User/console.o
  .debug_macro   0x0000000000011fd7       0x8d Example/User/console.o
  .debug_macro   0x0000000000012064       0x57 Example/User/console.o
- .debug_macro   0x00000000000120bb      0x490 Example/User/main.o
- .debug_macro   0x000000000001254b      0x48c Example/User/stm32_xx_hal_msp.o
- .debug_macro   0x00000000000129d7      0x496 Example/User/stm32_xx_it.o
- .debug_macro   0x0000000000012e6d      0x27e Example/User/syscalls.o
- .debug_macro   0x00000000000130eb      0x174 Example/User/syscalls.o
- .debug_macro   0x000000000001325f       0x10 Example/User/syscalls.o
- .debug_macro   0x000000000001326f       0x10 Example/User/syscalls.o
- .debug_macro   0x000000000001327f       0x35 Example/User/syscalls.o
- .debug_macro   0x00000000000132b4      0x122 Example/User/syscalls.o
- .debug_macro   0x00000000000133d6      0x1e3 Example/User/syscalls.o
- .debug_macro   0x00000000000135b9       0x10 Example/User/syscalls.o
- .debug_macro   0x00000000000135c9       0x1c Example/User/syscalls.o
- .debug_macro   0x00000000000135e5       0x10 Example/User/syscalls.o
- .debug_macro   0x00000000000135f5       0x88 Example/User/syscalls.o
- .debug_macro   0x000000000001367d       0x10 Example/User/syscalls.o
- .debug_macro   0x000000000001368d      0x241 Example/User/syscalls.o
- .debug_macro   0x00000000000138ce       0x16 Example/User/syscalls.o
- .debug_macro   0x00000000000138e4       0x16 Example/User/syscalls.o
- .debug_macro   0x00000000000138fa      0x51a Example/User/syscalls.o
- .debug_macro   0x0000000000013e14       0x3a Example/User/syscalls.o
- .debug_macro   0x0000000000013e4e      0x476 Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
- .debug_macro   0x00000000000142c4      0x486 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
- .debug_macro   0x000000000001474a       0x4c Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
- .debug_macro   0x0000000000014796      0x47d Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+ .debug_macro   0x00000000000120bb      0x494 Example/User/main.o
+ .debug_macro   0x000000000001254f      0x48c Example/User/stm32_xx_hal_msp.o
+ .debug_macro   0x00000000000129db      0x496 Example/User/stm32_xx_it.o
+ .debug_macro   0x0000000000012e71      0x27e Example/User/syscalls.o
+ .debug_macro   0x00000000000130ef      0x174 Example/User/syscalls.o
+ .debug_macro   0x0000000000013263       0x10 Example/User/syscalls.o
+ .debug_macro   0x0000000000013273       0x10 Example/User/syscalls.o
+ .debug_macro   0x0000000000013283       0x35 Example/User/syscalls.o
+ .debug_macro   0x00000000000132b8      0x122 Example/User/syscalls.o
+ .debug_macro   0x00000000000133da      0x1e3 Example/User/syscalls.o
+ .debug_macro   0x00000000000135bd       0x10 Example/User/syscalls.o
+ .debug_macro   0x00000000000135cd       0x1c Example/User/syscalls.o
+ .debug_macro   0x00000000000135e9       0x10 Example/User/syscalls.o
+ .debug_macro   0x00000000000135f9       0x88 Example/User/syscalls.o
+ .debug_macro   0x0000000000013681       0x10 Example/User/syscalls.o
+ .debug_macro   0x0000000000013691      0x241 Example/User/syscalls.o
+ .debug_macro   0x00000000000138d2       0x16 Example/User/syscalls.o
+ .debug_macro   0x00000000000138e8       0x16 Example/User/syscalls.o
+ .debug_macro   0x00000000000138fe      0x51a Example/User/syscalls.o
+ .debug_macro   0x0000000000013e18       0x3a Example/User/syscalls.o
+ .debug_macro   0x0000000000013e52      0x476 Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
+ .debug_macro   0x00000000000142c8      0x47d Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
 
-.debug_line     0x0000000000000000    0x10f2e
+.debug_line     0x0000000000000000     0xfcf6
  .debug_line    0x0000000000000000      0xc5d Drivers/BSP/STM32F4xx-Nucleo/stm32f4xx_nucleo.o
  .debug_line    0x0000000000000c5d      0xd69 Drivers/BSP/X-NUCLEO-IDW0xx1/stm32_spwf_wifi.o
  .debug_line    0x00000000000019c6      0x99a Drivers/CMSIS/system_stm32f4xx.o
@@ -7395,61 +7399,58 @@ OUTPUT(STM32F4xx-Nucleo-WiFi_VCOM.elf elf32-littlearm)
  .debug_line    0x0000000000005132      0xc89 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
  .debug_line    0x0000000000005dbb     0x171a Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
  .debug_line    0x00000000000074d5      0xd43 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
- .debug_line    0x0000000000008218     0x10d7 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o
- .debug_line    0x00000000000092ef       0xe7 Example/SW4STM32/startup_stm32f401xe.o
- .debug_line    0x00000000000093d6      0xc49 Example/User/config_wifi.o
- .debug_line    0x000000000000a01f      0x9e7 Example/User/console.o
- .debug_line    0x000000000000aa06      0xcb7 Example/User/main.o
- .debug_line    0x000000000000b6bd      0xcef Example/User/stm32_xx_hal_msp.o
- .debug_line    0x000000000000c3ac      0xcf2 Example/User/stm32_xx_it.o
- .debug_line    0x000000000000d09e      0x6a2 Example/User/syscalls.o
- .debug_line    0x000000000000d740      0xb7e Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
- .debug_line    0x000000000000e2be     0x1321 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
- .debug_line    0x000000000000f5df     0x194f Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+ .debug_line    0x0000000000008218     0x10dd Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o
+ .debug_line    0x00000000000092f5       0xe7 Example/SW4STM32/startup_stm32f401xe.o
+ .debug_line    0x00000000000093dc      0xc20 Example/User/config_wifi.o
+ .debug_line    0x0000000000009ffc      0x9e7 Example/User/console.o
+ .debug_line    0x000000000000a9e3      0xcbd Example/User/main.o
+ .debug_line    0x000000000000b6a0      0xcef Example/User/stm32_xx_hal_msp.o
+ .debug_line    0x000000000000c38f      0xd26 Example/User/stm32_xx_it.o
+ .debug_line    0x000000000000d0b5      0x6a2 Example/User/syscalls.o
+ .debug_line    0x000000000000d757      0xb7e Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
+ .debug_line    0x000000000000e2d5     0x1a21 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
 
-.debug_str      0x0000000000000000    0x6b8f9
- .debug_str     0x0000000000000000    0x5e92a Drivers/BSP/STM32F4xx-Nucleo/stm32f4xx_nucleo.o
+.debug_str      0x0000000000000000    0x6b206
+ .debug_str     0x0000000000000000    0x5e932 Drivers/BSP/STM32F4xx-Nucleo/stm32f4xx_nucleo.o
                                       0x5ede9 (size before relaxing)
- .debug_str     0x000000000005e92a     0x64d5 Drivers/BSP/X-NUCLEO-IDW0xx1/stm32_spwf_wifi.o
+ .debug_str     0x000000000005e932     0x64ed Drivers/BSP/X-NUCLEO-IDW0xx1/stm32_spwf_wifi.o
                                       0x64d3d (size before relaxing)
- .debug_str     0x0000000000064dff      0x113 Drivers/CMSIS/system_stm32f4xx.o
+ .debug_str     0x0000000000064e1f      0x113 Drivers/CMSIS/system_stm32f4xx.o
                                       0x5d314 (size before relaxing)
- .debug_str     0x0000000000064f12      0x4e1 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
+ .debug_str     0x0000000000064f32      0x4e1 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
                                       0x5dba1 (size before relaxing)
- .debug_str     0x00000000000653f3      0x303 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
+ .debug_str     0x0000000000065413      0x303 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
                                       0x5d9e0 (size before relaxing)
- .debug_str     0x00000000000656f6      0x33e Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
+ .debug_str     0x0000000000065716      0x33e Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
                                       0x5d6ff (size before relaxing)
- .debug_str     0x0000000000065a34      0x216 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
+ .debug_str     0x0000000000065a54      0x216 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
                                       0x5d584 (size before relaxing)
- .debug_str     0x0000000000065c4a      0x3aa Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
+ .debug_str     0x0000000000065c6a      0x3aa Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
                                       0x5d718 (size before relaxing)
- .debug_str     0x0000000000065ff4      0xd0e Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
+ .debug_str     0x0000000000066014      0xd0e Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
                                       0x5e308 (size before relaxing)
- .debug_str     0x0000000000066d02      0x51a Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
+ .debug_str     0x0000000000066d22      0x51a Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
                                       0x5dbc0 (size before relaxing)
- .debug_str     0x000000000006721c      0x3b2 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o
+ .debug_str     0x000000000006723c      0x3b2 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o
                                       0x5da1a (size before relaxing)
- .debug_str     0x00000000000675ce       0x98 Example/SW4STM32/startup_stm32f401xe.o
+ .debug_str     0x00000000000675ee       0x98 Example/SW4STM32/startup_stm32f401xe.o
                                         0x14d (size before relaxing)
- .debug_str     0x0000000000067666      0x110 Example/User/config_wifi.o
-                                      0x64529 (size before relaxing)
- .debug_str     0x0000000000067776       0xd0 Example/User/console.o
+ .debug_str     0x0000000000067686      0x101 Example/User/config_wifi.o
+                                      0x644d9 (size before relaxing)
+ .debug_str     0x0000000000067787       0xdf Example/User/console.o
                                       0x5d6f6 (size before relaxing)
- .debug_str     0x0000000000067846      0x33d Example/User/main.o
+ .debug_str     0x0000000000067866      0x342 Example/User/main.o
                                       0x64e5d (size before relaxing)
- .debug_str     0x0000000000067b83       0xa1 Example/User/stm32_xx_hal_msp.o
+ .debug_str     0x0000000000067ba8       0xa1 Example/User/stm32_xx_hal_msp.o
                                       0x64a40 (size before relaxing)
- .debug_str     0x0000000000067c24      0x21d Example/User/stm32_xx_it.o
-                                      0x646e6 (size before relaxing)
- .debug_str     0x0000000000067e41     0x228d Example/User/syscalls.o
+ .debug_str     0x0000000000067c49      0x21d Example/User/stm32_xx_it.o
+                                      0x646fa (size before relaxing)
+ .debug_str     0x0000000000067e66     0x2293 Example/User/syscalls.o
                                        0x9990 (size before relaxing)
- .debug_str     0x000000000006a0ce       0x64 Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
+ .debug_str     0x000000000006a0f9       0x64 Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
                                       0x64433 (size before relaxing)
- .debug_str     0x000000000006a132      0xaa7 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
-                                      0x65699 (size before relaxing)
- .debug_str     0x000000000006abd9      0xd20 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
-                                      0x65d49 (size before relaxing)
+ .debug_str     0x000000000006a15d     0x10a9 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+                                      0x65d1f (size before relaxing)
 
 .comment        0x0000000000000000       0x7e
  .comment       0x0000000000000000       0x7e Drivers/BSP/STM32F4xx-Nucleo/stm32f4xx_nucleo.o
@@ -7471,10 +7472,9 @@ OUTPUT(STM32F4xx-Nucleo-WiFi_VCOM.elf elf32-littlearm)
  .comment       0x000000000000007e       0x7f Example/User/stm32_xx_it.o
  .comment       0x000000000000007e       0x7f Example/User/syscalls.o
  .comment       0x000000000000007e       0x7f Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
- .comment       0x000000000000007e       0x7f Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
  .comment       0x000000000000007e       0x7f Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
 
-.debug_frame    0x0000000000000000     0x38a0
+.debug_frame    0x0000000000000000     0x318c
  .debug_frame   0x0000000000000000      0x28c Drivers/BSP/STM32F4xx-Nucleo/stm32f4xx_nucleo.o
  .debug_frame   0x000000000000028c      0x1a4 Drivers/BSP/X-NUCLEO-IDW0xx1/stm32_spwf_wifi.o
  .debug_frame   0x0000000000000430       0x38 Drivers/CMSIS/system_stm32f4xx.o
@@ -7486,46 +7486,44 @@ OUTPUT(STM32F4xx-Nucleo-WiFi_VCOM.elf elf32-littlearm)
  .debug_frame   0x0000000000000a98      0x854 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
  .debug_frame   0x00000000000012ec      0x338 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
  .debug_frame   0x0000000000001624      0x390 Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o
- .debug_frame   0x00000000000019b4       0x70 Example/User/config_wifi.o
- .debug_frame   0x0000000000001a24       0x88 Example/User/console.o
- .debug_frame   0x0000000000001aac       0xb0 Example/User/main.o
- .debug_frame   0x0000000000001b5c       0xa0 Example/User/stm32_xx_hal_msp.o
- .debug_frame   0x0000000000001bfc      0x170 Example/User/stm32_xx_it.o
- .debug_frame   0x0000000000001d6c      0x174 Example/User/syscalls.o
- .debug_frame   0x0000000000001ee0       0x20 Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
- .debug_frame   0x0000000000001f00      0x700 Middlewares/ST/STM32_SPWF0xSy/wifi_interface.o
- .debug_frame   0x0000000000002600      0x900 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
- .debug_frame   0x0000000000002f00       0x68 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
- .debug_frame   0x0000000000002f68      0x11c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
- .debug_frame   0x0000000000003084       0x54 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fwalk.o)
- .debug_frame   0x00000000000030d8       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
- .debug_frame   0x0000000000003104       0x30 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
- .debug_frame   0x0000000000003134       0x28 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcpy-stub.o)
- .debug_frame   0x000000000000315c       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
- .debug_frame   0x000000000000317c       0x38 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-freer.o)
- .debug_frame   0x00000000000031b4       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
- .debug_frame   0x00000000000031e0       0x74 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-printf.o)
- .debug_frame   0x0000000000003254       0x3c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-puts.o)
- .debug_frame   0x0000000000003290       0x5c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-reent.o)
- .debug_frame   0x00000000000032ec       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sbrkr.o)
- .debug_frame   0x0000000000003318       0x6c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sprintf.o)
- .debug_frame   0x0000000000003384       0x88 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
- .debug_frame   0x000000000000340c       0x28 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcat.o)
- .debug_frame   0x0000000000003434       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcpy.o)
- .debug_frame   0x0000000000003454       0x30 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strstr.o)
- .debug_frame   0x0000000000003484       0x40 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wbuf.o)
- .debug_frame   0x00000000000034c4       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-writer.o)
- .debug_frame   0x00000000000034f0       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wsetup.o)
- .debug_frame   0x000000000000351c       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-closer.o)
- .debug_frame   0x0000000000003548       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-lseekr.o)
- .debug_frame   0x0000000000003574       0x58 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
- .debug_frame   0x00000000000035cc       0x30 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
- .debug_frame   0x00000000000035fc       0x90 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-svfprintf.o)
- .debug_frame   0x000000000000368c       0xac /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
- .debug_frame   0x0000000000003738       0x60 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
- .debug_frame   0x0000000000003798       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-readr.o)
- .debug_frame   0x00000000000037c4       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fstatr.o)
- .debug_frame   0x00000000000037f0       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-isattyr.o)
- .debug_frame   0x000000000000381c       0x28 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memmove.o)
- .debug_frame   0x0000000000003844       0x3c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-reallocr.o)
- .debug_frame   0x0000000000003880       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-msizer.o)
+ .debug_frame   0x00000000000019b4       0x58 Example/User/config_wifi.o
+ .debug_frame   0x0000000000001a0c       0x88 Example/User/console.o
+ .debug_frame   0x0000000000001a94       0xa8 Example/User/main.o
+ .debug_frame   0x0000000000001b3c       0xa0 Example/User/stm32_xx_hal_msp.o
+ .debug_frame   0x0000000000001bdc      0x17c Example/User/stm32_xx_it.o
+ .debug_frame   0x0000000000001d58      0x174 Example/User/syscalls.o
+ .debug_frame   0x0000000000001ecc       0x20 Middlewares/ST/STM32_SPWF0xSy/Utils/wifi_globals.o
+ .debug_frame   0x0000000000001eec      0x930 Middlewares/ST/STM32_SPWF0xSy/wifi_module.o
+ .debug_frame   0x000000000000281c       0x68 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fflush.o)
+ .debug_frame   0x0000000000002884      0x11c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-findfp.o)
+ .debug_frame   0x00000000000029a0       0x54 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fwalk.o)
+ .debug_frame   0x00000000000029f4       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
+ .debug_frame   0x0000000000002a20       0x28 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x0000000000002a48       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
+ .debug_frame   0x0000000000002a68       0x38 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-freer.o)
+ .debug_frame   0x0000000000002aa0       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x0000000000002acc       0x74 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-printf.o)
+ .debug_frame   0x0000000000002b40       0x3c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-puts.o)
+ .debug_frame   0x0000000000002b7c       0x5c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-reent.o)
+ .debug_frame   0x0000000000002bd8       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sbrkr.o)
+ .debug_frame   0x0000000000002c04       0x6c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sprintf.o)
+ .debug_frame   0x0000000000002c70       0x88 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-stdio.o)
+ .debug_frame   0x0000000000002cf8       0x28 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcat.o)
+ .debug_frame   0x0000000000002d20       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcpy.o)
+ .debug_frame   0x0000000000002d40       0x30 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strstr.o)
+ .debug_frame   0x0000000000002d70       0x40 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wbuf.o)
+ .debug_frame   0x0000000000002db0       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-writer.o)
+ .debug_frame   0x0000000000002ddc       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wsetup.o)
+ .debug_frame   0x0000000000002e08       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-closer.o)
+ .debug_frame   0x0000000000002e34       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-lseekr.o)
+ .debug_frame   0x0000000000002e60       0x58 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-makebuf.o)
+ .debug_frame   0x0000000000002eb8       0x30 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
+ .debug_frame   0x0000000000002ee8       0x90 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-svfprintf.o)
+ .debug_frame   0x0000000000002f78       0xac /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf.o)
+ .debug_frame   0x0000000000003024       0x60 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-vfprintf_i.o)
+ .debug_frame   0x0000000000003084       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-readr.o)
+ .debug_frame   0x00000000000030b0       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-fstatr.o)
+ .debug_frame   0x00000000000030dc       0x2c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-isattyr.o)
+ .debug_frame   0x0000000000003108       0x28 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memmove.o)
+ .debug_frame   0x0000000000003130       0x3c /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-reallocr.o)
+ .debug_frame   0x000000000000316c       0x20 /Users/JeremyLanfranchi/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.macos64_1.16.0.201807130628/tools/compiler/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-msizer.o)

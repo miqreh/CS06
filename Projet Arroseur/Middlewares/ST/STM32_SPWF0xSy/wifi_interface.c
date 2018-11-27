@@ -1997,12 +1997,6 @@ WiFi_Status_t wifi_ap_start(uint8_t * ssid, char * sec_key, uint8_t channel_num,
   
 
 
-
-
-  
-  printf("\r\Apres eteignage wifi\r\n");
-
-
   /* Set the network privacy mode : AT+S.SCFG=wifi_priv_mode,mode*/ 
    status = SET_Configuration_Value(WIFI_PRIV_MODE, priv_mode); 
   if(status != WiFi_MODULE_SUCCESS)
@@ -2136,9 +2130,13 @@ WiFi_Status_t wifi_connect(char * ssid, char * sec_key, WiFi_Priv_Mode priv_mode
     if(status != WiFi_MODULE_SUCCESS) return status;
     else IO_status_flag.radio_off = WIFI_TRUE;
   }
-  while(IO_status_flag.WiFi_WIND_State != WiFiPowerDown);//Till +WIND:38:WiFi Powered Down arrives
-#endif
   
+
+  //while(IO_status_flag.WiFi_WIND_State != WiFiPowerDown);//Till +WIND:38:WiFi Powered Down arrives
+
+
+ #endif
+
    /* Set the network privacy mode : AT+S.SCFG=wifi_priv_mode,2*/ 
    status = SET_Configuration_Value(WIFI_PRIV_MODE, priv_mode);
    if(status != WiFi_MODULE_SUCCESS)
@@ -2475,7 +2473,7 @@ WiFi_Status_t wifi_disconnect(void)
     else IO_status_flag.radio_off = WIFI_TRUE;
   }
   
-  while(IO_status_flag.WiFi_WIND_State!= WiFiPowerDown);//Till +WIND:38:WiFi Powered Down arrives
+  //while(IO_status_flag.WiFi_WIND_State!= WiFiPowerDown);//Till +WIND:38:WiFi Powered Down arrives
 #endif
   
   /* Set wifi_mode to idle*/
@@ -2604,7 +2602,7 @@ WiFi_Status_t wifi_restore()
     else IO_status_flag.radio_off = WIFI_TRUE;
   }
   
-  while(IO_status_flag.WiFi_WIND_State!= WiFiPowerDown);//Till +WIND:38:WiFi Powered Down arrives
+  //while(IO_status_flag.WiFi_WIND_State!= WiFiPowerDown);//Till +WIND:38:WiFi Powered Down arrives
 #endif  
   /* Set wifi_mode to idle*/
   SET_Configuration_Value(WIFI_MODE, WiFi_IDLE_MODE);

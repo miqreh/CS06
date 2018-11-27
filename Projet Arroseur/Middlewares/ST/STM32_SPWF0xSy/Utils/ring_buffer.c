@@ -64,6 +64,13 @@
 
 static uint8_t ring_buffer[RINGBUF_SIZE];       /* Default size for ring buffer */
 
+
+void print_ring_buffer(void){
+
+	printf("\rRING BUFFER : %s\r\n", ring_buffer);
+
+}
+
 #define ELEMENT_SIZE 1
 
 /**
@@ -88,6 +95,7 @@ void init(buffer_t *buffer, int size)
     buffer->count = 0;
     buffer->end = 0;
     buffer->element = ring_buffer;
+    printf("\rRING BUFFER : %s\r\n", ring_buffer[0]);
 }
 
 /**
@@ -100,6 +108,7 @@ void flush_buffer_queue(buffer_t *buffer)
 {
   buffer->start = buffer->end;  //the tail goes up to the head and buffer becomes empty
   buffer->count = 0;
+  printf("\rRING BUFFER : %s\r\n", ring_buffer[0]);
 }
 
 /**
@@ -133,6 +142,7 @@ int is_half_empty(buffer_t *buffer)
 int full(buffer_t *buffer) 
 {
   return buffer->count == RINGBUF_SIZE ? 1 :0;
+  printf("\rRING BUFFER : %s\r\n", ring_buffer[0]);
 }
 
 /**
@@ -155,6 +165,7 @@ int empty(buffer_t *buffer)
   */
 void push_buffer_queue(buffer_t *buffer, uint8_t *data) 
 {
+	printf("\rRING BUFFER : %s\r\n", ring_buffer[0]);
   if (full(buffer)) 
     {
       return;
@@ -175,6 +186,7 @@ void push_buffer_queue(buffer_t *buffer, uint8_t *data)
   */ 
 uint8_t * pop_buffer_queue(buffer_t *buffer) 
 {
+	printf("\rRING BUFFER : %s\r\n", ring_buffer[0]);
   uint8_t * element;
 
   element = &pop_buffer[0];
@@ -185,7 +197,7 @@ uint8_t * pop_buffer_queue(buffer_t *buffer)
     } 
   else
     {
-      memset(pop_buffer, 0x00 , MAX_BUFFER_GLOBAL);
+      memset(pop_buffer, 0x00 , ELEMENT_SIZE);
       if(WiFi_Control_Variables.enable_receive_data_chunk)
         {
                     /* popping only 200 bytes at a time  */
@@ -256,6 +268,7 @@ uint8_t * pop_buffer_queue(buffer_t *buffer)
   */ 
 void rewind_buffer_queue(buffer_t *buffer , int count)
 {
+	printf("\rRING BUFFER : %s\r\n", ring_buffer[0]);
     int buf_end = buffer->end;
     if(buffer->start - count >= 0)
       {

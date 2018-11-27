@@ -42,6 +42,8 @@
 #include "wifi_module.h"
 #include "stm32_spwf_wifi.h"
 #include "wifi_globals.h"
+#include "wifi_module.h"
+
 
 /** @defgroup STM32xx_IT_Private_Variables
 * @{
@@ -73,6 +75,18 @@ void DMA_WIFI_IRQHANDLER(void);
 /******************************************************************************/
 /*            Cortex-M3 Processor Exceptions Handlers                         */
 /******************************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
   * @brief   This function handles NMI exception.
@@ -237,7 +251,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 * @retval None
 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{ 
+{
+
+	printf("\rON EST DANS HAL_TIM_PeriodElapsedCallback\n");
 #ifndef WIFI_USE_VCOM
   Wifi_TIM_Handler(htim);
 #endif
@@ -246,11 +262,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 /**
 * @brief  HAL_UART_RxCpltCallback
 *         Rx Transfer completed callback
-* @param  UsartHandle: UART handle 
+* @param  UsartHandle: UART handle
 * @retval None
 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandleArg)
 {
+	printf("\rON EST DANS HAL UART RX CPLT CALLBACK\n");
+
 #ifndef WIFI_USE_VCOM
   WiFi_HAL_UART_RxCpltCallback(UartHandleArg);
 #endif
@@ -278,6 +296,8 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *UartHandleArg)
   */
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *UartHandle)
 {
+	printf("\rON EST DANS HAL_UART_ErrorCallback\n");
+
   WiFi_HAL_UART_ErrorCallback(UartHandle);
 }
 
@@ -317,7 +337,7 @@ void DMA1_Stream5_IRQHandler(void)
 {
    if(LL_DMA_IsActiveFlag_TC5(DMA1) == 1)
   {
-    LL_DMA_ClearFlag_TC5(DMA1);    
+    LL_DMA_ClearFlag_TC5(DMA1);
     DMA1_TransferComplete();
   }
 }
@@ -326,7 +346,7 @@ void DMA2_Stream2_IRQHandler(void)
 {
    if(LL_DMA_IsActiveFlag_TC2(DMA2) == 1)
   {
-    LL_DMA_ClearFlag_TC2(DMA2);    
+    LL_DMA_ClearFlag_TC2(DMA2);
     DMA2_TransferComplete();
   }
 }
@@ -337,16 +357,16 @@ void DMA1_Channel6_IRQHandler(void)
 {
    if(LL_DMA_IsActiveFlag_TC6(DMA1) == 1)
   {
-    LL_DMA_ClearFlag_TC6(DMA1);    
+    LL_DMA_ClearFlag_TC6(DMA1);
     DMA1_TransferComplete();
   }
-} 
+}
 
 void DMA1_Channel5_IRQHandler(void)
 {
    if(LL_DMA_IsActiveFlag_TC5(DMA1) == 1)
   {
-    LL_DMA_ClearFlag_TC5(DMA1);    
+    LL_DMA_ClearFlag_TC5(DMA1);
     DMA2_TransferComplete();
   }
 }
@@ -359,7 +379,7 @@ void DMA_CONSOLE_IRQHANDLER(void)
 {
   if(LL_DMA_IsActiveFlag_TC5(DMA1) == 1)
   {
-    LL_DMA_ClearFlag_TC5(DMA1);    
+    LL_DMA_ClearFlag_TC5(DMA1);
     DMA1_TransferComplete();
   }
 }
@@ -368,7 +388,7 @@ void DMA_WIFI_IRQHANDLER(void)
 {
   if(LL_DMA_IsActiveFlag_TC3(DMA1) == 1)
   {
-    LL_DMA_ClearFlag_TC3(DMA1);    
+    LL_DMA_ClearFlag_TC3(DMA1);
     DMA2_TransferComplete();
   }
 }
@@ -406,7 +426,7 @@ void DMA_CONSOLE_IRQHANDLER(void)
 {
   if(DMA_IsActiveFlag_TC6(DMA1) == 1)
   {
-    DMA_ClearFlag_TC6(DMA1);    
+    DMA_ClearFlag_TC6(DMA1);
     DMA1_TransferComplete();
   }
 }
@@ -415,7 +435,7 @@ void DMA_WIFI_IRQHANDLER(void)
 {
   if(DMA_IsActiveFlag_TC5(DMA1) == 1)
   {
-    DMA_ClearFlag_TC5(DMA1);    
+    DMA_ClearFlag_TC5(DMA1);
     DMA2_TransferComplete();
   }
 }

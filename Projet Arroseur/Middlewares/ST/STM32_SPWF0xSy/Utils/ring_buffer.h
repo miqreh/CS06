@@ -44,6 +44,10 @@
 #ifndef __RING_BUFFER_H
 #define __RING_BUFFER_H
 
+
+
+void print_ring_buffer(void);
+
 /** @addtogroup BSP
 * @{
 */ 

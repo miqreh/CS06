@@ -695,6 +695,7 @@ HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, u
   */
 HAL_StatusTypeDef HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout)
 { 
+
   uint16_t* tmp;
   uint32_t tickstart = 0U;
   
@@ -765,6 +766,8 @@ HAL_StatusTypeDef HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, ui
     /* Process Unlocked */
     __HAL_UNLOCK(huart);
     
+    //printf("\rON EST DANS HAL UART RECEIVE\n");
+
     return HAL_OK;
   }
   else
@@ -825,6 +828,9 @@ HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, uint8_t *pData
   */
 HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
 {
+
+
+
   /* Check that a Rx process is not already ongoing */ 
   if(huart->RxState == HAL_UART_STATE_READY)
   {
@@ -852,6 +858,8 @@ HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData,
     /* Enable the UART Parity Error and Data Register not empty Interrupts */
     SET_BIT(huart->Instance->CR1, USART_CR1_PEIE | USART_CR1_RXNEIE);
     
+   // printf("\rON EST DANS HAL UART RECEIVE IT\n");
+
     return HAL_OK;
   }
   else
@@ -935,6 +943,8 @@ HAL_StatusTypeDef HAL_UART_Transmit_DMA(UART_HandleTypeDef *huart, uint8_t *pDat
   */
 HAL_StatusTypeDef HAL_UART_Receive_DMA(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
 {
+
+
   uint32_t *tmp;
   
   /* Check that a Rx process is not already ongoing */
@@ -942,6 +952,7 @@ HAL_StatusTypeDef HAL_UART_Receive_DMA(UART_HandleTypeDef *huart, uint8_t *pData
   {
     if((pData == NULL ) || (Size == 0U)) 
     {
+    	//printf("\rON EST DANS HAL UART RECEIVE DMA -- HAL Error\n");
       return HAL_ERROR;
     }
 
@@ -984,10 +995,13 @@ HAL_StatusTypeDef HAL_UART_Receive_DMA(UART_HandleTypeDef *huart, uint8_t *pData
     /* Process Unlocked */
     __HAL_UNLOCK(huart);
     
+   // printf("\rON EST DANS HAL UART RECEIVE DMA -- fonction OK\n");
+
     return HAL_OK;
   }
   else
   {
+	//printf("\rON EST DANS HAL UART RECEIVE DMA -- HAL Busy\n");
     return HAL_BUSY; 
   }
 }
@@ -1116,6 +1130,7 @@ HAL_StatusTypeDef HAL_UART_DMAStop(UART_HandleTypeDef *huart)
   */
 void HAL_UART_IRQHandler(UART_HandleTypeDef *huart)
 {
+
    uint32_t isrflags   = READ_REG(huart->Instance->SR);
    uint32_t cr1its     = READ_REG(huart->Instance->CR1);
    uint32_t cr3its     = READ_REG(huart->Instance->CR3);
@@ -1126,10 +1141,12 @@ void HAL_UART_IRQHandler(UART_HandleTypeDef *huart)
   errorflags = (isrflags & (uint32_t)(USART_SR_PE | USART_SR_FE | USART_SR_ORE | USART_SR_NE));
   if(errorflags == RESET)
   {
+
     /* UART in mode Receiver -------------------------------------------------*/
     if(((isrflags & USART_SR_RXNE) != RESET) && ((cr1its & USART_CR1_RXNEIE) != RESET))
     {
       UART_Receive_IT(huart);
+     // printf("\rOn est dans la fonction HAL_UART_IRQHandler avec huart = %s\n", huart->pRxBuffPtr);
       return;
     }
     
@@ -1138,6 +1155,7 @@ void HAL_UART_IRQHandler(UART_HandleTypeDef *huart)
     { 
       __HAL_UART_CLEAR_IDLEFLAG(huart);
       HAL_UART_IdleCallback(huart);
+     // printf("\rOn est dans la fonction HAL_UART_IRQHandler avec huart = %s\n", huart->pRxBuffPtr);
       return;
     }
   }
@@ -1281,6 +1299,8 @@ void HAL_UART_IRQHandler(UART_HandleTypeDef *huart)
   */
 __weak void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
+	//printf("\rON EST DANS HAL UART RXCPLT CALLBACK\n");
+
   /* Prevent unused argument(s) compilation warning */
   UNUSED(huart);
   /* NOTE: This function Should not be modified, when the callback is needed,
@@ -1311,6 +1331,7 @@ __weak void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef *huart)
   */
  __weak void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 {
+	 //printf("\rHAL UART ERRORCALLBACK\n");
   /* Prevent unused argument(s) compilation warning */
   UNUSED(huart); 
   /* NOTE: This function Should not be modified, when the callback is needed,
@@ -1599,6 +1620,10 @@ static void UART_DMATxHalfCplt(DMA_HandleTypeDef *hdma)
   */
 static void UART_DMAReceiveCplt(DMA_HandleTypeDef *hdma)
 {
+
+	//printf("\rON EST DANS UART_DMAReceiveCplt\n");
+
+
   UART_HandleTypeDef* huart = ( UART_HandleTypeDef* )((DMA_HandleTypeDef* )hdma)->Parent;
   /* DMA Normal mode*/
   if((hdma->Instance->CR & DMA_SxCR_CIRC) == 0U)
@@ -1862,6 +1887,7 @@ static HAL_StatusTypeDef UART_Receive_IT(UART_HandleTypeDef *huart)
       huart->RxState = HAL_UART_STATE_READY;
      
       HAL_UART_RxCpltCallback(huart);
+
 
       return HAL_OK;
     }

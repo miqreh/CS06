@@ -206,9 +206,15 @@ void unused_data_handling(uint32_t length_of_data)
 */
 void Read_DMA_Buffer()
 {
+
+	printf("\rON EST DANS READ DMA BUFFER\r\n");
+
   /* is there data in the buffer? */
   if(*(dma_buffer_ptr + WiFi_Counter_Variables.dma_buffer_count) != 0x00)
   {
+
+	  printf("\rIL Y A QUELQUE CHOSE DANS LE BUFFER DMA\r\n");
+
     Process_DMA_Buffer();
     if(WiFi_Counter_Variables.dma_buffer_count != 0 && (WiFi_Counter_Variables.dma_buffer_count !=WiFi_Counter_Variables.dma_buffer_previous_index))
     {
@@ -306,6 +312,11 @@ wifi_bool is_End_of_Buffer_Reached()
 */
 void Process_DMA_Buffer(void)
 {
+
+
+	printf("\rON EST DANS PROCESS DMA BUFFER\r\n");
+
+
   int wind_no;
   WiFi_Control_Variables.complete_message_recv = WIFI_TRUE;
   const char* pStr;
@@ -581,6 +592,10 @@ void Process_DMA_Buffer(void)
 
 void Process_DMA_Buffer_Messages(int idn, int wind_no, uint8_t * ptr)
 {
+
+
+	printf("\rON EST DANS PROCESS DMA BUFFER MESSAGES\r\n");
+
   static uint32_t Fillptr=0;
   char SocketId_No[2];
   char databytes_No[4];
