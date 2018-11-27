@@ -58,7 +58,8 @@ def declencher_arrosage():
 
 def programmer_arrosage(secondes):
     schedule.every(secondes).seconds.do(test).tag(config.tag)
-    message = "\r\n Arrosage programmé toutes les " + str(secondes) + " secondes"
+    date = datetime.datetime.now()+ datetime.timedelta(seconds=secondes)
+    message = "\r\n Arrosage programmé le " + str(date)
     log(message)
     print(message)
     # les traiter
@@ -91,7 +92,7 @@ def refresh_from_database():
 
 
 # Mettre à jour les plannings programmés toutes les heures
-schedule.every(30).seconds.do(clear_schedule)
+schedule.every(10).seconds.do(clear_schedule)
 
 # Souscription aux différents topics
 client.subscribe([(topicDeclenchement, QoS), (topicProgrammation, QoS)])

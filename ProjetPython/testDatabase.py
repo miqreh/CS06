@@ -3,13 +3,13 @@ import database
 import datetime
 
 # # Query pour avoir tous les plannings
-# query = 'Select * From planning inner join zone on planning.idprog = zone.idprog where date_arrosage >= NOW()'
+query = 'Select * From planning inner join zone on planning.idprog = zone.idprog where date_arrosage >= NOW()'
 #
-# database.cursor.execute(query)
+database.cursor.execute(query)
 
 # (t-datetime.datetime(1970,1,1)).total_seconds()
 # Je recupère les résultats puis j'obtiens le nombre de secondes avant prochaine exécution puis je plannifie
-# results = database.cursor.fetchall()
+results = database.cursor.fetchall()
 
 
 def convert_date(x, y, z):
@@ -32,9 +32,9 @@ def seconds_remaining(date):
     now = datetime.datetime.now()
     return (date - now).total_seconds()
 
-# for d in results:
-# print(d)
-# date = date_to_datetime(d['date_arrosage'],d['heure_debut'])
-# print(date)
-# seconds = seconds_remaining(date)
-# print(seconds)
+for d in results:
+    print(d)
+    date = date_to_datetime(d['date_arrosage'],d['heure_debut'])
+    print(date)
+    seconds = seconds_remaining(date)
+    print(seconds)
