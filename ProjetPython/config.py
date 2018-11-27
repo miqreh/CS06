@@ -3,11 +3,19 @@
 #broker_address = "89.156.159.82"
 broker_address="localhost"
 ClientID = "RaspberryArroseur"
-# Topics
+# Topics pour envoyer des ordres à la nucleo
 topicDeclenchement = "arroseur/declenchement"
 topicArret="arroseur/arret"
 topicProgrammation = "arroseur/programmation"
-topicMonitoring = "arroseur/monitoring"
+
+#Topics pour recevoir des commandes du site web
+
+topicDeclenchementManuel = "raspberry/declenchementManuel"
+topicArretManuel = "raspberry/arretManuel"
+topicNouveauPlanning = "raspberry/maj"
+
+# Topic de monitoring
+topicMonitoring = "monitoring"
 
 # tag pour les jobs
 tag = "plannings"

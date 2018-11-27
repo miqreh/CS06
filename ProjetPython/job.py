@@ -28,12 +28,12 @@ client.connect(broker_address,port)  # connect to broker
 def on_message(client_mqtt, userdata, msg):
     log(msg.payload, msg.topic, client_mqtt)
     print(msg.topic + " " + str(msg.payload))
-    if msg.topic == config.topicDeclenchement:
-        if msg.payload == "Manuel":
-            declencher_arrosage()
-    elif msg.topic == config.topicProgrammation:
-        secondes = int(str(msg.payload).replace("b", "").replace("'", ""))
-        programmer_arrosage(secondes)
+    if msg.topic == config.topicDeclenchementManuel:
+        declenchement_manuel(msg)
+    elif msg.topic == config.topicArretManuel:
+        eteindre_arrosage()
+    elif msg.topic == config.topicNouveauPlanning:
+        clear_schedule()
 
 
 def log(message, topic="", client_mqtt=""):
@@ -108,6 +108,13 @@ def refresh_from_database():
         duree = d["duree"]
 
         programmer_arrosage(seconds,zones,round(duree.seconds))
+
+
+def declenchement_manuel(msg):
+    #recuperer les zones du messages
+    zones =""
+    #declencher_arrosage(zones)
+    print("declenchement_manuel\r\n")
 
 
 # Mettre à jour les plannings programmés toutes les heures
