@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+import pymysql.cursors
 #représente la connexion à la base de données
 # DBhost="89.156.159.82"
 # DBuser="root"
@@ -12,7 +12,7 @@ DBuser="root"
 DBpwd=""
 Db="arrosage"
 
-import pymysql.cursors
+
 # Connexion en local
 db = pymysql.connect(host=DBhost,
                       user=DBuser,

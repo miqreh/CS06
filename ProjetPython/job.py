@@ -119,7 +119,7 @@ def declenchement_manuel(msg):
 
 # Mettre à jour les plannings programmés toutes les heures
 schedule.every(10).seconds.do(clear_schedule)
-
+clear_schedule()
 # Souscription aux différents topics
 client.subscribe([(topicDeclenchement, QoS), (topicProgrammation, QoS)])
 client.subscribe(topicDeclenchement, QoS)
