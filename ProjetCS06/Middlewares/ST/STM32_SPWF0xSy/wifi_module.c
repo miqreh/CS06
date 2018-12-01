@@ -691,7 +691,6 @@ void Wifi_TIM_Handler(TIM_HandleTypeDef *htim)
   **********************************************************************/
   WiFi_Status_t status = WiFi_MODULE_SUCCESS;
   HAL_StatusTypeDef HAL_status = HAL_OK;
-
   if(WiFi_Control_Variables.stop_event_dequeue == WIFI_FALSE)
   {
     __disable_irq();
@@ -820,6 +819,7 @@ void Wifi_TIM_Handler(TIM_HandleTypeDef *htim)
             break;
 
           case WIFI_MQTT_EVENT:
+        	  printf("\r\n Wifi Mqtt event wifi module .c ligne 822 \r\n");
             Reset_AT_CMD_Buffer();
             if(mqtt_type == CONNECT || mqtt_type == SUBSCRIBE || mqtt_type == UNSUBSCRIBE || mqtt_type == DISCONNECT)
             {
@@ -833,6 +833,7 @@ void Wifi_TIM_Handler(TIM_HandleTypeDef *htim)
                   run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
                   IO_status_flag.AT_event_processing = WIFI_MQTT_CONNECT_EVENT;
                   status = WiFi_MODULE_SUCCESS;//@TBD: Check return error code from run_spi_cmd
+                  printf("\r\n Wifi Mqtt Connect!!!!!!!!!! \r\n");
                 #endif
               }
               else if(mqtt_type == SUBSCRIBE)
@@ -1768,6 +1769,7 @@ void Wifi_TIM_Handler(TIM_HandleTypeDef *htim)
             }
     else if(WiFi_Control_Variables.Mqtt_Data_Publish_Callback)
             {
+    		printf("Data Received!\r\n");
               WiFi_Control_Variables.Mqtt_Data_Publish_Callback = WIFI_FALSE;
               ind_wifi_mqtt_data_received(WiFi_Counter_Variables.Socket_Open_ID,WiFi_Counter_Variables.temp,WiFi_Counter_Variables.number_of_bytes,WiFi_Counter_Variables.chunk_size,WiFi_Counter_Variables.message_size,(uint8_t *)UserDataBuff);
               WiFi_Control_Variables.stop_event_dequeue = WIFI_FALSE;

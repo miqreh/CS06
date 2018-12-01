@@ -2137,7 +2137,6 @@ WiFi_Status_t wifi_connect(char * ssid, char * sec_key, WiFi_Priv_Mode priv_mode
 
 	  WiFi_Control_Variables.WiFi_Configuration_Done = WIFI_TRUE;
 	  WiFi_Control_Variables.AT_Cmd_Ongoing = WIFI_FALSE;
-
 	  return status;
 }
 

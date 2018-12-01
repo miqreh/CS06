@@ -714,10 +714,22 @@ void ProcessEndOfReceive(KIND_OF_PACKET_t kop, WiFi_Indication_t wind_no)
 {  
 		//printf("\r\nWind no dans debut PorcessEndOfReceive : %d\r\n", wind_no);
 		//printf("\r\nkop dans debut PorcessEndOfReceive : %d\r\n", kop);
+	printf("\r\n Wind no : %d ",wind_no);
+	if ((dataBuff!=NULL) && (wind_no==86))
+	{
+		printf("\r\n DataBuff : %s",dataBuff);
+		//WiFi_Control_Variables.mqtt_data_available=1;
+	}
+	if ((dataBuff!=NULL) && (WiFi_Control_Variables.mqtt_data_available))
+		{
+			printf("\r\n DataBuff MQTT : %s ",dataBuff);
+           // ind_wifi_mqtt_data_received(client_id,process_buffer,strlen(dataBuff),message_size,total_message_size,(uint8_t *)dataBuff);
 
-	   if((dataBuff != NULL) && (wind_no==-1) && (kop==5) && (strcmp((char*)dataBuff,"fw_version=1.0.0")!=13)){
-			  message_from_html_post(dataBuff);
+			//WiFi_Control_Variables.mqtt_data_available=1;
 		}
+	   /*if((dataBuff != NULL) && (wind_no==-1) && (kop==5) && (strcmp((char*)dataBuff,"fw_version=1.0.0")!=13)){
+			  message_from_html_post(dataBuff);
+		}*/
 
 
   ReceiveClosure();
@@ -820,7 +832,7 @@ void WiFi_SPI_Write(uint8_t* header_data, uint8_t* payload_data, uint8_t header_
 */
 void Process_Packet(KIND_OF_PACKET_t kop, WiFi_Indication_t wind_no)
 {
-
+	//printf("Process Packet : wifi mdule spi\r\n");
   static uint8_t error_state;
   char * process_buffer_ptr = (char*)dataBuff; //stores the starting address of the payload.
   char SocketId_No[2];
@@ -828,7 +840,7 @@ void Process_Packet(KIND_OF_PACKET_t kop, WiFi_Indication_t wind_no)
   static uint8_t sock_read_header_count=0;
   
   reset_event(&wifi_instances.wifi_event);
-  
+
         switch(kop)
         {
         case SPI_WIND_PACKET:
@@ -1472,9 +1484,9 @@ void Process_Wind_Payload(WiFi_Indication_t wind_no)
   char *token;
   
 #if DEBUG_PRINT
-  //printf(" \r\n");
-  //printf((const char*)dataBuff);
-  //fflush(stdout);
+  printf(" \r\n");
+  printf((const char*)dataBuff);
+  fflush(stdout);
 #endif
   int i;
 
@@ -1720,6 +1732,7 @@ AT+S.SCFG=console_enabled,0
 /* SPI DMA Transmit*/
 void SPI_Send_AT_Command(int offset, int mode)
 {
+	printf("\r\nCommande envoyee");
   tx_payload_data = WiFi_SPI_Packet;  
   
 #if DEBUG_PRINT
@@ -2026,7 +2039,7 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
               }
             else if (payload_len == 0 && error_state!= 0x00)
               {
-                    //printf("\r\n>>Error Condition!!\r\n");
+                    //("\r\n>>Error Condition!!\r\n");
                     Disable_SPI_CS(); 
                     ProcessEndOfReceive(SPI_ERROR_PACKET, Invalid_Wind);
               }

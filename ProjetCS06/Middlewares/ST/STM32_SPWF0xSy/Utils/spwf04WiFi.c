@@ -62,6 +62,7 @@ struct console_cmd {
 	u8 id;
 };
 
+
 #define CONSOLE_CMD(__id, __c, __f, __s, __h)				{ .id = __id, .cmd = __c , .func = __f , .show = __s, .help = __h }
 #define CONSOLE_CMD2(__id, __c, __f, __s, __a, __h)	{ .id = __id, .cmd = __c , .func = __f , .show = __s, .help = __h, .args = __a }
 
