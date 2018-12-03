@@ -725,17 +725,17 @@ void ProcessEndOfReceive(KIND_OF_PACKET_t kop, WiFi_Indication_t wind_no)
 	printf("\r\n Wind no : %d ",wind_no);
 	if ((dataBuff!=NULL) && (wind_no==86))
 	{
-		printf("\r\nMessage MQTT: %s\r\n ",dataBuff);
+		//printf("\r\nMessage MQTT: %s\r\n ",dataBuff);
+		// On recoit d'abord le topic avant de recevoir les informations
 		strcpy(topic,dataBuff);
+		supprimer_characteres(topic,2,0);
 		//WiFi_Control_Variables.mqtt_data_available=1;
 	}
 	if ((dataBuff!=NULL) && (WiFi_Control_Variables.mqtt_data_available))
 		{
 
- 			printf("\r\n DataBuff MQTT : %s \r\n Topic: %s ",dataBuff,topic);
-           // ind_wifi_mqtt_data_received(client_id,process_buffer,strlen(dataBuff),message_size,total_message_size,(uint8_t *)dataBuff);
-
-			//WiFi_Control_Variables.mqtt_data_available=1;
+ 			//printf("\r\n DataBuff MQTT : %s \r\n Topic: %s ",dataBuff,topic);
+           	   traitement_message(dataBuff,topic);
 		}
 	   /*if((dataBuff != NULL) && (wind_no==-1) && (kop==5) && (strcmp((char*)dataBuff,"fw_version=1.0.0")!=13)){
 			  message_from_html_post(dataBuff);
