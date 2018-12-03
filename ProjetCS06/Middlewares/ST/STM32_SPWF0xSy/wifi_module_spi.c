@@ -115,6 +115,10 @@ void Process_Wind_Payload(WiFi_Indication_t wind_no);
 void ReceiveClosure(void);
 #endif
 
+/*Mes variables perso*/
+
+char topic[100] = {0};
+
 void no_op(int dummy) { }
 
 #if defined(SPWF04) && !defined(CONSOLE_UART_ENABLED)
@@ -593,10 +597,14 @@ void WiFi_DMA_RxCallback(void)
       case SPI_RECEIVE_PAYLOAD_DATA:
           //Data or AT Cmd Payload 
           /*Next a header should arrive if there is more data*/
-
-    	  	  Disable_SPI_CS();
+    	  Disable_SPI_CS();
+    	 /* if(last_wind==MQTT_Published)
+    	  {
+    		  ProcessEndOfReceive(SPI_DATA_PAYLOAD_PACKET,last_wind);
+    	  }else{
           ProcessEndOfReceive(SPI_DATA_PAYLOAD_PACKET,Invalid_Wind);
-
+    	  }*/
+    	  ProcessEndOfReceive(SPI_DATA_PAYLOAD_PACKET,Invalid_Wind);
         break;
       
       case SPI_RECEIVE_INTERIM_PAYLOAD_DATA:   
@@ -717,12 +725,14 @@ void ProcessEndOfReceive(KIND_OF_PACKET_t kop, WiFi_Indication_t wind_no)
 	printf("\r\n Wind no : %d ",wind_no);
 	if ((dataBuff!=NULL) && (wind_no==86))
 	{
-		printf("\r\n DataBuff : %s",dataBuff);
+		printf("\r\nMessage MQTT: %s\r\n ",dataBuff);
+		strcpy(topic,dataBuff);
 		//WiFi_Control_Variables.mqtt_data_available=1;
 	}
 	if ((dataBuff!=NULL) && (WiFi_Control_Variables.mqtt_data_available))
 		{
-			printf("\r\n DataBuff MQTT : %s ",dataBuff);
+
+ 			printf("\r\n DataBuff MQTT : %s \r\n Topic: %s ",dataBuff,topic);
            // ind_wifi_mqtt_data_received(client_id,process_buffer,strlen(dataBuff),message_size,total_message_size,(uint8_t *)dataBuff);
 
 			//WiFi_Control_Variables.mqtt_data_available=1;
@@ -1636,11 +1646,14 @@ void Process_Wind_Payload(WiFi_Indication_t wind_no)
       case MQTT_Closed:
         /*+WIND:87:MQTT Closed:<Client ID> */
         wifi_instances.wifi_event.socket_id = ((*process_buffer_ptr) - '0');//This is the MQTT client ID
+        ind_wifi_mqtt_closed(wifi_instances.wifi_event.socket_id);
+        printf("Je ferme wifi module spi\r\n");
         break;
 
       // Queueing of following events not required.
       case MQTT_Published:
           WiFi_Control_Variables.mqtt_data_available = WIFI_TRUE;
+          printf("Je publie wifi module spi\r\n");
       case Console_Active:
       case WiFi_Reset:
       case Watchdog_Running:
@@ -1732,7 +1745,7 @@ AT+S.SCFG=console_enabled,0
 /* SPI DMA Transmit*/
 void SPI_Send_AT_Command(int offset, int mode)
 {
-	printf("\r\nCommande envoyee");
+	//printf("\r\nCommande envoyee");
   tx_payload_data = WiFi_SPI_Packet;  
   
 #if DEBUG_PRINT
