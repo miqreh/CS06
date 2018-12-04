@@ -68,11 +68,43 @@ def eteindre_arrosage():
     return schedule.CancelJob()
 
 
-def programmer_arrosage(secondes,zones,duree):
-    schedule.every(secondes).seconds.do(declencher_arrosage,zones).tag(config.tag)
-    schedule.every(secondes+duree).seconds.do(eteindre_arrosage).tag(config.tag)
-    date = datetime.datetime.now()+ datetime.timedelta(seconds=secondes)
-    message = "\r\n Arrosage programmé le " + str(date) + " pendant "+ str(datetime.timedelta(seconds=duree))
+def programmer_arrosage(day,hour,zones,duree):
+
+    hour_start = functions.timedelta_to_hour_str(hour)
+    hour_stop = functions.timedelta_to_hour_str(hour + datetime.timedelta(minutes=duree))
+    jour="unknown"
+    if day == 1:
+        jour="lundi"
+        schedule.every().monday.at(hour_start).do(declencher_arrosage, zones).tag(config.tag)
+        schedule.every().monday.at(hour_stop).do(eteindre_arrosage).tag(config.tag)
+    elif day == 2:
+        jour="mardi"
+        schedule.every().tuesday.at(hour_start).do(declencher_arrosage, zones).tag(config.tag)
+        schedule.every().tuesday.at(hour_stop).do(eteindre_arrosage).tag(config.tag)
+    elif day == 3:
+        jour="mercredi"
+        schedule.every().wednesday.at(hour_start).do(declencher_arrosage, zones).tag(config.tag)
+        schedule.every().wednesday.at(hour_stop).do(eteindre_arrosage).tag(config.tag)
+    elif day == 4:
+        jour="jeudi"
+        schedule.every().thursday.at(hour_start).do(declencher_arrosage, zones).tag(config.tag)
+        schedule.every().thursday.at(hour_stop).do(eteindre_arrosage).tag(config.tag)
+    elif day == 5:
+        jour="vendredi"
+        schedule.every().friday.at(hour_start).do(declencher_arrosage, zones).tag(config.tag)
+        schedule.every().friday.at(hour_stop).do(eteindre_arrosage).tag(config.tag)
+    elif day == 6:
+        jour="samedi"
+        schedule.every().saturday.at(hour_start).do(declencher_arrosage, zones).tag(config.tag)
+        schedule.every().saturday.at(hour_stop).do(eteindre_arrosage).tag(config.tag)
+    elif day == 7:
+        jour="dimanche"
+        schedule.every().sunday.at(hour_start).do(declencher_arrosage, zones).tag(config.tag)
+        schedule.every().sunday.at(hour_stop).do(eteindre_arrosage).tag(config.tag)
+    else:
+        return
+
+    message = "\r\n Arrosage programmé le " + str(jour) + " de " + hour_start+" juqsu'à "+ hour_stop
     log(message)
     print(message)
     # les traiter
@@ -91,17 +123,17 @@ def clear_schedule():
 def refresh_from_database():
     # Query pour avoir tous les plannings
     #query = 'Select * From planning inner join zone on planning.idprog = zone.idprog where date_arrosage >= NOW()'
-    query ='SELECT * FROM planning INNER JOIN zone on planning.idprog = zone.idprog WHERE convert(CONCAT(date_arrosage," ",heure_debut),datetime) >= now()'
+    # query ='SELECT * FROM planning INNER JOIN zone on planning.idprog = zone.idprog WHERE convert(CONCAT(date_arrosage," ",heure_debut),datetime) >= now()'
+    query = 'SELECT * FROM planning INNER JOIN zone on planning.idprog = zone.idprog inner join jour on planning.idjour = jour.idjour'
 
     database.cursor.execute(query)
     results = database.cursor.fetchall()
 
     for d in results:
         print(d)
-        date = functions.date_to_datetime(d['date_arrosage'], d['heure_debut'])
-        print(date)
-        seconds = functions.seconds_remaining(date)
-        print(seconds)
+        hour = d['heure_debut']
+        print(hour)
+        day = d['jour.idjour']
         zones = {}
         zones["zone1"] = d['zone_1']
         zones["zone2"] = d['zone_2']
@@ -109,7 +141,7 @@ def refresh_from_database():
         print(zones)
         duree = d["duree"]
 
-        programmer_arrosage(seconds,zones,round(duree.seconds))
+        programmer_arrosage(day,hour,zones,round(duree))
 
 
 def declenchement_manuel(msg):

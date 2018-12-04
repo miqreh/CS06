@@ -1,7 +1,7 @@
 import config
 import database
 import datetime
-
+import functions
 
 
 
@@ -24,9 +24,20 @@ def date_to_datetime(date, delta):
 def seconds_remaining(date):
     now = datetime.datetime.now()
     return (date - now).total_seconds()
+
+
+def timedelta_to_hour_str(delta):
+    totsec = delta.total_seconds()
+    h = totsec // 3600
+    m = (totsec % 3600) // 60
+    sec = (totsec % 3600) % 60  # just for reference
+    hour = "%d:%d" % (h, m)
+    return hour
+
+
 # # Query pour avoir tous les plannings
-query = 'SELECT * FROM planning INNER JOIN zone on planning.idprog = zone.idprog WHERE convert(CONCAT(date_arrosage," ",heure_debut),datetime) >= now()'
-#query = 'SELECT * FROM planning INNER JOIN zone on planning.idprog = zone.idprog'
+#query = 'SELECT * FROM planning INNER JOIN zone on planning.idprog = zone.idprog WHERE convert(CONCAT(date_arrosage," ",heure_debut),datetime) >= now()'
+query = 'SELECT * FROM planning INNER JOIN zone on planning.idprog = zone.idprog inner join jour on planning.idjour = jour.idjour'
 
 #
 database.cursor.execute(query)
@@ -37,9 +48,14 @@ database.cursor.execute(query)
 results = database.cursor.fetchall()
 for d in results:
     print(d)
-    date = date_to_datetime(d['date_arrosage'],d['heure_debut'])
-    print(date)
-    seconds = seconds_remaining(date)
-    print(seconds)
+#    date = date_to_datetime(d['date_arrosage'],d['heure_debut'])
+ #   print(date)
+  #  seconds = seconds_remaining(date)
+   # print(seconds)
+
+    hour = functions.timedelta_to_hour_str(d['heure_debut'])
+    print(hour)
+    hour_stop = functions.timedelta_to_hour_str(d['heure_debut'] + datetime.timedelta(minutes=d['duree']))
+    print(hour_stop)
 database.cursor.close()
 database.db.close()
