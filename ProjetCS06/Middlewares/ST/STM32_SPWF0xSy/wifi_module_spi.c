@@ -728,7 +728,7 @@ void ProcessEndOfReceive(KIND_OF_PACKET_t kop, WiFi_Indication_t wind_no)
 		//printf("\r\nMessage MQTT: %s\r\n ",dataBuff);
 		// On recoit d'abord le topic avant de recevoir les informations
 		strcpy(topic,dataBuff);
-		supprimer_characteres(topic,2,0);
+		//supprimer_characteres(topic,2,0);
 		//WiFi_Control_Variables.mqtt_data_available=1;
 	}
 	if ((dataBuff!=NULL) && (WiFi_Control_Variables.mqtt_data_available))
@@ -1653,7 +1653,6 @@ void Process_Wind_Payload(WiFi_Indication_t wind_no)
       // Queueing of following events not required.
       case MQTT_Published:
           WiFi_Control_Variables.mqtt_data_available = WIFI_TRUE;
-          printf("Je publie wifi module spi\r\n");
       case Console_Active:
       case WiFi_Reset:
       case Watchdog_Running:

@@ -44,14 +44,7 @@
 #include "config_wifi.h"
 #include "connexion_mqtt.h"
 
-
-/** DEFINE à inclure dans mon ficier MQTT**/
-#define TOPIC_DECLENCHEMENT "CS06/arroseur/declenchement"
-#define TOPIC_ARRET "CS06/arroseur/arret"
-#define TOPIC_MONITORING "CS06/arroseur/monitoring"
-#define MQTT_HOST "89.156.159.82"
-#define MQTT_PORT 9001
-#define QOS "0"
+extern uint8_t MQTT_connected;
 
 
 /** @defgroup WIFI_Examples
@@ -84,25 +77,11 @@ void  UART_Msg_Gpio_Init(void);
 void  USART_PRINT_MSG_Configuration(UART_HandleTypeDef *UART_MsgHandle, uint32_t baud_rate);
 WiFi_Status_t wifi_get_AP_settings(void);
 
-WiFi_Status_t connexion_MQTT(char *host,uint32_t port);
-WiFi_Status_t subscribe_topic_MQTT(char *topic, char *qos);
-WiFi_Status_t publish_topic_MQTT(char *topic, char *qos, char *msg);
-void configuration_MQTT(void);
-void supprimer_characteres(char * str,uint8_t nombre,uint8_t position);
 
 /* Private Declarartion ------------------------------------------------------*/
 __IO wifi_state_t wifi_state;
 wifi_config config;
 UART_HandleTypeDef UART_MsgHandle;
-
-char * ssid = "STM";
-char * seckey = "STMdemoPWD";
-WiFi_Priv_Mode mode = WPA_Personal;
-char * hostname = "httpbin.org";
-char * post_hostname = "posttestserver.com";
-char * gcfg_key1 = "ip_ipaddr";
-char * gcfg_key2 = "nv_model";
-uint8_t MQTT_connected=0;
 
 
 
@@ -118,9 +97,6 @@ int main(void)
 {
 	 WiFi_Status_t status = WiFi_MODULE_SUCCESS;
 
-	  char * path = "/get";
-	  uint32_t  port_num = 80;
-	  char * post_path = "/post.php/name=demo&email=mymail&subject=subj&body=message";
 
 	  __GPIOA_CLK_ENABLE();
 	  HAL_Init();
@@ -139,12 +115,6 @@ int main(void)
 	  Set_UartMsgHandle(&UART_MsgHandle);
 	#endif
 
-	  status = wifi_get_AP_settings();
-	  if(status!=WiFi_MODULE_SUCCESS)
-	  {
-	    printf("\r\nError in AP Settings");
-	    return 0;
-	  }
 
 	  UART_Configuration(baud_rate);
 
@@ -190,19 +160,7 @@ int main(void)
 		  if(MQTT_connected==0)
 		  {
 			  printf("\r\nConnexion MQTT ...\r\n");
-		 /* if(wifi_mqtt_connect((uint8_t *) "broker.mqttdashboard.com",8000)==WiFi_MODULE_SUCCESS)
-		  {
-			  printf("\r\nConnexion réussie ...\r\n");
-			  wifi_mqtt_subscribe((uint8_t *) "arroseur/stef");
-			  wifi_mqtt_publish((uint8_t *) "arroseur/stef",strlen(ssid),ssid);
-			  MQTT_connected=1;
-		  }*/
-			 /*connexion_MQTT("broker.mqttdashboard.com",8000);
-
-			 subscribe_topic_MQTT("arroseur/stef","0");
-			 MQTT_connected=1;*/
 			  configuration_MQTT();
-
 		  }
 		  break;
 		  default:
@@ -216,61 +174,6 @@ int main(void)
 
 }
 
-/**
-  * @brief  System Clock Configuration
-  *         The system Clock is configured as follow : 
-  *            System Clock source            = PLL (HSI)
-  *            SYSCLK(Hz)                     = 64000000
-  *            HCLK(Hz)                       = 64000000
-  *            AHB Prescaler                  = 1
-  *            APB1 Prescaler                 = 2
-  *            APB2 Prescaler                 = 1
-  *            PLLMUL                         = 16
-  *            Flash Latency(WS)              = 2
-  * @param  None
-  * @retval None
-  */
-
-#ifdef USE_STM32F1xx_NUCLEO
-
-void SystemClock_Config(void)
-{
-  RCC_ClkInitTypeDef clkinitstruct = {0};
-  RCC_OscInitTypeDef oscinitstruct = {0};
-  
-  /* Configure PLL ------------------------------------------------------*/
-  /* PLL configuration: PLLCLK = (HSI / 2) * PLLMUL = (8 / 2) * 16 = 64 MHz */
-  /* PREDIV1 configuration: PREDIV1CLK = PLLCLK / HSEPredivValue = 64 / 1 = 64 MHz */
-  /* Enable HSI and activate PLL with HSi_DIV2 as source */
-  oscinitstruct.OscillatorType  = RCC_OSCILLATORTYPE_HSE;
-  oscinitstruct.HSEState        = RCC_HSE_ON;
-  oscinitstruct.LSEState        = RCC_LSE_OFF;
-  oscinitstruct.HSIState        = RCC_HSI_OFF;
-  oscinitstruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-  oscinitstruct.HSEPredivValue    = RCC_HSE_PREDIV_DIV1;
-  oscinitstruct.PLL.PLLState    = RCC_PLL_ON;
-  oscinitstruct.PLL.PLLSource   = RCC_PLLSOURCE_HSE;
-  oscinitstruct.PLL.PLLMUL      = RCC_PLL_MUL9;
-  if (HAL_RCC_OscConfig(&oscinitstruct)!= HAL_OK)
-  {
-    /* Initialization Error */
-    while(1); 
-  }
-
-  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
-     clocks dividers */
-  clkinitstruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
-  clkinitstruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  clkinitstruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  clkinitstruct.APB2CLKDivider = RCC_HCLK_DIV1;
-  clkinitstruct.APB1CLKDivider = RCC_HCLK_DIV2;  
-  if (HAL_RCC_ClockConfig(&clkinitstruct, FLASH_LATENCY_2)!= HAL_OK)
-  {
-    /* Initialization Error */
-    while(1); 
-  }
-}
-#endif
 
 #ifdef USE_STM32F4XX_NUCLEO
 
@@ -310,113 +213,6 @@ void SystemClock_Config(void)
 }
 #endif
 
-#ifdef USE_STM32L0XX_NUCLEO
-
-
-/**
- * @brief  System Clock Configuration
- * @param  None
- * @retval None
- */
-  void SystemClock_Config(void)
-{
-  RCC_ClkInitTypeDef RCC_ClkInitStruct;
-  RCC_OscInitTypeDef RCC_OscInitStruct;
-
-  __PWR_CLK_ENABLE();
-
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 0x10;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLLMUL_4;
-  RCC_OscInitStruct.PLL.PLLDIV = RCC_PLLDIV_2;
-  HAL_RCC_OscConfig(&RCC_OscInitStruct);
-
-  RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);//RCC_CLOCKTYPE_SYSCLK;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;//RCC_SYSCLKSOURCE_HSI;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
-  HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1);
-
-  __SYSCFG_CLK_ENABLE(); 
-}
-#endif
-
-#ifdef USE_STM32L4XX_NUCLEO
-/**
-  * @brief  System Clock Configuration
-  *         The system Clock is configured as follow :
-  *            System Clock source            = PLL (MSI)
-  *            SYSCLK(Hz)                     = 80000000
-  *            HCLK(Hz)                       = 80000000
-  *            AHB Prescaler                  = 1
-  *            APB1 Prescaler                 = 1
-  *            APB2 Prescaler                 = 1
-  *            MSI Frequency(Hz)              = 4000000
-  *            PLL_M                          = 1
-  *            PLL_N                          = 40
-  *            PLL_R                          = 2
-  *            PLL_P                          = 7
-  *            PLL_Q                          = 4
-  *            Flash Latency(WS)              = 4
-  * @param  None
-  * @retval None
-  */
-void SystemClock_Config(void)
-{
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-
-  /* MSI is enabled after System reset, activate PLL with MSI as source */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_MSI;
-  RCC_OscInitStruct.MSIState = RCC_MSI_ON;
-  RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_6;
-  RCC_OscInitStruct.MSICalibrationValue = RCC_MSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_MSI;
-  RCC_OscInitStruct.PLL.PLLM = 1;
-  RCC_OscInitStruct.PLL.PLLN = 40;
-  RCC_OscInitStruct.PLL.PLLR = 2;
-  RCC_OscInitStruct.PLL.PLLP = 7;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
-  HAL_RCC_OscConfig(&RCC_OscInitStruct);
-
-  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
-     clocks dividers */
-  RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;  
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;  
-  HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4);
-}
-#endif
-
-#ifdef  USE_FULL_ASSERT
-
-/**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
-void assert_failed(uint8_t* file, uint32_t line)
-{ 
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-
-  /* Infinite loop */
-  while (1)
-  {
-  }
-}
-#endif
 
 #ifdef USART_PRINT_MSG
 void USART_PRINT_MSG_Configuration(UART_HandleTypeDef *UART_MsgHandle, uint32_t baud_rate)
@@ -482,96 +278,7 @@ void UART_Msg_Gpio_Init()
 #endif
 }
 #endif  // end of USART_PRINT_MSG
-
-/**
-  * @brief  Query the User for SSID, password and encryption mode
-  * @param  None
-  * @retval WiFi_Status_t
-  */
-WiFi_Status_t wifi_get_AP_settings(void)
-{
-  WiFi_Status_t status = WiFi_MODULE_SUCCESS;
-  printf("\r\n\n/********************************************************\n");
-  printf("\r *                                                      *\n");
-  printf("\r * X-CUBE-WIFI1 Expansion Software v3.1.1               *\n");
-  printf("\r * X-NUCLEO-IDW0xx1 Wi-Fi Mini-AP Configuration.        *\n");
-  printf("\r * HTTP-Request Example                                 *\n");
-  printf("\r *                                                      *\n");
-  printf("\r *******************************************************/\n");
-  printf("\r\nDo you want to setup SSID?(y/n):");
-  fflush(stdout);
-  scanf("%s",console_input);
-  //console_input[0] = 'n';
-  printf("\r\n");
-
-  //HAL_UART_Receive(UartMsgHandle, (uint8_t *)console_input, 1, 100000);
-  if(console_input[0]=='y') 
-        {
-              set_AP_config = WIFI_TRUE;  
-              printf("Enter the SSID:");
-              fflush(stdout);
-
-              console_count=0;
-              console_count=scanf("%s",console_ssid);
-              printf("\r\n");
-
-                if(console_count==39) 
-                    {
-                        printf("Exceeded number of ssid characters permitted");
-                        return WiFi_NOT_SUPPORTED;
-                    }    
-              
-              //printf("entered =%s\r\n",console_ssid);
-              printf("Enter the password:");
-              fflush(stdout);
-              console_count=0;
-              
-              console_count=scanf("%s",console_psk);
-              printf("\r\n");
-              //printf("entered =%s\r\n",console_psk);
-                if(console_count==19) 
-                    {
-                        printf("Exceeded number of psk characters permitted");
-                        return WiFi_NOT_SUPPORTED;
-                    }    
-              printf("Enter the encryption mode(0:Open, 1:WEP, 2:WPA2/WPA2-Personal):"); 
-              fflush(stdout);
-             scanf("%s",console_input);
-             printf("\r\n");
-              //printf("entered =%s\r\n",console_input);
-              switch(console_input[0])
-              {
-                case '0':
-                  mode = None;
-                  break;
-                case '1':
-                  mode = WEP;
-                  break;
-                case '2':
-                  mode = WPA_Personal;
-                  break;
-                default:
-                  printf("\r\nWrong Entry. Priv Mode is not compatible\n");
-                  return WiFi_NOT_SUPPORTED;              
-              }
-              
-              memcpy(console_host, (const char*)hostname, strlen((char*)hostname));
-              
-        } else 
-            {
-                printf("\r\n\nModule will connect with default settings.");
-                memcpy(console_ssid, (const char*)ssid, strlen((char*)ssid));
-                memcpy(console_psk, (const char*)seckey, strlen((char*)seckey));
-                memcpy(console_host, (const char*)hostname, strlen((char*)hostname));
-            }
   
-  printf("\r\n/*************************************************************\r\n");
-  printf("\r\n * Configuration Complete                                     \r\n");
-  printf("\r\n * Please make sure a Server is running at given hostname     \r\n");
-  printf("\r\n *************************************************************\r\n");
-  
-  return status;
-}
 
 
 /******** Wi-Fi Indication User Callback *********/
@@ -607,126 +314,6 @@ void ind_wifi_mqtt_data_received(uint8_t client_id, uint8_t *topic,uint32_t chun
 void ind_wifi_mqtt_closed(uint8_t client_id){
 	printf("MQTT CLOSED");
 	MQTT_connected=0;
-}
-
-
-
-/*AT+S.MQTTCONN=test.mosquitto.org,8080,/mqtt,,,,SPWF04S,,,,,*/
-
-
-WiFi_Status_t connexion_MQTT(char *host,uint32_t port)
-{
-  WiFi_Status_t status = WiFi_MODULE_SUCCESS;
-  Reset_AT_CMD_Buffer();
-
- // sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.MQTTCONN=broker.hivemq.com,8000,/mqtt,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,\r");
-  sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.MQTTCONN=test.mosquitto.org,8080,/mqtt,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,\r");
- // sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.MQTTCONN=test.mosquitto.org,8080,/mqtt,,,,SPWF04S,,,,, \r");
-  printf((char*) WiFi_AT_Cmd_Buff);
-                   run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_DMA);
-                   IO_status_flag.AT_event_processing = WIFI_MQTT_CONNECT_EVENT;
-                   status = WiFi_MODULE_SUCCESS;
-                  // HAL_Delay(2000);
-                   if(status == WiFi_MODULE_SUCCESS)
-                       {
-                         status = USART_Receive_AT_Resp( );
-                         printf("\r\nWIFI_SUCCES\r\n");
-                       }
-
-  /* AT&W :Save the settings on the flash memory */
-  Reset_AT_CMD_Buffer();
-//  Save_Current_Setting();
-
-  return status;
-}
-
-
-WiFi_Status_t subscribe_topic_MQTT(char *topic, char *qos)
-{
-	WiFi_Status_t status = WiFi_MODULE_SUCCESS;
-		  Reset_AT_CMD_Buffer();
-
-
-		  sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.MQTTSUB=0,%s,%s\r",topic,qos);
-		  run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
-		                    IO_status_flag.AT_event_processing = WIFI_MQTT_CONNECT_EVENT;
-		                    status = WiFi_MODULE_SUCCESS;
-		  //status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
-		  /*if(status == WiFi_MODULE_SUCCESS)
-		    {
-		      status = USART_Receive_AT_Resp( );
-		      mqtt_type = SUBSCRIBE;
-		    }
-
-		  /* AT&W :Save the settings on the flash memory */
-		  Reset_AT_CMD_Buffer();
-		//  Save_Current_Setting();
-
-		  return status;
-}
-/*AT+S.MQTTPUB=0,<Topic>,[<QoS>],[<RetainedFlag>],<Len><cr>{data}*/
-WiFi_Status_t publish_topic_MQTT(char *topic, char *qos,char *msg)
-{
-	WiFi_Status_t status = WiFi_MODULE_SUCCESS;
-		  Reset_AT_CMD_Buffer();
-
-
-		  sprintf((char*)WiFi_AT_Cmd_Buff,"AT+S.MQTTPUB=0,%s,%s,NULL,%d %s",topic,qos,strlen(msg),msg);
-		                  run_spi_cmd((char*)WiFi_AT_Cmd_Buff, SPI_POLL);
-		  //status = USART_Transmit_AT_Cmd(strlen((char*)WiFi_AT_Cmd_Buff));
-		  /*if(status == WiFi_MODULE_SUCCESS)
-		    {
-		      status = USART_Receive_AT_Resp( );
-		      mqtt_type = SUBSCRIBE;
-		    }
-
-		  /* AT&W :Save the settings on the flash memory */
-		  Reset_AT_CMD_Buffer();
-		//  Save_Current_Setting();
-
-		  return status;
-}
-
-void supprimer_characteres(char * str,uint8_t nombre,uint8_t position)
-{
-	int taille =strlen(str);
-	int i = 0;
-	while (i<taille-nombre)
-	{
-		str[position] = str[position +nombre];
-		position++;
-		i++;
-
-	}
-
-}
-
-void traitement_message (char *message , char *topic)
-{
-	/** On cherche à déterminer le topicc**/
-	if(strstr(topic,TOPIC_DECLENCHEMENT) !=NULL)
-	{
-		printf ("\r\n Message : %s Topic : %s ",message,TOPIC_DECLENCHEMENT);
-	}else if (strstr(topic,TOPIC_ARRET) !=NULL)
-	{	printf (" \r\n Message : %s Topic : %s ",message,TOPIC_ARRET);
-
-	}else if (strstr(topic,"arroseur/stef") !=NULL)
-	{
-		printf ("\r\n Message : %s Topic : %s ",message,"arroseur/stef");
-	}
-	printf("\r\n END MQTT");
-}
-
-void configuration_MQTT(void)
-{
-
-				 connexion_MQTT("broker.mqttdashboard.com",8000);
-
-				 subscribe_topic_MQTT("arroseur/stef","0");
-				 subscribe_topic_MQTT(TOPIC_ARRET,QOS);
-				 subscribe_topic_MQTT(TOPIC_DECLENCHEMENT,QOS);
-				 //publish_topic_MQTT(TOPIC_MONITORING,QOS,"Salut\r\n");
-				 MQTT_connected=1;
 }
 
 

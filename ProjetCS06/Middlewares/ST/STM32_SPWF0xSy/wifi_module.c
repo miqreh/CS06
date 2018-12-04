@@ -2281,7 +2281,7 @@ WiFi_Status_t USART_Receive_AT_Resp( )
 {
   while(IO_status_flag.AT_Response_Received != WIFI_TRUE) {
 
-	  printf("\r\nATTENTE AT RECEIVE");
+	  //printf("\r\nATTENTE AT RECEIVE");
 
 	  __NOP(); //nothing to do
 	}
