@@ -1,7 +1,7 @@
 ##Configuration
 # broker MQTT
-#broker_address = "89.156.159.82"
-broker_address="test.mosquitto.org"
+broker_address = "89.156.159.82"
+#broker_address="test.mosquitto.org"
 ClientID = "RaspberryArroseur"
 # Topics pour envoyer des ordres à la nucleo
 topicDeclenchement = "CS06/arroseur/declenchement"
