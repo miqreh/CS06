@@ -90,7 +90,9 @@ def clear_schedule():
 
 def refresh_from_database():
     # Query pour avoir tous les plannings
-    query = 'Select * From planning inner join zone on planning.idprog = zone.idprog where date_arrosage >= NOW()'
+    #query = 'Select * From planning inner join zone on planning.idprog = zone.idprog where date_arrosage >= NOW()'
+    query ='SELECT * FROM planning INNER JOIN zone on planning.idprog = zone.idprog WHERE convert(CONCAT(date_arrosage," ",heure_debut),datetime) >= now()'
+
     database.cursor.execute(query)
     results = database.cursor.fetchall()
 

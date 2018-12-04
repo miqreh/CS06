@@ -25,8 +25,8 @@ def seconds_remaining(date):
     now = datetime.datetime.now()
     return (date - now).total_seconds()
 # # Query pour avoir tous les plannings
-#query = 'SELECT * FROM planning INNER JOIN zone on planning.idprog = zone.idprog WHERE convert(CONCAT(date_arrosage," ",heure_debut),datetime) >= now()'
-query = 'SELECT * FROM '
+query = 'SELECT * FROM planning INNER JOIN zone on planning.idprog = zone.idprog WHERE convert(CONCAT(date_arrosage," ",heure_debut),datetime) >= now()'
+#query = 'SELECT * FROM planning INNER JOIN zone on planning.idprog = zone.idprog'
 
 #
 database.cursor.execute(query)
