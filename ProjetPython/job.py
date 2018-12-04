@@ -57,7 +57,7 @@ def declencher_arrosage(zones):
     info = client.publish(config.topicDeclenchement, message, config.QoS)
     log(message, config.topicDeclenchement)
     print(info)
-    return schedule.CancelJob()
+   # return schedule.CancelJob()
 
 
 def eteindre_arrosage():
@@ -65,14 +65,14 @@ def eteindre_arrosage():
     info = client.publish(config.topicArret, message, config.QoS)
     log(message, config.topicArret)
     print(info)
-    return schedule.CancelJob()
+    #return schedule.CancelJob()
 
 
 def programmer_arrosage(day,hour,zones,duree):
 
     hour_start = functions.timedelta_to_hour_str(hour)
     hour_stop = functions.timedelta_to_hour_str(hour + datetime.timedelta(minutes=duree))
-    jour="unknown"
+
     if day == 1:
         jour="lundi"
         schedule.every().monday.at(hour_start).do(declencher_arrosage, zones).tag(config.tag)
@@ -167,20 +167,3 @@ while 1:
     #print(schedule.jobs)
     time.sleep(1)
 
-# fonction Refresh_database : Regarder sur le topic si la base de de donnée a été mise à jour
-#  si oui copier les données,, sinon rien
-# Job pour appeler refresh_database toutes les heures
-
-# on receive d'un message mqtt du topic Arroseur/database/ appeler Refresh database
-
-# Objet avec différents plannings.
-
-# ajoute  ces plannings.
-
-# les exécute
-
-# For each result in database, ajouter au scheduler puis j'exécute le code
-
-
-# broker_address="test.mosquitto.org"
-# broker_address="iot.eclipse.org" #use external broker
