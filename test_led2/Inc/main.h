@@ -64,6 +64,20 @@
 #define SWO_Pin GPIO_PIN_3
 #define SWO_GPIO_Port GPIOB
 
+typedef enum {
+  wifi_state_reset = 0,
+  wifi_state_ready,
+  wifi_state_idle,
+  wifi_state_connected,
+  wifi_state_connecting,
+  wifi_state_disconnected,
+  wifi_state_activity,
+  wifi_state_inter,
+  wifi_state_print_data,
+  wifi_state_error,
+  wifi_undefine_state       = 0xFF,
+} wifi_state_t;
+
 /* ########################## Assert Selection ############################## */
 /**
   * @brief Uncomment the line below to expanse the "assert_param" macro in the 

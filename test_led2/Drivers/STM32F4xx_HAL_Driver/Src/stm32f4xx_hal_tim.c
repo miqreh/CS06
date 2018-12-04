@@ -125,6 +125,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
+#include "stm32f4xx_hal_tim.h"
 
 /** @addtogroup STM32F4xx_HAL_Driver
   * @{
@@ -134,8 +135,6 @@
   * @brief TIM HAL module driver
   * @{
   */
-
-#ifdef HAL_TIM_MODULE_ENABLED
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -5386,7 +5385,7 @@ static void TIM_ETR_SetConfig(TIM_TypeDef* TIMx, uint32_t TIM_ExtTRGPrescaler,
   * @}
   */
 
-#endif /* HAL_TIM_MODULE_ENABLED */
+
 /**
   * @}
   */ 

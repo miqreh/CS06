@@ -1,0 +1,4 @@
+config_wifi.c:24:5:launch_config_wifi	8	static
+config_wifi.c:86:5:connect_to_local_network	8	static
+config_wifi.c:61:6:message_from_html_post	16	static
+config_wifi.c:144:5:deconnect_to_local_network	8	static
