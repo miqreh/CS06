@@ -1,0 +1,6 @@
+can.c:74:9:CAN_Transmit	8	static
+can.c:93:6:CAN_Config	56	static
+can.c:125:6:CAN_TransmitOrdre	0	static
+can.c:131:6:plog	8	static
+can.c:14:6:HAL_CAN_RxFifo0MsgPendingCallback	8	static
+can.c:47:6:HAL_CAN_ErrorCallback	8	static
