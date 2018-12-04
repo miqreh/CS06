@@ -171,6 +171,11 @@
 			<locationURI>PARENT-3-PROJECT_LOC/Src/config_wifi.c</locationURI>
 		</link>
 		<link>
+			<name>Example/User/connexion_mqtt.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Src/connexion_mqtt.c</locationURI>
+		</link>
+		<link>
 			<name>Example/User/console.c</name>
 			<type>1</type>
 			<locationURI>$%7BPARENT-3-PROJECT_LOC%7D/Src/console.c</locationURI>
