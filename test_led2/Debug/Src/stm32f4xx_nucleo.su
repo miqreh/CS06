@@ -1,3 +1,5 @@
+stm32f4xx_nucleo.c:372:13:SPIx_Init	56	static
+stm32f4xx_nucleo.c:427:13:SPIx_Write	32	static
 stm32f4xx_nucleo.c:179:10:BSP_GetVersion	0	static
 stm32f4xx_nucleo.c:190:6:BSP_LED_Init	48	static
 stm32f4xx_nucleo.c:215:6:BSP_LED_DeInit	16	static
@@ -7,3 +9,12 @@ stm32f4xx_nucleo.c:254:6:BSP_LED_Toggle	0	static
 stm32f4xx_nucleo.c:269:6:BSP_PB_Init	32	static
 stm32f4xx_nucleo.c:306:6:BSP_PB_DeInit	8	static
 stm32f4xx_nucleo.c:321:10:BSP_PB_GetState	8	static
+stm32f4xx_nucleo.c:498:6:SD_IO_CSState	0	static
+stm32f4xx_nucleo.c:516:6:SD_IO_WriteReadData	16	static
+stm32f4xx_nucleo.c:526:9:SD_IO_WriteByte	32	static
+stm32f4xx_nucleo.c:463:6:SD_IO_Init	40	static
+stm32f4xx_nucleo.c:538:6:LCD_IO_Init	48	static
+stm32f4xx_nucleo.c:568:6:LCD_IO_WriteReg	16	static
+stm32f4xx_nucleo.c:588:6:LCD_IO_WriteData	16	static
+stm32f4xx_nucleo.c:608:6:LCD_IO_WriteMultipleData	24	static
+stm32f4xx_nucleo.c:663:6:LCD_Delay	0	static

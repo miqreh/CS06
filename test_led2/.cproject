@@ -52,6 +52,7 @@
 									<listOptionValue builtIn="false" value="SPWF04"/>
 									<listOptionValue builtIn="false" value="USART_PRINT_MSG"/>
 									<listOptionValue builtIn="false" value="USE_STM32F4XX_NUCLEO"/>
+									<listOptionValue builtIn="false" value="HAL_SPI_MODULE_ENABLED"/>
 								</option>
 								<option id="com.atollic.truestudio.common_options.target.endianess.1854274048" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess" useByScannerDiscovery="false" value="com.atollic.truestudio.common_options.target.endianess.little" valueType="enumerated"/>
 								<option id="com.atollic.truestudio.common_options.target.mcpu.191909026" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" useByScannerDiscovery="false" value="STM32F446RE" valueType="enumerated"/>

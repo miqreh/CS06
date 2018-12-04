@@ -175,7 +175,7 @@ int main(void)
 
 	 HAL_Delay(500);*/
 
-	  __NOP();
+	  /*__NOP();
 	 	  switch(wifi_state)
 	 	  {
 	 	  case wifi_state_connected:
@@ -190,8 +190,7 @@ int main(void)
 	 			  break;
 
 	 	  }
-
-
+*/
 
 
   /* USER CODE END WHILE */
