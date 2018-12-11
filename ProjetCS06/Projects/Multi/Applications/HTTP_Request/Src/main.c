@@ -97,7 +97,6 @@ int main(void)
 {
 	 WiFi_Status_t status = WiFi_MODULE_SUCCESS;
 
-
 	  __GPIOA_CLK_ENABLE();
 	  HAL_Init();
 
@@ -308,7 +307,7 @@ void ind_wifi_http_data_available(uint8_t * data_ptr, uint32_t message_size)
 
 void ind_wifi_mqtt_data_received(uint8_t client_id, uint8_t *topic,uint32_t chunk_size,uint32_t message_size, uint32_t total_message_size, uint8_t *data_ptr)
 {
-	printf("MQTT reçu! \r\n");
+	printf("MQTT reï¿½u! \r\n");
 }
 
 void ind_wifi_mqtt_closed(uint8_t client_id){
