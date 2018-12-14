@@ -43,6 +43,33 @@
 #include "wifi_interface.h"
 #include "config_wifi.h"
 #include "connexion_mqtt.h"
+#include "can.h"
+#include "stm32f401xe.h"
+
+
+
+
+#define B1_Pin GPIO_PIN_13
+#define B1_GPIO_Port GPIOC
+#define USART_TX_Pin GPIO_PIN_2
+#define USART_TX_GPIO_Port GPIOA
+#define USART_RX_Pin GPIO_PIN_3
+#define USART_RX_GPIO_Port GPIOA
+#define LD2_Pin GPIO_PIN_5
+#define LD2_GPIO_Port GPIOA
+#define TMS_Pin GPIO_PIN_13
+#define TMS_GPIO_Port GPIOA
+#define TCK_Pin GPIO_PIN_14
+#define TCK_GPIO_Port GPIOA
+#define SWO_Pin GPIO_PIN_3
+#define SWO_GPIO_Port GPIOB
+
+
+
+
+
+CAN_HandleTypeDef hcan1;
+
 
 extern uint8_t MQTT_connected;
 
@@ -60,7 +87,7 @@ extern uint8_t MQTT_connected;
 /* Private variables ---------------------------------------------------------*/
   
 /* Private function prototypes -----------------------------------------------*/
-WiFi_Status_t wifi_get_AP_settings(void);
+
 uint8_t user_buffer[1024];
 __IO char http_char;
 wifi_bool http_post_request = WIFI_FALSE;
@@ -75,7 +102,7 @@ wifi_bool set_AP_config = WIFI_FALSE;
 void  SystemClock_Config(void);
 void  UART_Msg_Gpio_Init(void);
 void  USART_PRINT_MSG_Configuration(UART_HandleTypeDef *UART_MsgHandle, uint32_t baud_rate);
-WiFi_Status_t wifi_get_AP_settings(void);
+
 
 
 /* Private Declarartion ------------------------------------------------------*/
@@ -100,6 +127,7 @@ int main(void)
 	  __GPIOA_CLK_ENABLE();
 	  HAL_Init();
 
+
 	  /* Configure the system clock to 64 MHz */
 	  SystemClock_Config();
 	  SystemCoreClockUpdate();
@@ -115,9 +143,13 @@ int main(void)
 	#endif
 
 
+	 MX_GPIO_Init();
+	 MX_CAN1_Init();
+	 CAN_Config();
+
 	  UART_Configuration(baud_rate);
 
-	  config.power=wifi_active;
+	 /* config.power=wifi_active;
 	  config.power_level=high;
 	  config.dhcp=on;//use DHCP IP address
 	  config.mcu_baud_rate = baud_rate;
@@ -126,14 +158,14 @@ int main(void)
 	  printf("\r\n\nInitializing the wifi module...");
 
 	  /* Init the wi-fi module */
-	  status = wifi_init(&config);
+	  /*status = wifi_init(&config);
 	  if(status!=WiFi_MODULE_SUCCESS)
 	  {
 	    printf("Error in Config");
 	    return 0;
 	  }
   
-  
+  */
   
 	  //A DECOMMENTER POUR QUE LE MODULE COMMENCE EN MODE MINIAP
 	  //--
@@ -143,16 +175,23 @@ int main(void)
 
 	  //A DECOMMENTER POUR QUE LE MODULE SE CONNECTE AUTOMATIQUEMENT AU WIFI
 	  //--
-	  char* ssid_ = "Honor22";
-	  char* key_ = "stephane";
-	  wifi_connect(ssid_, key_,2);
+	  //char* ssid_ = "Honor22";
+	  //char* key_ = "stephane";
+	  //wifi_connect(ssid_, key_,2);
 
 
 
 
   while (1)
   {
-	  __NOP();
+
+	 HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+
+	 CAN_Transmit(8,2,TxData);
+
+	 HAL_Delay(500);
+
+	  /*__NOP();
 	  switch(wifi_state)
 	  {
 	  case wifi_state_connected:
@@ -165,8 +204,7 @@ int main(void)
 		  default:
 			  MQTT_connected=0;
 			  break;
-
-	  }
+	  }*/
 
   }
 
@@ -174,43 +212,153 @@ int main(void)
 }
 
 
+
+
+
+
+
+
 #ifdef USE_STM32F4XX_NUCLEO
 
 void SystemClock_Config(void)
 {
-  RCC_ClkInitTypeDef RCC_ClkInitStruct;
-  RCC_OscInitTypeDef RCC_OscInitStruct;
+	RCC_OscInitTypeDef RCC_OscInitStruct;
+	  RCC_ClkInitTypeDef RCC_ClkInitStruct;
 
-  /* Enable Power Control clock */
-  __PWR_CLK_ENABLE();
-  
-  /* The voltage scaling allows optimizing the power consumption when the device is 
-     clocked below the maximum system frequency, to update the voltage scaling value 
-     regarding system frequency refer to product datasheet.  */
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
-  
-  /* Enable HSI Oscillator and activate PLL with HSI as source */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 0x10;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = 16;
-  RCC_OscInitStruct.PLL.PLLN = 336;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
-  RCC_OscInitStruct.PLL.PLLQ = 7;
-  HAL_RCC_OscConfig(&RCC_OscInitStruct);
-   
-  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
-     clocks dividers */
-  RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;  
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;  
-  HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2);
-}
+	    /**Configure the main internal regulator output voltage
+	    */
+	  __HAL_RCC_PWR_CLK_ENABLE();
+
+	  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
+
+	    /**Initializes the CPU, AHB and APB busses clocks
+	    */
+	  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+	  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+	  RCC_OscInitStruct.HSICalibrationValue = 16;
+	  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+	  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+	  RCC_OscInitStruct.PLL.PLLM = 16;
+	  RCC_OscInitStruct.PLL.PLLN = 336;
+	  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
+	  RCC_OscInitStruct.PLL.PLLQ = 2;
+	  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+	  {
+	    _Error_Handler(__FILE__, __LINE__);
+	  }
+
+	    /**Initializes the CPU, AHB and APB busses clocks
+	    */
+	  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+	                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+	  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+	  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+	  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+	  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+	  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+	  {
+	    _Error_Handler(__FILE__, __LINE__);
+	  }
+
+	    /**Configure the Systick interrupt time
+	    */
+	  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+
+	    /**Configure the Systick
+	    */
+	  HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+
+	  /* SysTick_IRQn interrupt configuration */
+	 // HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+	}
+
+
 #endif
+
+
+
+
+
+
+void MX_GPIO_Init(void)
+{
+
+	 GPIO_InitTypeDef GPIO_InitStruct;
+
+	  /* GPIO Ports Clock Enable */
+	  __HAL_RCC_GPIOC_CLK_ENABLE();
+	  __HAL_RCC_GPIOH_CLK_ENABLE();
+	  __HAL_RCC_GPIOA_CLK_ENABLE();
+	  __HAL_RCC_GPIOB_CLK_ENABLE();
+
+	  /*Configure GPIO pin Output Level */
+	  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+
+	  /*Configure GPIO pin : B1_Pin */
+	  GPIO_InitStruct.Pin = B1_Pin;
+	  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+	  GPIO_InitStruct.Pull = GPIO_NOPULL;
+	  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+
+	  /*Configure GPIO pin : LD2_Pin */
+	  GPIO_InitStruct.Pin = LD2_Pin;
+	  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	  GPIO_InitStruct.Pull = GPIO_NOPULL;
+	  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	  HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
+
+}
+
+
+
+
+
+
+
+
+
+
+void _Error_Handler(char *file, int line)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  while(1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+
+
+/* CAN1 init function */
+void MX_CAN1_Init(void)
+{
+
+  hcan1.Instance = CAN1;
+  hcan1.Init.Prescaler = 28;
+  hcan1.Init.Mode = CAN_MODE_NORMAL;
+  hcan1.Init.SyncJumpWidth = CAN_SJW_1TQ;
+  hcan1.Init.TimeSeg1 = CAN_BS1_15TQ;
+  hcan1.Init.TimeSeg2 = CAN_BS2_2TQ;
+  hcan1.Init.TimeTriggeredMode = DISABLE;
+  hcan1.Init.AutoBusOff = DISABLE;
+  hcan1.Init.AutoWakeUp = DISABLE;
+  hcan1.Init.AutoRetransmission = DISABLE;
+  hcan1.Init.ReceiveFifoLocked = DISABLE;
+  hcan1.Init.TransmitFifoPriority = DISABLE;
+
+  printf("\r\n\n\n\n\n\n\n***************************Avant Erreur--Sale-");
+
+  if (HAL_CAN_Init(&hcan1) != HAL_OK)
+  {
+    printf("\r\n\n\n\n\n\n\n***************************Erreur");
+    printf("\r\n\n\n\n\n\n\n***************************Erreur");
+    printf("\r\n\n\n\n\n\n\n***************************Erreur");
+  }
+
+
+}
 
 
 #ifdef USART_PRINT_MSG
@@ -278,6 +426,8 @@ void UART_Msg_Gpio_Init()
 }
 #endif  // end of USART_PRINT_MSG
   
+
+
 
 
 /******** Wi-Fi Indication User Callback *********/

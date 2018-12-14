@@ -8,4 +8,11 @@
 	</buildSpec>
 	<natures>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Inc/stm32f4xx_hal.h</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

@@ -38,6 +38,14 @@
 #ifndef __MAIN_H
 #define __MAIN_H
 
+
+
+
+
+
+
+
+
 /* Includes ------------------------------------------------------------------*/
 #ifdef USE_STM32L0XX_NUCLEO
 #include "stm32l0xx_hal.h"
@@ -120,6 +128,9 @@ typedef enum {
 
 #endif //USART_PRINT_MSG
 
+
+void MX_GPIO_Init(void);
+void MX_CAN1_Init(void);
 
 #endif /* __MAIN_H */
 

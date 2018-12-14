@@ -1,7 +1,7 @@
 /Example/
-/sources.mk
 /Middlewares/
 /makefile
 /objects.list
 /objects.mk
+/sources.mk
 /subdir.mk
