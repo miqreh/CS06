@@ -24,4 +24,4 @@ QoS = 2
 # 0 - at most once
 # 1 - at least once
 # 2 - exactly once
-# ouvrir le client MQTT
+

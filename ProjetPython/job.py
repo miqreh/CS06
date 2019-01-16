@@ -29,7 +29,7 @@ def on_message(client_mqtt, userdata, msg):
     log(msg.payload, msg.topic, client_mqtt)
     print(msg.topic + " " + str(msg.payload))
     if msg.topic == config.topicDeclenchementManuel:
-        declenchement_manuel(msg)
+        declenchement_manuel(str(msg.payload))
     elif msg.topic == config.topicArretManuel:
         eteindre_arrosage()
     elif msg.topic == config.topicNouveauPlanning:
@@ -145,9 +145,24 @@ def refresh_from_database():
 
 
 def declenchement_manuel(msg):
+    #RESTE A IMPLEMENTER
     #recuperer les zones du messages
-    zones =""
-    #declencher_arrosage(zones)
+    zone1=0
+    zone2=0
+    zone3=0
+    if(msg.find("Z1")!=-1):
+        zone1=1
+    if (msg.find("Z2") != -1):
+        zone2 = 1
+    if (msg.find("Z3") != -1):
+        zone3 = 1
+
+    zones = {}
+    zones["zone1"] = zone1
+    zones["zone2"] = zone2
+    zones["zone3"] = zone3
+
+    declencher_arrosage(zones)
     print("declenchement_manuel\r\n")
 
 
